@@ -23,12 +23,10 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="Haze" />
-        <module name="Microwes" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Haze" target="1.8" />
-      <module name="Microwes" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
