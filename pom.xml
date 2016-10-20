@@ -1,0 +1,64 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.nkttk</groupId>
+  <artifactId>Haze</artifactId>
+  <version>0.1</version>
+  <packaging>jar</packaging>
+
+  <name>Haze</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <aws.java.sdk.bom.version>1.11.31</aws.java.sdk.bom.version>
+    <aws.log4j.version>1.0.0</aws.log4j.version>
+    <testng.version>6.9.10</testng.version>
+    <apache.csv.parser.version>1.4</apache.csv.parser.version>
+    <core.version>1.0-SNAPSHOT</core.version>
+    <services.version>1.0-SNAPSHOT</services.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <apache.commons.io.version>2.4</apache.commons.io.version>
+    <apache.commons.lang.version>3.0</apache.commons.lang.version>
+    <mockito.core.version>1.10.19</mockito.core.version>
+    <geojson.jackson.version>1.5.1</geojson.jackson.version>
+    <jackson.datatype.jsr310.version>2.6.1</jackson.datatype.jsr310.version>
+    <point.compression.version>1.0</point.compression.version>
+    <davidmoten.rtree.version>0.7.6</davidmoten.rtree.version>
+    <davidmoten.grumpy.core.version>0.2.3</davidmoten.grumpy.core.version>
+  </properties>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.5.1</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>${testng.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>${mockito.core.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</project>
