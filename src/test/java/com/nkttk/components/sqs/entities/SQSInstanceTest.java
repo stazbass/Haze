@@ -1,6 +1,6 @@
 package com.nkttk.components.sqs.entities;
 
-import org.testng.Assert;
+import com.nkttk.components.sqs.SQSInstance;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 

@@ -1,4 +1,7 @@
-package com.nkttk.components.sqs.entities;
+package com.nkttk.components.sqs;
+
+import com.nkttk.components.sqs.entities.MessageLock;
+import com.nkttk.components.sqs.entities.SQSMessage;
 
 import java.util.*;
 
