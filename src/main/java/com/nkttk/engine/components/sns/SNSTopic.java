@@ -1,7 +1,5 @@
 package com.nkttk.engine.components.sns;
 
-import com.nkttk.engine.components.sns.entities.SNSMessage;
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Consumer;
@@ -11,13 +9,13 @@ import java.util.function.Consumer;
  */
 public class SNSTopic {
   private String name;
-  private List<Consumer<SNSMessage>> subscribers = new LinkedList<>();
+  private List<Consumer<String>> subscribers = new LinkedList<>();
 
   public SNSTopic(String name) {
     this.name = name;
   }
 
-  public void addSubscriber(Consumer<SNSMessage> subscriber){
+  public void addSubscriber(Consumer<String> subscriber){
     subscribers.add(subscriber);
   }
 
@@ -29,7 +27,7 @@ public class SNSTopic {
     this.name = name;
   }
 
-  public void publishMessage(SNSMessage message){
+  public void publishMessage(String message){
     subscribers.forEach(subscriber->subscriber.accept(message));
   }
 }

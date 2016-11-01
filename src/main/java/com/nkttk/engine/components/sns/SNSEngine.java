@@ -1,28 +1,34 @@
 package com.nkttk.engine.components.sns;
 
-import com.nkttk.engine.components.sns.entities.SNSMessage;
-
 import java.util.LinkedList;
 import java.util.List;
+import java.util.function.Consumer;
 
-/**
- * Created by cryptobat on 11/1/2016.
- */
 public class SNSEngine {
   List<SNSTopic> topics = new LinkedList<>();
 
   public SNSEngine(){
-
   }
 
-  public void publishMessage(String topic, SNSMessage message){
-    topics.forEach(snsTopic -> {
-      if(snsTopic.getName().equals(topic))snsTopic.publishMessage(message);
-    });
+  public void addSubscriber(String topicName, Consumer<String> subscriber){
+    getTopic(topicName).addSubscriber(subscriber);
+  }
+
+  public void publishMessage(String topic, String message){
+    getTopic(topic).publishMessage(message);
   }
 
   public void addTopic(String topic){
     topics.add(new SNSTopic(topic));
+  }
+
+  private SNSTopic getTopic(String name){
+    for(SNSTopic topic : topics){
+      if(topic.getName().equals(name)){
+        return topic;
+      }
+    }
+    throw new RuntimeException("SNS topic not found : " + name);
   }
 
 

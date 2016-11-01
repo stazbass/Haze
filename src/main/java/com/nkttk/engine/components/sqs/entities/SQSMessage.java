@@ -9,6 +9,11 @@ public class SQSMessage {
   private String body;
   private String receiptHandle;
 
+  public SQSMessage(String id, String body){
+    this.id = id;
+    this.body = body;
+  }
+
   public SQSMessage(String body) {
     this.id = UUID.randomUUID().toString();
     this.body = body;
