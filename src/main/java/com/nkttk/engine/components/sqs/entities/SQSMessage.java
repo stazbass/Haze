@@ -1,4 +1,4 @@
-package com.nkttk.components.sqs.entities;
+package com.nkttk.engine.components.sqs.entities;
 
 import java.util.UUID;
 

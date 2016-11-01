@@ -1,6 +1,7 @@
-package com.nkttk.components.sqs.entities;
+package com.nkttk.engine.components.sqs.entities;
 
-import com.nkttk.components.sqs.SQSInstance;
+import com.nkttk.engine.components.sqs.SQSInstance;
+import com.nkttk.engine.components.sqs.entities.SQSMessage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
