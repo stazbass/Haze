@@ -2,8 +2,8 @@ package com.nkttk.engine.aws;
 
 import com.amazonaws.services.sqs.model.Message;
 import com.google.gson.Gson;
-import com.nkttk.engine.components.events.S3Event;
-import com.nkttk.engine.components.events.S3EventType;
+import com.nkttk.engine.components.events.BucketEvent;
+import com.nkttk.engine.components.events.BucketEventType;
 import com.nkttk.engine.components.lambda.LambdaEngine;
 import com.nkttk.engine.components.s3.FileServerEngine;
 import com.nkttk.engine.components.sns.SNSEngine;
@@ -20,7 +20,7 @@ public class AWSEngine {
   private FileServerEngine fileServerEngine;
   private SNSEngine snsEngine;
   private LambdaEngine lambdaEngine;
-  private Map<S3EventType, String> s3EventSQSSubscribers;
+  private Map<BucketEventType, String> s3EventSQSSubscribers;
   private Map<String, String> scheduledEventLambdaSubscribers;
   private SQSMessageBuilder sqsMessageBuilder;
   private SNSMessageBuilder snsMessageBuilder;
@@ -61,15 +61,17 @@ public class AWSEngine {
     sqsEngine.sendMessage(url, sqsMessageBuilder.buildNewMessage(messageBody));
   }
 
-  public void subscribeSQSToS3Event(String sqsUrl, String bucket, S3EventType eventType) {
-    s3EventSQSSubscribers.put(eventType, sqsUrl);
+  public void subscribeSQSToS3Event(String sqsUrl, String bucket, BucketEventType eventType) {
+    fileServerEngine.addEventSubscription(bucket, BucketEventType.ADD, event->{
+      sqsEngine.sendMessage(sqsUrl, );
+    });
   }
 
   public void addBucket(String name) {
 
   }
 
-  public void dispatchS3Event(S3Event event) {
+  public void dispatchS3Event(BucketEvent event) {
     s3EventSQSSubscribers.values().forEach(url -> sqsEngine.sendMessage(url, new Gson().toJson(event)));
   }
 

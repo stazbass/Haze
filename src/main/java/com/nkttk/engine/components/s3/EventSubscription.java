@@ -1,7 +1,7 @@
 package com.nkttk.engine.components.s3;
 
-import com.nkttk.engine.components.events.S3Event;
-import com.nkttk.engine.components.events.S3EventType;
+import com.nkttk.engine.components.events.BucketEvent;
+import com.nkttk.engine.components.events.BucketEventType;
 
 import java.util.function.Consumer;
 
@@ -10,10 +10,10 @@ import java.util.function.Consumer;
  */
 public class EventSubscription {
   private String bucket;
-  private S3EventType eventType;
-  private Consumer<S3Event> subscriber;
+  private BucketEventType eventType;
+  private Consumer<BucketEvent> subscriber;
 
-  public EventSubscription(String bucket, S3EventType eventType, Consumer<S3Event> subscriber) {
+  public EventSubscription(String bucket, BucketEventType eventType, Consumer<BucketEvent> subscriber) {
     this.bucket = bucket;
     this.eventType = eventType;
     this.subscriber = subscriber;
@@ -27,19 +27,19 @@ public class EventSubscription {
     this.bucket = bucket;
   }
 
-  public S3EventType getEventType() {
+  public BucketEventType getEventType() {
     return eventType;
   }
 
-  public void setEventType(S3EventType eventType) {
+  public void setEventType(BucketEventType eventType) {
     this.eventType = eventType;
   }
 
-  public Consumer<S3Event> getSubscriber() {
+  public Consumer<BucketEvent> getSubscriber() {
     return subscriber;
   }
 
-  public void setSubscriber(Consumer<S3Event> subscriber) {
+  public void setSubscriber(Consumer<BucketEvent> subscriber) {
     this.subscriber = subscriber;
   }
 }

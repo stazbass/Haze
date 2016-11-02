@@ -7,9 +7,8 @@ public class BucketObject {
   private String key;
   private byte[] content;
 
-  public BucketObject(String key, byte[] content) {
+  public BucketObject(String key) {
     this.key = key;
-    this.content = content;
   }
 
   public String getKey() {

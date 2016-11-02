@@ -2,7 +2,7 @@ package com.nkttk.engine.components;
 
 import com.amazonaws.services.sqs.model.Message;
 import com.nkttk.engine.aws.AWSEngine;
-import com.nkttk.engine.components.events.S3EventType;
+import com.nkttk.engine.components.events.BucketEventType;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -54,8 +54,7 @@ public class AWSEngineTest {
     String sqsUrl = "sqs_url";
     String bucketName = "bucket_name";
     engine.addSQS(sqsUrl);
-    engine.subscribeSQSToS3Event(sqsUrl, bucketName, S3EventType.ALL);
-
+    engine.subscribeSQSToS3Event(sqsUrl, bucketName, BucketEventType.ADD);
   }
 
   @Test

@@ -19,13 +19,13 @@ package com.nkttk.engine.components.events;
  "s3SchemaVersion": "1.0"
  },
  */
-public class S3Event {
+public class BucketEvent {
   private String etag;
   private String sequencer;
   private String key;
   private String size;
 
-  public S3Event(String etag, String sequencer, String key, String size) {
+  public BucketEvent(String etag, String sequencer, String key, String size) {
     this.etag = etag;
     this.sequencer = sequencer;
     this.key = key;
