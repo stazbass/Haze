@@ -9,21 +9,21 @@ import java.util.function.Consumer;
  *
  */
 public class EventSubscription {
-  private String bucket;
+  private Bucket bucket;
   private BucketEventType eventType;
   private Consumer<BucketEvent> subscriber;
 
-  public EventSubscription(String bucket, BucketEventType eventType, Consumer<BucketEvent> subscriber) {
+  public EventSubscription(Bucket bucket, BucketEventType eventType, Consumer<BucketEvent> subscriber) {
     this.bucket = bucket;
     this.eventType = eventType;
     this.subscriber = subscriber;
   }
 
-  public String getBucket() {
+  public Bucket getBucket() {
     return bucket;
   }
 
-  public void setBucket(String bucket) {
+  public void setBucket(Bucket bucket) {
     this.bucket = bucket;
   }
 

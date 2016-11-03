@@ -13,6 +13,7 @@ import java.util.Map;
  *
  */
 public class Bucket {
+  private String arn;
   private String name;
   private Map<String, BucketObject> files = new HashMap<>();
 
@@ -58,5 +59,13 @@ public class Bucket {
   public BucketObject getFile(String name){
     if(!files.containsKey(name))throw new RuntimeException();
     return files.get(name);
+  }
+
+  public String getArn() {
+    return arn;
+  }
+
+  public void setArn(String arn) {
+    this.arn = arn;
   }
 }

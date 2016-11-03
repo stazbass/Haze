@@ -4,12 +4,15 @@ import com.amazonaws.services.sqs.model.Message;
 import com.google.gson.Gson;
 import com.nkttk.engine.components.events.BucketEvent;
 import com.nkttk.engine.components.events.BucketEventType;
+import com.nkttk.engine.components.events.EventBuilder;
 import com.nkttk.engine.components.lambda.LambdaEngine;
+import com.nkttk.engine.components.s3.Bucket;
 import com.nkttk.engine.components.s3.FileServerEngine;
 import com.nkttk.engine.components.sns.SNSEngine;
 import com.nkttk.engine.components.sqs.SQSEngine;
 import com.nkttk.engine.components.sqs.SQSInstance;
 import com.nkttk.engine.components.sqs.entities.SQSMessage;
+import com.nkttk.json.JsonMaster;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -61,9 +64,12 @@ public class AWSEngine {
     sqsEngine.sendMessage(url, sqsMessageBuilder.buildNewMessage(messageBody));
   }
 
-  public void subscribeSQSToS3Event(String sqsUrl, String bucket, BucketEventType eventType) {
-    fileServerEngine.addEventSubscription(bucket, BucketEventType.ADD, event->{
-      sqsEngine.sendMessage(sqsUrl, );
+  public void subscribeSQSToS3Event(String sqsUrl, String bucketName, BucketEventType eventType) {
+    Bucket bucket = fileServerEngine.getBucket(bucketName);
+    fileServerEngine.addEventSubscription(bucket.getName(), BucketEventType.PUT, event->{
+      sqsEngine.sendMessage(sqsUrl, JsonMaster.toString(EventBuilder.buildS3Notification(eventType,
+                                                                                         bucket.getName(),
+                                                                                         bucket.getArn(), event.getBucketObject().getKey(), event.getBucketObject().getSize(), event.getBucketObject().getEtag())));
     });
   }
 

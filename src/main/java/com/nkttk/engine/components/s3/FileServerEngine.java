@@ -22,15 +22,21 @@ public class FileServerEngine {
   }
 
   public BucketObject addFile(String bucket, String filename, String content){
-    return getBucket(bucket).addFile(filename, content);
+    BucketObject bucketObject = getBucket(bucket).addFile(filename, content);
+    for(EventSubscription subscription : eventSubscriptions){
+      if(subscription.getEventType() == BucketEventType.PUT){
+        subscription.getSubscriber().accept(new BucketEvent(bucketObject, BucketEventType.PUT));
+      }
+    }
+    return bucketObject;
   }
 
-  private Bucket getBucket(String name){
+  public Bucket getBucket(String name){
     if(!buckets.containsKey(name))throw new RuntimeException("Bucket not found : " + name);
     return buckets.get(name);
   }
 
-  public void addEventSubscription(String bucket, BucketEventType type, Consumer<BucketEvent> subscription){
+  public void addEventSubscription(Bucket bucket, BucketEventType type, Consumer<BucketEvent> subscription){
     eventSubscriptions.add(new EventSubscription(bucket, type, subscription));
   }
 }

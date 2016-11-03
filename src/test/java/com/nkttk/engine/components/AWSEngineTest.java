@@ -54,7 +54,7 @@ public class AWSEngineTest {
     String sqsUrl = "sqs_url";
     String bucketName = "bucket_name";
     engine.addSQS(sqsUrl);
-    engine.subscribeSQSToS3Event(sqsUrl, bucketName, BucketEventType.ADD);
+    engine.subscribeSQSToS3Event(sqsUrl, bucketName, BucketEventType.PUT);
   }
 
   @Test

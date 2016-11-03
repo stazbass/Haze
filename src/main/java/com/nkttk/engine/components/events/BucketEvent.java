@@ -1,5 +1,7 @@
 package com.nkttk.engine.components.events;
 
+import com.nkttk.engine.components.s3.BucketObject;
+
 /**
  "s3": {
  "configurationId": "testConfigRule",
@@ -20,15 +22,28 @@ package com.nkttk.engine.components.events;
  },
  */
 public class BucketEvent {
-  private String etag;
-  private String sequencer;
-  private String key;
-  private String size;
+  private BucketObject bucketObject;
+  private BucketEventType bucketEventType;
 
-  public BucketEvent(String etag, String sequencer, String key, String size) {
-    this.etag = etag;
-    this.sequencer = sequencer;
-    this.key = key;
-    this.size = size;
+  public BucketEvent(BucketObject bucketObject, BucketEventType bucketEventType) {
+    this.bucketObject = bucketObject;
+    this.bucketEventType = bucketEventType;
+  }
+
+
+  public BucketObject getBucketObject() {
+    return bucketObject;
+  }
+
+  public void setBucketObject(BucketObject bucketObject) {
+    this.bucketObject = bucketObject;
+  }
+
+  public BucketEventType getBucketEventType() {
+    return bucketEventType;
+  }
+
+  public void setBucketEventType(BucketEventType bucketEventType) {
+    this.bucketEventType = bucketEventType;
   }
 }
