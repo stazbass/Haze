@@ -1,5 +1,6 @@
 package com.nkttk.core.engine;
 
+import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.sqs.model.Message;
 import com.nkttk.core.components.events.BucketEventType;
 import com.nkttk.core.components.events.EventBuilder;
@@ -84,5 +85,9 @@ public class AWSEngine {
 
   public void runLambda(String name, Object args) {
     lambdaEngine.runLambda(name, args);
+  }
+
+  public void addLambda(String url, String name, RequestHandler requestHandler){
+    lambdaEngine.addLambda(url, name, requestHandler);
   }
 }

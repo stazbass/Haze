@@ -14,15 +14,4 @@ public class JsonMasterTest {
     Message result = JsonMaster.readValue(json, Message.class);
     System.out.println(json);
   }
-
-  @Test
-  public void testReadValue1() throws Exception {
-
-  }
-
-  @Test
-  public void testToString() throws Exception {
-
-  }
-
 }

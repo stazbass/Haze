@@ -1,5 +1,7 @@
 package com.nkttk.core.components;
 
+import com.amazonaws.services.lambda.runtime.Context;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.sqs.model.Message;
 import com.nkttk.core.engine.AWSEngine;
 import com.nkttk.core.components.events.BucketEventType;
@@ -74,7 +76,14 @@ public class AWSEngineTest {
 
   @Test
   public void testRunLambda() throws Exception {
-
+    engine.addLambda("test_url", "test_name", new RequestHandler<Object, String>() {
+      @Override
+      public String handleRequest(Object input, Context context) {
+        System.out.println("Handle request " + input);
+        return "OK";
+      }
+    });
+    engine.runLambda("test_name", "Lambda args");
   }
 
 }

@@ -15,6 +15,7 @@ public class LambdaInstance<I,O> {
     this.url = url;
     this.handler = handler;
     this.context = new LambdaContext(name);
+    this.name = name;
   }
 
   public O execute(I input){
@@ -25,15 +26,7 @@ public class LambdaInstance<I,O> {
     return name;
   }
 
-  public void setName(String name) {
-    this.name = name;
-  }
-
   public String getUrl() {
     return url;
-  }
-
-  public void setUrl(String url) {
-    this.url = url;
   }
 }

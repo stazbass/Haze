@@ -30,6 +30,7 @@ public class BucketEvent {
   public BucketEvent(Bucket bucket, BucketObject bucketObject, BucketEventType bucketEventType) {
     this.bucketObject = bucketObject;
     this.bucketEventType = bucketEventType;
+    this.bucket = bucket;
   }
 
 
@@ -37,15 +38,11 @@ public class BucketEvent {
     return bucketObject;
   }
 
-  public void setBucketObject(BucketObject bucketObject) {
-    this.bucketObject = bucketObject;
-  }
-
   public BucketEventType getBucketEventType() {
     return bucketEventType;
   }
 
-  public void setBucketEventType(BucketEventType bucketEventType) {
-    this.bucketEventType = bucketEventType;
+  public Bucket getBucket() {
+    return bucket;
   }
 }
