@@ -18,4 +18,11 @@ public class SQSDescription {
   public void setName(String name) {
     this.name = name;
   }
+
+  @Override
+  public String toString() {
+    return "SQSDescription{" +
+           "name='" + name + '\'' +
+           '}';
+  }
 }

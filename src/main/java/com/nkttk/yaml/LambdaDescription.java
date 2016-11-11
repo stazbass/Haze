@@ -10,9 +10,20 @@ public class LambdaDescription {
   private String memorySize;
   private Object events;
 
-  public LambdaDescription(String name, String handler){
+  public LambdaDescription(String name, String handler) {
     this.name = name;
     this.handler = handler;
+  }
+
+  @Override
+  public String toString() {
+    return "LambdaDescription{" +
+           "handler='" + handler + '\'' +
+           ", name='" + name + '\'' +
+           ", timeout='" + timeout + '\'' +
+           ", memorySize='" + memorySize + '\'' +
+           ", events=" + events +
+           '}';
   }
 
   public String getHandler() {

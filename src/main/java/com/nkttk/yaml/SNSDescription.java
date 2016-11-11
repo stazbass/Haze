@@ -18,4 +18,11 @@ public class SNSDescription {
   public void setTopic(String topic) {
     this.topic = topic;
   }
+
+  @Override
+  public String toString() {
+    return "SNSDescription{" +
+           "topic='" + topic + '\'' +
+           '}';
+  }
 }

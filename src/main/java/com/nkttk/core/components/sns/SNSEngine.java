@@ -1,5 +1,7 @@
 package com.nkttk.core.components.sns;
 
+import com.nkttk.core.components.ComponentIdentifier;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Consumer;
@@ -9,7 +11,13 @@ public class SNSEngine {
 
   public SNSEngine(){
   }
-
+  public List<ComponentIdentifier> getIdentifiers(){
+    List<ComponentIdentifier> identifiers = new LinkedList<>();
+    for(SNSTopic topic : topics){
+      identifiers.add(new ComponentIdentifier(topic.getName(), topic.getUrl()));
+    }
+    return identifiers;
+  }
   public void addSubscriber(String topicName, Consumer<String> subscriber){
     getTopic(topicName).addSubscriber(subscriber);
   }

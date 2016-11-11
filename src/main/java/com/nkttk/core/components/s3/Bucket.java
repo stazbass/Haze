@@ -13,7 +13,7 @@ import java.util.Map;
  *
  */
 public class Bucket {
-  private String arn;
+  private String url;
   private String name;
   private Map<String, BucketObject> files = new HashMap<>();
 
@@ -26,11 +26,11 @@ public class Bucket {
     files.put(key, file);
     return file;
   }
+
   public BucketObject addFile(String name, String content){
-    BucketObject file = addFile(name);
-    writeFileContent(name, content);
-    return file;
+    return addFile(name, new ByteArrayInputStream(content.getBytes()));
   }
+
   public BucketObject addFile(String name, InputStream content){
     BucketObject file = addFile(name);
     writeFileContent(name, content);
@@ -66,11 +66,11 @@ public class Bucket {
     return files.get(name);
   }
 
-  public String getArn() {
-    return arn;
+  public String getUrl() {
+    return url;
   }
 
-  public void setArn(String arn) {
-    this.arn = arn;
+  public void setUrl(String url) {
+    this.url = url;
   }
 }

@@ -2,6 +2,7 @@ package com.nkttk.core.components.sns;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.UUID;
 import java.util.function.Consumer;
 
 /**
@@ -9,13 +10,18 @@ import java.util.function.Consumer;
  */
 public class SNSTopic {
   private String name;
+  private String url;
   private List<Consumer<String>> subscribers = new LinkedList<>();
-
   public SNSTopic(String name) {
     this.name = name;
+    this.url = UUID.randomUUID().toString();
   }
 
-  public void addSubscriber(Consumer<String> subscriber){
+  public String getUrl() {
+    return url;
+  }
+
+  public void addSubscriber(Consumer<String> subscriber) {
     subscribers.add(subscriber);
   }
 
@@ -27,7 +33,7 @@ public class SNSTopic {
     this.name = name;
   }
 
-  public void publishMessage(String message){
-    subscribers.forEach(subscriber->subscriber.accept(message));
+  public void publishMessage(String message) {
+    subscribers.forEach(subscriber -> subscriber.accept(message));
   }
 }

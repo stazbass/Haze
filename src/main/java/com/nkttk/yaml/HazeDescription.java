@@ -47,4 +47,14 @@ public class HazeDescription {
   public void addSNS(String topic) {
     notificationServices.add(new SNSDescription(topic));
   }
+
+  @Override
+  public String toString() {
+    return "HazeDescription{" +
+           "functions=" + functions +
+           ", queueServices=" + queueServices +
+           ", notificationServices=" + notificationServices +
+           ", buckets=" + buckets +
+           '}';
+  }
 }

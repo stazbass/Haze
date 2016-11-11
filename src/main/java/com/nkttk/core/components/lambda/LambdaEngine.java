@@ -11,8 +11,8 @@ import java.util.List;
 public class LambdaEngine {
   private List<LambdaInstance> instances = new LinkedList<>();
 
-  public <I,O> void addLambda(String url, String name, RequestHandler<I,O> handler){
-    this.instances.add(new LambdaInstance(url, name, handler));
+  public <I,O> void addLambda(String name, RequestHandler<I,O> handler){
+    this.instances.add(new LambdaInstance(name, handler));
   }
 
   public Object runLambda(String name, Object arg){
