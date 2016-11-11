@@ -16,7 +16,7 @@ public class SQSMessageFactory {
    * @param message
    * @return
    */
-  public static Message buildMessage(SQSMessage message){
+  public static Message buildNativeMessage(SQSMessage message){
     Message result;
     try {
       result = JsonMaster.readValue(message.getBody(), Message.class);
@@ -31,7 +31,7 @@ public class SQSMessageFactory {
    * @param body
    * @return
    */
-  public static SQSMessage buildNewMessage(String body){
+  public static SQSMessage buildMessage(String body){
     String id = UUID.randomUUID().toString();
     Message message = new Message();
     message.setMessageId(id);

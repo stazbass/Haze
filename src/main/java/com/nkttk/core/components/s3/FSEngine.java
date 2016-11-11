@@ -4,6 +4,7 @@ package com.nkttk.core.components.s3;
 import com.nkttk.core.components.events.BucketEvent;
 import com.nkttk.core.components.events.BucketEventType;
 
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -24,6 +25,17 @@ public class FSEngine {
   }
 
   public BucketObject addFile(String bucketName, String fileName, String content){
+    Bucket bucket = getBucket(bucketName);
+    BucketObject bucketObject = bucket.addFile(fileName, content);
+    eventSubscriptions.forEach(subscription->{
+      if(subscription.getEventType() == BucketEventType.PUT){
+        subscription.getHandler().accept(new BucketEvent(bucket, bucketObject, BucketEventType.PUT));
+      }
+    });
+    return bucketObject;
+  }
+
+  public BucketObject addFile(String bucketName, String fileName, InputStream content){
     Bucket bucket = getBucket(bucketName);
     BucketObject bucketObject = bucket.addFile(fileName, content);
     eventSubscriptions.forEach(subscription->{

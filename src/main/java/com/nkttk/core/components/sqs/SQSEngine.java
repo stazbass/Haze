@@ -9,7 +9,7 @@ public class SQSEngine {
   private Map<String, SQSInstance> instances = new HashMap<>();
 
   public void addInstance(SQSInstance instance) {
-    instances.put(instance.getUrl(), instance);
+    instances.put(instance.getEndpointURL(), instance);
   }
 
   public void sendMessage(String url, String message) {
@@ -27,6 +27,15 @@ public class SQSEngine {
 
   public void deleteMessage(String url, String receiptHandle) {
     getSQS(url).deleteMessage(receiptHandle);
+  }
+
+  public String getSQSEndpoint(String name){
+    for(SQSInstance instance : instances.values()){
+      if(instance.getName().equals(name)){
+        return instance.getEndpointURL();
+      }
+    }
+    throw new RuntimeException("Cant find sqs with name: " + name);
   }
 
   private SQSInstance getSQS(String url) {

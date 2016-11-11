@@ -1,0 +1,95 @@
+# This file is the main config file for your service.
+service: net-meteogroup-posi-prod-processor # NOTE: update this with your service name
+
+provider:
+  name: aws
+  runtime: java8
+  region: eu-west-1
+
+package:
+  artifact: target/point-observation-processor-1.0-SNAPSHOT.jar
+
+
+##################################PROVISIONING LAMBDA FUNCTIONS#################################
+functions:
+
+##################################PROVISIONING LAMBDA FUNCTIONS FOR FM AND ODS PROCESSING#################################
+  #Adding AWS lambda functions for all observation buckets.
+  processor:
+    handler: com.meteogroup.observation.processor.infrastructure.aws.lambda.ProcessorRequestHandler
+    name: ${file(./src/main/resources/stages/${opt:stage}.stage.yml):processorObservationLambdaName}-${opt:stage}
+    timeout: ${file(./src/main/resources/stages/${opt:stage}.stage.yml):lambdaTimeOut}
+    memorySize : 256
+    events:
+      - schedule: rate(1 minute) #Every minute
+
+ # you can add CloudFormation resource templates here.
+resources:
+    Resources:
+
+      #Adding DataIngestionDeadLetterQueue for ingestion processing.
+      DataIngestionDeadLetterQueue:
+        Type: AWS::SQS::Queue
+        Properties:
+          QueueName: ${file(./src/main/resources/stages/${opt:stage}.stage.yml):dataIngestionDeadLetterQueue}
+
+      #Adding DataRejectionHandlerQueue projection queue.
+      DataRejectionHandlerQueue:
+        DependsOn: DataIngestionDeadLetterQueue
+        Type: AWS::SQS::Queue
+        Properties:
+          QueueName: ${file(./src/main/resources/stages/${opt:stage}.stage.yml):rejectedQueueName}
+
+      #Adding ingestion queue.
+      IngestionQueue:
+        DependsOn: DataRejectionHandlerQueue
+        Type: AWS::SQS::Queue
+        Properties:
+          QueueName: ${file(./src/main/resources/stages/${opt:stage}.stage.yml):ingestionQueueName}
+          RedrivePolicy:
+            deadLetterTargetArn: {"Fn::GetAtt": ["DataIngestionDeadLetterQueue","Arn"]}
+            maxReceiveCount: 3
+
+
+##################################PROVISIONING NECESSARY POLICY#################################
+      #Adding notify permission to queus for s3 bucket.
+      AllowQueusToGetEventFromS3Bucket:
+        Type: AWS::SQS::QueuePolicy
+        Properties:
+          PolicyDocument:
+              Statement:
+              - Effect: Allow
+                Action:
+                 - "sqs:*"
+                Principal:
+                  AWS: "*"
+                Resource: "*"
+          Queues:
+            - Ref: "IngestionQueue"
+            - Ref: "DataRejectionHandlerQueue"
+            - Ref: "DataIngestionDeadLetterQueue"
+
+      AWSLambdaAccessExecutionRole:
+        Type: AWS::IAM::ManagedPolicy
+        Properties:
+          Description: Creating policy for lambda execution.
+          Roles:
+            - {"Ref" : "IamRoleLambdaExecution"}
+          PolicyDocument:
+              Version: '2012-10-17'
+              Statement:
+              - Effect: Allow
+                Action:
+                 - "logs:CreateLogGroup"
+                 - "logs:CreateLogStream"
+                 - "logs:PutLogEvents"
+                 - "cloudformation:DescribeStacks"
+                 - "cloudformation:DescribeStackEvents"
+                 - "cloudformation:DescribeStackResource"
+                 - "cloudformation:DescribeStackResources"
+                 - "cloudwatch:*"
+                 - "events:*"
+                 - "lambda:*"
+                 - "s3:*"
+                 - "sns:*"
+                Resource: "*"

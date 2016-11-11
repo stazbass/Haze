@@ -31,6 +31,11 @@ public class Bucket {
     writeFileContent(name, content);
     return file;
   }
+  public BucketObject addFile(String name, InputStream content){
+    BucketObject file = addFile(name);
+    writeFileContent(name, content);
+    return file;
+  }
   public String getName() {
     return name;
   }
