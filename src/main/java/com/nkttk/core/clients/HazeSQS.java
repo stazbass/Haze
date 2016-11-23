@@ -1,7 +1,6 @@
 package com.nkttk.core.clients;
 
 import com.amazonaws.AmazonClientException;
-import com.amazonaws.AmazonServiceException;
 import com.amazonaws.AmazonWebServiceRequest;
 import com.amazonaws.ResponseMetadata;
 import com.amazonaws.regions.Region;
@@ -25,69 +24,135 @@ public class HazeSQS implements AmazonSQS {
   }
 
   @Override
-  public void setEndpoint(String endpoint) throws IllegalArgumentException {
+  public void setEndpoint(String endpoint) {
     this.endpoint = endpoint;
   }
 
   @Override
-  public void setRegion(Region region) throws IllegalArgumentException {
+  public void setRegion(Region region) {
 
   }
 
   @Override
-  public void setQueueAttributes(SetQueueAttributesRequest setQueueAttributesRequest) throws AmazonServiceException, AmazonClientException {
-
-  }
-
-  @Override
-  public ChangeMessageVisibilityBatchResult changeMessageVisibilityBatch(ChangeMessageVisibilityBatchRequest changeMessageVisibilityBatchRequest) throws AmazonServiceException, AmazonClientException {
+  public AddPermissionResult addPermission(AddPermissionRequest addPermissionRequest) {
     return null;
   }
 
   @Override
-  public void changeMessageVisibility(ChangeMessageVisibilityRequest changeMessageVisibilityRequest) throws AmazonServiceException, AmazonClientException {
-
+  public AddPermissionResult addPermission(String queueUrl, String label, List<String> aWSAccountIds, List<String> actions) {
+    return null;
   }
 
   @Override
-  public GetQueueUrlResult getQueueUrl(GetQueueUrlRequest getQueueUrlRequest) throws AmazonServiceException, AmazonClientException {
+  public ChangeMessageVisibilityResult changeMessageVisibility(ChangeMessageVisibilityRequest changeMessageVisibilityRequest) {
+    return null;
+  }
+
+  @Override
+  public ChangeMessageVisibilityResult changeMessageVisibility(String queueUrl, String receiptHandle, Integer visibilityTimeout) {
+    return null;
+  }
+
+  @Override
+  public ChangeMessageVisibilityBatchResult changeMessageVisibilityBatch(ChangeMessageVisibilityBatchRequest changeMessageVisibilityBatchRequest) {
+    return null;
+  }
+
+  @Override
+  public ChangeMessageVisibilityBatchResult changeMessageVisibilityBatch(String queueUrl, List<ChangeMessageVisibilityBatchRequestEntry> entries) {
+    return null;
+  }
+
+  @Override
+  public CreateQueueResult createQueue(CreateQueueRequest createQueueRequest) {
+    return null;
+  }
+
+  @Override
+  public CreateQueueResult createQueue(String queueName) {
+    return null;
+  }
+
+  @Override
+  public DeleteMessageResult deleteMessage(DeleteMessageRequest deleteMessageRequest) {
+    return null;
+  }
+
+  @Override
+  public DeleteMessageResult deleteMessage(String queueUrl, String receiptHandle) {
+    return null;
+  }
+
+  @Override
+  public DeleteMessageBatchResult deleteMessageBatch(DeleteMessageBatchRequest deleteMessageBatchRequest) {
+    return null;
+  }
+
+  @Override
+  public DeleteMessageBatchResult deleteMessageBatch(String queueUrl, List<DeleteMessageBatchRequestEntry> entries) {
+    return null;
+  }
+
+  @Override
+  public DeleteQueueResult deleteQueue(DeleteQueueRequest deleteQueueRequest) {
+    return null;
+  }
+
+  @Override
+  public DeleteQueueResult deleteQueue(String queueUrl) {
+    return null;
+  }
+
+  @Override
+  public GetQueueAttributesResult getQueueAttributes(GetQueueAttributesRequest getQueueAttributesRequest) {
+    return null;
+  }
+
+  @Override
+  public GetQueueAttributesResult getQueueAttributes(String queueUrl, List<String> attributeNames) {
+    return null;
+  }
+
+  @Override
+  public GetQueueUrlResult getQueueUrl(GetQueueUrlRequest getQueueUrlRequest) throws AmazonClientException {
     GetQueueUrlResult result = new GetQueueUrlResult();
     result.setQueueUrl(engine.getSQSEndpoint(getQueueUrlRequest.getQueueName()));
     return result;
   }
 
-  @Override
-  public void removePermission(RemovePermissionRequest removePermissionRequest) throws AmazonServiceException, AmazonClientException {
-
-  }
 
   @Override
-  public GetQueueAttributesResult getQueueAttributes(GetQueueAttributesRequest getQueueAttributesRequest) throws AmazonServiceException, AmazonClientException {
+  public GetQueueUrlResult getQueueUrl(String queueName) {
     return null;
   }
 
   @Override
-  public SendMessageBatchResult sendMessageBatch(SendMessageBatchRequest sendMessageBatchRequest) throws AmazonServiceException, AmazonClientException {
+  public ListDeadLetterSourceQueuesResult listDeadLetterSourceQueues(ListDeadLetterSourceQueuesRequest listDeadLetterSourceQueuesRequest) {
     return null;
   }
 
   @Override
-  public ListDeadLetterSourceQueuesResult listDeadLetterSourceQueues(ListDeadLetterSourceQueuesRequest listDeadLetterSourceQueuesRequest) throws AmazonServiceException, AmazonClientException {
+  public ListQueuesResult listQueues(ListQueuesRequest listQueuesRequest) {
     return null;
   }
 
   @Override
-  public void deleteQueue(DeleteQueueRequest deleteQueueRequest) throws AmazonServiceException, AmazonClientException {
-
-  }
-
-  @Override
-  public SendMessageResult sendMessage(SendMessageRequest sendMessageRequest) throws AmazonServiceException, AmazonClientException {
+  public ListQueuesResult listQueues() {
     return null;
   }
 
   @Override
-  public ReceiveMessageResult receiveMessage(ReceiveMessageRequest receiveMessageRequest) throws AmazonServiceException, AmazonClientException {
+  public ListQueuesResult listQueues(String queueNamePrefix) {
+    return null;
+  }
+
+  @Override
+  public PurgeQueueResult purgeQueue(PurgeQueueRequest purgeQueueRequest) {
+    return null;
+  }
+
+  @Override
+  public ReceiveMessageResult receiveMessage(ReceiveMessageRequest receiveMessageRequest) throws AmazonClientException {
     List<Message> resultMessages = new LinkedList<>();
     ReceiveMessageResult result = new ReceiveMessageResult();
     for(int i = 0; i < receiveMessageRequest.getMaxNumberOfMessages(); i++){
@@ -99,108 +164,48 @@ public class HazeSQS implements AmazonSQS {
   }
 
   @Override
-  public ListQueuesResult listQueues(ListQueuesRequest listQueuesRequest) throws AmazonServiceException, AmazonClientException {
+  public ReceiveMessageResult receiveMessage(String queueUrl) {
     return null;
   }
 
   @Override
-  public DeleteMessageBatchResult deleteMessageBatch(DeleteMessageBatchRequest deleteMessageBatchRequest) throws AmazonServiceException, AmazonClientException {
+  public RemovePermissionResult removePermission(RemovePermissionRequest removePermissionRequest) {
     return null;
   }
 
   @Override
-  public CreateQueueResult createQueue(CreateQueueRequest createQueueRequest) throws AmazonServiceException, AmazonClientException {
+  public RemovePermissionResult removePermission(String queueUrl, String label) {
     return null;
   }
 
   @Override
-  public void addPermission(AddPermissionRequest addPermissionRequest) throws AmazonServiceException, AmazonClientException {
-
-  }
-
-  @Override
-  public void deleteMessage(DeleteMessageRequest deleteMessageRequest) throws AmazonServiceException, AmazonClientException {
-
-  }
-
-  @Override
-  public ListQueuesResult listQueues() throws AmazonServiceException, AmazonClientException {
+  public SendMessageResult sendMessage(SendMessageRequest sendMessageRequest) {
     return null;
   }
 
   @Override
-  public void setQueueAttributes(String queueUrl, Map<String, String> attributes) throws AmazonServiceException, AmazonClientException {
-
-  }
-
-  @Override
-  public ChangeMessageVisibilityBatchResult changeMessageVisibilityBatch(String queueUrl, List<ChangeMessageVisibilityBatchRequestEntry> entries) throws AmazonServiceException, AmazonClientException {
+  public SendMessageResult sendMessage(String queueUrl, String messageBody) {
     return null;
   }
 
   @Override
-  public void changeMessageVisibility(String queueUrl, String receiptHandle, Integer visibilityTimeout) throws AmazonServiceException, AmazonClientException {
-
-  }
-
-  @Override
-  public GetQueueUrlResult getQueueUrl(String queueName) throws AmazonServiceException, AmazonClientException {
+  public SendMessageBatchResult sendMessageBatch(SendMessageBatchRequest sendMessageBatchRequest) {
     return null;
   }
 
   @Override
-  public void removePermission(String queueUrl, String label) throws AmazonServiceException, AmazonClientException {
-
-  }
-
-  @Override
-  public GetQueueAttributesResult getQueueAttributes(String queueUrl, List<String> attributeNames) throws AmazonServiceException, AmazonClientException {
+  public SendMessageBatchResult sendMessageBatch(String queueUrl, List<SendMessageBatchRequestEntry> entries) {
     return null;
   }
 
   @Override
-  public SendMessageBatchResult sendMessageBatch(String queueUrl, List<SendMessageBatchRequestEntry> entries) throws AmazonServiceException, AmazonClientException {
+  public SetQueueAttributesResult setQueueAttributes(SetQueueAttributesRequest setQueueAttributesRequest) {
     return null;
   }
 
   @Override
-  public void deleteQueue(String queueUrl) throws AmazonServiceException, AmazonClientException {
-
-  }
-
-  @Override
-  public SendMessageResult sendMessage(String queueUrl, String messageBody) throws AmazonServiceException, AmazonClientException {
+  public SetQueueAttributesResult setQueueAttributes(String queueUrl, Map<String, String> attributes) {
     return null;
-  }
-
-  @Override
-  public ReceiveMessageResult receiveMessage(String queueUrl) throws AmazonServiceException, AmazonClientException {
-    return null;
-  }
-
-  @Override
-  public ListQueuesResult listQueues(String queueNamePrefix) throws AmazonServiceException, AmazonClientException {
-    return null;
-  }
-
-  @Override
-  public DeleteMessageBatchResult deleteMessageBatch(String queueUrl, List<DeleteMessageBatchRequestEntry> entries) throws AmazonServiceException, AmazonClientException {
-    return null;
-  }
-
-  @Override
-  public CreateQueueResult createQueue(String queueName) throws AmazonServiceException, AmazonClientException {
-    return null;
-  }
-
-  @Override
-  public void addPermission(String queueUrl, String label, List<String> aWSAccountIds, List<String> actions) throws AmazonServiceException, AmazonClientException {
-
-  }
-
-  @Override
-  public void deleteMessage(String queueUrl, String receiptHandle) throws AmazonServiceException, AmazonClientException {
-
   }
 
   @Override

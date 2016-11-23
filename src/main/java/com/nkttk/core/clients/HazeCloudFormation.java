@@ -7,6 +7,7 @@ import com.amazonaws.ResponseMetadata;
 import com.amazonaws.regions.Region;
 import com.amazonaws.services.cloudformation.AmazonCloudFormation;
 import com.amazonaws.services.cloudformation.model.*;
+import com.amazonaws.services.cloudformation.waiters.AmazonCloudFormationWaiters;
 import com.nkttk.core.components.ComponentIdentifier;
 import com.nkttk.core.engine.AWSEngine;
 
@@ -25,25 +26,69 @@ public class HazeCloudFormation implements AmazonCloudFormation {
   }
 
   @Override
-  public void setEndpoint(String s) throws IllegalArgumentException {
+  public void setEndpoint(String endpoint) {
 
   }
 
   @Override
-  public void setRegion(Region region) throws IllegalArgumentException {
+  public void setRegion(Region region) {
 
   }
 
   @Override
-  public GetTemplateSummaryResult getTemplateSummary(GetTemplateSummaryRequest getTemplateSummaryRequest) throws AmazonServiceException, AmazonClientException {
+  public CancelUpdateStackResult cancelUpdateStack(CancelUpdateStackRequest cancelUpdateStackRequest) {
     return null;
   }
 
   @Override
-  public ValidateTemplateResult validateTemplate(ValidateTemplateRequest validateTemplateRequest) throws AmazonServiceException, AmazonClientException {
+  public ContinueUpdateRollbackResult continueUpdateRollback(ContinueUpdateRollbackRequest continueUpdateRollbackRequest) {
     return null;
   }
 
+  @Override
+  public CreateChangeSetResult createChangeSet(CreateChangeSetRequest createChangeSetRequest) {
+    return null;
+  }
+
+  @Override
+  public CreateStackResult createStack(CreateStackRequest createStackRequest) {
+    return null;
+  }
+
+  @Override
+  public DeleteChangeSetResult deleteChangeSet(DeleteChangeSetRequest deleteChangeSetRequest) {
+    return null;
+  }
+
+  @Override
+  public DeleteStackResult deleteStack(DeleteStackRequest deleteStackRequest) {
+    return null;
+  }
+
+  @Override
+  public DescribeAccountLimitsResult describeAccountLimits(DescribeAccountLimitsRequest describeAccountLimitsRequest) {
+    return null;
+  }
+
+  @Override
+  public DescribeChangeSetResult describeChangeSet(DescribeChangeSetRequest describeChangeSetRequest) {
+    return null;
+  }
+
+  @Override
+  public DescribeStackEventsResult describeStackEvents(DescribeStackEventsRequest describeStackEventsRequest) {
+    return null;
+  }
+
+  @Override
+  public DescribeStackResourceResult describeStackResource(DescribeStackResourceRequest describeStackResourceRequest) {
+    return null;
+  }
+
+  @Override
+  public DescribeStackResourcesResult describeStackResources(DescribeStackResourcesRequest describeStackResourcesRequest) {
+    return null;
+  }
   private Output buildOutput(String key, String value){
     Output result = new Output();
     result.setOutputKey(key);
@@ -52,7 +97,7 @@ public class HazeCloudFormation implements AmazonCloudFormation {
   }
 
   @Override
-  public DescribeStacksResult describeStacks(DescribeStacksRequest describeStacksRequest) throws AmazonServiceException, AmazonClientException {
+  public DescribeStacksResult describeStacks(DescribeStacksRequest describeStacksRequest) {
     DescribeStacksResult result = new DescribeStacksResult();
     List<Stack> stacks = new LinkedList<>();
     Stack stack = new Stack();
@@ -65,92 +110,82 @@ public class HazeCloudFormation implements AmazonCloudFormation {
   }
 
   @Override
-  public GetTemplateResult getTemplate(GetTemplateRequest getTemplateRequest) throws AmazonServiceException, AmazonClientException {
+  public DescribeStacksResult describeStacks() {
     return null;
   }
 
   @Override
-  public GetStackPolicyResult getStackPolicy(GetStackPolicyRequest getStackPolicyRequest) throws AmazonServiceException, AmazonClientException {
+  public EstimateTemplateCostResult estimateTemplateCost(EstimateTemplateCostRequest estimateTemplateCostRequest) {
     return null;
   }
 
   @Override
-  public ListStacksResult listStacks(ListStacksRequest listStacksRequest) throws AmazonServiceException, AmazonClientException {
+  public EstimateTemplateCostResult estimateTemplateCost() {
     return null;
   }
 
   @Override
-  public void setStackPolicy(SetStackPolicyRequest setStackPolicyRequest) throws AmazonServiceException, AmazonClientException {
-
-  }
-
-  @Override
-  public CreateStackResult createStack(CreateStackRequest createStackRequest) throws AmazonServiceException, AmazonClientException {
+  public ExecuteChangeSetResult executeChangeSet(ExecuteChangeSetRequest executeChangeSetRequest) {
     return null;
   }
 
   @Override
-  public EstimateTemplateCostResult estimateTemplateCost(EstimateTemplateCostRequest estimateTemplateCostRequest) throws AmazonServiceException, AmazonClientException {
+  public GetStackPolicyResult getStackPolicy(GetStackPolicyRequest getStackPolicyRequest) {
     return null;
   }
 
   @Override
-  public DescribeStackEventsResult describeStackEvents(DescribeStackEventsRequest describeStackEventsRequest) throws AmazonServiceException, AmazonClientException {
+  public GetTemplateResult getTemplate(GetTemplateRequest getTemplateRequest) {
     return null;
   }
 
   @Override
-  public DescribeStackResourceResult describeStackResource(DescribeStackResourceRequest describeStackResourceRequest) throws AmazonServiceException, AmazonClientException {
+  public GetTemplateSummaryResult getTemplateSummary(GetTemplateSummaryRequest getTemplateSummaryRequest) {
     return null;
   }
 
   @Override
-  public void signalResource(SignalResourceRequest signalResourceRequest) throws AmazonServiceException, AmazonClientException {
-
-  }
-
-  @Override
-  public void cancelUpdateStack(CancelUpdateStackRequest cancelUpdateStackRequest) throws AmazonServiceException, AmazonClientException {
-
-  }
-
-  @Override
-  public UpdateStackResult updateStack(UpdateStackRequest updateStackRequest) throws AmazonServiceException, AmazonClientException {
+  public GetTemplateSummaryResult getTemplateSummary() {
     return null;
   }
 
   @Override
-  public DescribeStackResourcesResult describeStackResources(DescribeStackResourcesRequest describeStackResourcesRequest) throws AmazonServiceException, AmazonClientException {
+  public ListChangeSetsResult listChangeSets(ListChangeSetsRequest listChangeSetsRequest) {
     return null;
   }
 
   @Override
-  public ListStackResourcesResult listStackResources(ListStackResourcesRequest listStackResourcesRequest) throws AmazonServiceException, AmazonClientException {
+  public ListStackResourcesResult listStackResources(ListStackResourcesRequest listStackResourcesRequest) {
     return null;
   }
 
   @Override
-  public void deleteStack(DeleteStackRequest deleteStackRequest) throws AmazonServiceException, AmazonClientException {
-
-  }
-
-  @Override
-  public GetTemplateSummaryResult getTemplateSummary() throws AmazonServiceException, AmazonClientException {
+  public ListStacksResult listStacks(ListStacksRequest listStacksRequest) {
     return null;
   }
 
   @Override
-  public DescribeStacksResult describeStacks() throws AmazonServiceException, AmazonClientException {
+  public ListStacksResult listStacks() {
     return null;
   }
 
   @Override
-  public ListStacksResult listStacks() throws AmazonServiceException, AmazonClientException {
+  public SetStackPolicyResult setStackPolicy(SetStackPolicyRequest setStackPolicyRequest) {
     return null;
   }
 
   @Override
-  public EstimateTemplateCostResult estimateTemplateCost() throws AmazonServiceException, AmazonClientException {
+  public SignalResourceResult signalResource(SignalResourceRequest signalResourceRequest) {
+    return null;
+  }
+
+  @Override
+  public UpdateStackResult updateStack(UpdateStackRequest updateStackRequest) {
+    return null;
+  }
+
+  @Override
+  public ValidateTemplateResult validateTemplate(ValidateTemplateRequest validateTemplateRequest) {
     return null;
   }
 
@@ -160,7 +195,12 @@ public class HazeCloudFormation implements AmazonCloudFormation {
   }
 
   @Override
-  public ResponseMetadata getCachedResponseMetadata(AmazonWebServiceRequest amazonWebServiceRequest) {
+  public ResponseMetadata getCachedResponseMetadata(AmazonWebServiceRequest request) {
+    return null;
+  }
+
+  @Override
+  public AmazonCloudFormationWaiters waiters() {
     return null;
   }
 }

@@ -9,6 +9,7 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.S3ClientOptions;
 import com.amazonaws.services.s3.S3ResponseMetadata;
 import com.amazonaws.services.s3.model.*;
+import com.amazonaws.services.s3.waiters.AmazonS3Waiters;
 import com.nkttk.core.engine.AWSEngine;
 
 import java.io.File;
@@ -68,7 +69,27 @@ public class HazeS3 implements AmazonS3 {
   }
 
   @Override
+  public ListObjectsV2Result listObjectsV2(String bucketName) throws AmazonClientException, AmazonServiceException {
+    return null;
+  }
+
+  @Override
+  public ListObjectsV2Result listObjectsV2(String bucketName, String prefix) throws AmazonClientException, AmazonServiceException {
+    return null;
+  }
+
+  @Override
+  public ListObjectsV2Result listObjectsV2(ListObjectsV2Request listObjectsV2Request) throws AmazonClientException, AmazonServiceException {
+    return null;
+  }
+
+  @Override
   public ObjectListing listNextBatchOfObjects(ObjectListing previousObjectListing) throws AmazonClientException, AmazonServiceException {
+    return null;
+  }
+
+  @Override
+  public ObjectListing listNextBatchOfObjects(ListNextBatchOfObjectsRequest listNextBatchOfObjectsRequest) throws AmazonClientException, AmazonServiceException {
     return null;
   }
 
@@ -79,6 +100,11 @@ public class HazeS3 implements AmazonS3 {
 
   @Override
   public VersionListing listNextBatchOfVersions(VersionListing previousVersionListing) throws AmazonClientException, AmazonServiceException {
+    return null;
+  }
+
+  @Override
+  public VersionListing listNextBatchOfVersions(ListNextBatchOfVersionsRequest listNextBatchOfVersionsRequest) throws AmazonClientException, AmazonServiceException {
     return null;
   }
 
@@ -98,8 +124,18 @@ public class HazeS3 implements AmazonS3 {
   }
 
   @Override
+  public Owner getS3AccountOwner(GetS3AccountOwnerRequest getS3AccountOwnerRequest) throws AmazonClientException, AmazonServiceException {
+    return null;
+  }
+
+  @Override
   public boolean doesBucketExist(String bucketName) throws AmazonClientException, AmazonServiceException {
     return false;
+  }
+
+  @Override
+  public HeadBucketResult headBucket(HeadBucketRequest headBucketRequest) throws AmazonClientException, AmazonServiceException {
+    return null;
   }
 
   @Override
@@ -153,6 +189,11 @@ public class HazeS3 implements AmazonS3 {
   }
 
   @Override
+  public AccessControlList getObjectAcl(GetObjectAclRequest getObjectAclRequest) throws AmazonClientException, AmazonServiceException {
+    return null;
+  }
+
+  @Override
   public void setObjectAcl(String bucketName, String key, AccessControlList acl) throws AmazonClientException, AmazonServiceException {
 
   }
@@ -169,6 +210,11 @@ public class HazeS3 implements AmazonS3 {
 
   @Override
   public void setObjectAcl(String bucketName, String key, String versionId, CannedAccessControlList acl) throws AmazonClientException, AmazonServiceException {
+
+  }
+
+  @Override
+  public void setObjectAcl(SetObjectAclRequest setObjectAclRequest) throws AmazonClientException, AmazonServiceException {
 
   }
 
@@ -209,7 +255,7 @@ public class HazeS3 implements AmazonS3 {
 
   @Override
   public S3Object getObject(String bucketName, String key) throws AmazonClientException, AmazonServiceException {
-    return null;
+    return engine.getObject(bucketName, key);
   }
 
   @Override
@@ -218,7 +264,12 @@ public class HazeS3 implements AmazonS3 {
   }
 
   @Override
-  public ObjectMetadata getObject(GetObjectRequest getObjectRequest, File destinationFile) throws AmazonClientException, AmazonServiceException {
+  public ObjectMetadata getObject(GetObjectRequest getObjectRequest, File destinationFile) {
+    return null;
+  }
+
+  @Override
+  public String getObjectAsString(String bucketName, String key) throws AmazonServiceException, AmazonClientException {
     return null;
   }
 
@@ -233,7 +284,7 @@ public class HazeS3 implements AmazonS3 {
   }
 
   @Override
-  public PutObjectResult putObject(PutObjectRequest putObjectRequest) throws AmazonClientException, AmazonServiceException {
+  public PutObjectResult putObject(PutObjectRequest putObjectRequest) {
     return null;
   }
 
@@ -248,6 +299,11 @@ public class HazeS3 implements AmazonS3 {
   }
 
   @Override
+  public PutObjectResult putObject(String bucketName, String key, String content) throws AmazonServiceException, AmazonClientException {
+    return null;
+  }
+
+  @Override
   public CopyObjectResult copyObject(String sourceBucketName, String sourceKey, String destinationBucketName, String destinationKey) throws AmazonClientException, AmazonServiceException {
     return null;
   }
@@ -258,7 +314,7 @@ public class HazeS3 implements AmazonS3 {
   }
 
   @Override
-  public CopyPartResult copyPart(CopyPartRequest copyPartRequest) throws AmazonClientException, AmazonServiceException {
+  public CopyPartResult copyPart(CopyPartRequest copyPartRequest) {
     return null;
   }
 
@@ -293,6 +349,11 @@ public class HazeS3 implements AmazonS3 {
   }
 
   @Override
+  public BucketLoggingConfiguration getBucketLoggingConfiguration(GetBucketLoggingConfigurationRequest getBucketLoggingConfigurationRequest) throws AmazonClientException, AmazonServiceException {
+    return null;
+  }
+
+  @Override
   public void setBucketLoggingConfiguration(SetBucketLoggingConfigurationRequest setBucketLoggingConfigurationRequest) throws AmazonClientException, AmazonServiceException {
 
   }
@@ -303,12 +364,22 @@ public class HazeS3 implements AmazonS3 {
   }
 
   @Override
+  public BucketVersioningConfiguration getBucketVersioningConfiguration(GetBucketVersioningConfigurationRequest getBucketVersioningConfigurationRequest) throws AmazonClientException, AmazonServiceException {
+    return null;
+  }
+
+  @Override
   public void setBucketVersioningConfiguration(SetBucketVersioningConfigurationRequest setBucketVersioningConfigurationRequest) throws AmazonClientException, AmazonServiceException {
 
   }
 
   @Override
   public BucketLifecycleConfiguration getBucketLifecycleConfiguration(String bucketName) {
+    return null;
+  }
+
+  @Override
+  public BucketLifecycleConfiguration getBucketLifecycleConfiguration(GetBucketLifecycleConfigurationRequest getBucketLifecycleConfigurationRequest) {
     return null;
   }
 
@@ -338,6 +409,11 @@ public class HazeS3 implements AmazonS3 {
   }
 
   @Override
+  public BucketCrossOriginConfiguration getBucketCrossOriginConfiguration(GetBucketCrossOriginConfigurationRequest getBucketCrossOriginConfigurationRequest) {
+    return null;
+  }
+
+  @Override
   public void setBucketCrossOriginConfiguration(String bucketName, BucketCrossOriginConfiguration bucketCrossOriginConfiguration) {
 
   }
@@ -363,6 +439,11 @@ public class HazeS3 implements AmazonS3 {
   }
 
   @Override
+  public BucketTaggingConfiguration getBucketTaggingConfiguration(GetBucketTaggingConfigurationRequest getBucketTaggingConfigurationRequest) {
+    return null;
+  }
+
+  @Override
   public void setBucketTaggingConfiguration(String bucketName, BucketTaggingConfiguration bucketTaggingConfiguration) {
 
   }
@@ -384,6 +465,11 @@ public class HazeS3 implements AmazonS3 {
 
   @Override
   public BucketNotificationConfiguration getBucketNotificationConfiguration(String bucketName) throws AmazonClientException, AmazonServiceException {
+    return null;
+  }
+
+  @Override
+  public BucketNotificationConfiguration getBucketNotificationConfiguration(GetBucketNotificationConfigurationRequest getBucketNotificationConfigurationRequest) throws AmazonClientException, AmazonServiceException {
     return null;
   }
 
@@ -473,12 +559,12 @@ public class HazeS3 implements AmazonS3 {
   }
 
   @Override
-  public InitiateMultipartUploadResult initiateMultipartUpload(InitiateMultipartUploadRequest request) throws AmazonClientException, AmazonServiceException {
+  public InitiateMultipartUploadResult initiateMultipartUpload(InitiateMultipartUploadRequest request) {
     return null;
   }
 
   @Override
-  public UploadPartResult uploadPart(UploadPartRequest request) throws AmazonClientException, AmazonServiceException {
+  public UploadPartResult uploadPart(UploadPartRequest request) {
     return null;
   }
 
@@ -488,12 +574,12 @@ public class HazeS3 implements AmazonS3 {
   }
 
   @Override
-  public void abortMultipartUpload(AbortMultipartUploadRequest request) throws AmazonClientException, AmazonServiceException {
+  public void abortMultipartUpload(AbortMultipartUploadRequest request) {
 
   }
 
   @Override
-  public CompleteMultipartUploadResult completeMultipartUpload(CompleteMultipartUploadRequest request) throws AmazonClientException, AmazonServiceException {
+  public CompleteMultipartUploadResult completeMultipartUpload(CompleteMultipartUploadRequest request) {
     return null;
   }
 
@@ -530,5 +616,80 @@ public class HazeS3 implements AmazonS3 {
   @Override
   public boolean isRequesterPaysEnabled(String bucketName) throws AmazonServiceException, AmazonClientException {
     return false;
+  }
+
+  @Override
+  public void setBucketReplicationConfiguration(String bucketName, BucketReplicationConfiguration configuration) throws AmazonServiceException, AmazonClientException {
+
+  }
+
+  @Override
+  public void setBucketReplicationConfiguration(SetBucketReplicationConfigurationRequest setBucketReplicationConfigurationRequest) throws AmazonServiceException, AmazonClientException {
+
+  }
+
+  @Override
+  public BucketReplicationConfiguration getBucketReplicationConfiguration(String bucketName) throws AmazonServiceException, AmazonClientException {
+    return null;
+  }
+
+  @Override
+  public BucketReplicationConfiguration getBucketReplicationConfiguration(GetBucketReplicationConfigurationRequest getBucketReplicationConfigurationRequest) throws AmazonServiceException, AmazonClientException {
+    return null;
+  }
+
+  @Override
+  public void deleteBucketReplicationConfiguration(String bucketName) throws AmazonServiceException, AmazonClientException {
+
+  }
+
+  @Override
+  public void deleteBucketReplicationConfiguration(DeleteBucketReplicationConfigurationRequest request) throws AmazonServiceException, AmazonClientException {
+
+  }
+
+  @Override
+  public boolean doesObjectExist(String bucketName, String objectName) throws AmazonServiceException, AmazonClientException {
+    return false;
+  }
+
+  @Override
+  public BucketAccelerateConfiguration getBucketAccelerateConfiguration(String bucket) throws AmazonServiceException, AmazonClientException {
+    return null;
+  }
+
+  @Override
+  public BucketAccelerateConfiguration getBucketAccelerateConfiguration(GetBucketAccelerateConfigurationRequest getBucketAccelerateConfigurationRequest) throws AmazonServiceException, AmazonClientException {
+    return null;
+  }
+
+  @Override
+  public void setBucketAccelerateConfiguration(String bucketName, BucketAccelerateConfiguration accelerateConfiguration) throws AmazonServiceException, AmazonClientException {
+
+  }
+
+  @Override
+  public void setBucketAccelerateConfiguration(SetBucketAccelerateConfigurationRequest setBucketAccelerateConfigurationRequest) throws AmazonServiceException, AmazonClientException {
+
+  }
+
+  @Override
+  public com.amazonaws.services.s3.model.Region getRegion() {
+    return null;
+  }
+
+  @Override
+  public String getRegionName() {
+    return null;
+  }
+
+  @Override
+  public URL getUrl(String bucketName, String key) {
+    return null;
+  }
+
+  @Override
+  public AmazonS3Waiters waiters() {
+    return null;
   }
 }
