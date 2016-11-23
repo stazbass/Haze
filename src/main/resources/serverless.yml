@@ -16,7 +16,7 @@ functions:
 ##################################PROVISIONING LAMBDA FUNCTIONS FOR FM AND ODS PROCESSING#################################
   #Adding AWS lambda functions for all observation buckets.
   processor:
-    handler: com.meteogroup.observation.processor.infrastructure.aws.lambda.ProcessorRequestHandler
+    instanceSupplier: com.meteogroup.observation.processor.infrastructure.aws.lambda.ProcessorRequestHandler
     name: ${file(./src/main/resources/stages/${opt:stage}.stage.yml):processorObservationLambdaName}-${opt:stage}
     timeout: ${file(./src/main/resources/stages/${opt:stage}.stage.yml):lambdaTimeOut}
     memorySize : 256

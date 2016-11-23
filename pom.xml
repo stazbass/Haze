@@ -8,7 +8,7 @@
   <packaging>jar</packaging>
 
   <name>Haze</name>
-  <endpointURL>http://maven.apache.org</endpointURL>
+  <url>http://maven.apache.org</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -50,19 +50,46 @@
     </dependency>
     <dependency>
       <groupId>com.amazonaws</groupId>
-      <artifactId>aws-java-sdk</artifactId>
-      <version>1.9.6</version>
-    </dependency>
-    <dependency>
-      <groupId>com.amazonaws</groupId>
-      <artifactId>aws-java-sdk-lambda</artifactId>
-      <version>1.9.6</version>
+      <artifactId>aws-java-sdk-bom</artifactId>
+      <version>${aws.java.sdk.bom.version}</version>
+      <type>pom</type>
+      <scope>import</scope>
     </dependency>
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-lambda-java-core</artifactId>
-      <version>1.1.0</version>
+      <version>LATEST</version>
     </dependency>
+    <dependency>
+      <groupId>com.amazonaws</groupId>
+      <artifactId>aws-s3-java-core</artifactId>
+      <version>LATEST</version>
+    </dependency>
+    <dependency>
+      <groupId>com.amazonaws</groupId>
+      <artifactId>aws-java-sdk-sns</artifactId>
+      <version>${aws.java.sdk.bom.version}</version>
+    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>com.amazonaws</groupId>-->
+      <!--<artifactId>aws-java-sdk</artifactId>-->
+      <!--<version>1.9.6</version>-->
+    <!--</dependency>-->
+    <dependency>
+      <groupId>com.amazonaws</groupId>
+      <artifactId>aws-java-sdk-lambda</artifactId>
+      <version>${aws.java.sdk.bom.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.amazonaws</groupId>
+      <artifactId>aws-java-sdk-s3</artifactId>
+      <version>${aws.java.sdk.bom.version}</version>
+    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>com.amazonaws</groupId>-->
+      <!--<artifactId>aws-lambda-java-core</artifactId>-->
+      <!--<version>1.1.0</version>-->
+    <!--</dependency>-->
     <dependency>
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>

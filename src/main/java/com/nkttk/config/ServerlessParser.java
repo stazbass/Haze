@@ -1,4 +1,4 @@
-package com.nkttk.yaml;
+package com.nkttk.config;
 
 import org.yaml.snakeyaml.Yaml;
 

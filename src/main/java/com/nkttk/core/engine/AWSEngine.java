@@ -6,6 +6,7 @@ import com.amazonaws.services.sqs.model.Message;
 import com.nkttk.core.components.ComponentIdentifier;
 import com.nkttk.core.components.events.BucketEventType;
 import com.nkttk.core.components.events.EventBuilder;
+import com.nkttk.core.clients.LambdaClient;
 import com.nkttk.core.components.lambda.LambdaEngine;
 import com.nkttk.core.components.s3.Bucket;
 import com.nkttk.core.components.s3.BucketObject;
@@ -18,10 +19,10 @@ import com.nkttk.core.engine.factories.S3ObjectFactory;
 import com.nkttk.core.engine.factories.SNSMessageFactory;
 import com.nkttk.core.engine.factories.SQSMessageFactory;
 import com.nkttk.json.JsonMaster;
-import com.nkttk.yaml.HazeDescription;
-import com.nkttk.yaml.LambdaDescription;
-import com.nkttk.yaml.SNSDescription;
-import com.nkttk.yaml.SQSDescription;
+import com.nkttk.config.HazeDescription;
+import com.nkttk.config.LambdaDescription;
+import com.nkttk.config.SNSDescription;
+import com.nkttk.config.SQSDescription;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,6 +30,7 @@ import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 public class AWSEngine {
   private static final Logger LOGGER = LoggerFactory.getLogger(AWSEngine.class);
@@ -74,7 +76,7 @@ public class AWSEngine {
       addBucket(bucket);
     }
     for(LambdaDescription lambdaDescription : desc.getFunctions()){
-      addLambda(lambdaDescription.getName(), loadLambda(lambdaDescription.getHandler()));
+      addLambda(lambdaDescription.getName(), lambdaDescription.getInstanceSupplier());
     }
   }
 
@@ -162,13 +164,17 @@ public class AWSEngine {
     return S3ObjectFactory.buildS3Object(bucket, bucketObject);
   }
 
-  public void runLambda(String name, Object args) {
+  public <I,O>O runLambda(String name, I args) {
     LOGGER.debug("Run lambda. Name : {} , args: {}", name, args);
-    lambdaEngine.runLambda(name, args);
+    return lambdaEngine.runLambda(name, args);
   }
 
-  public void addLambda(String name, RequestHandler requestHandler){
+  public <I,O>void addLambda(String name, Supplier<RequestHandler<I, O>> instanceSupplier){
     LOGGER.debug("Add lambda. Name: {}", name);
-    lambdaEngine.addLambda(name, requestHandler);
+    lambdaEngine.addLambda(name, instanceSupplier);
+  }
+
+  public LambdaClient provideLambdaClient(String name){
+    return new LambdaClient((I)->runLambda(name, I));
   }
 }

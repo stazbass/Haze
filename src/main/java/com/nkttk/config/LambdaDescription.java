@@ -1,24 +1,28 @@
-package com.nkttk.yaml;
+package com.nkttk.config;
+
+import com.amazonaws.services.lambda.runtime.RequestHandler;
+
+import java.util.function.Supplier;
 
 /**
  *
  */
-public class LambdaDescription {
-  private String handler;
+public class LambdaDescription<I,O> {
+  private Supplier<RequestHandler<I, O>> instanceSupplier;
   private String name;
   private String timeout;
   private String memorySize;
   private Object events;
 
-  public LambdaDescription(String name, String handler) {
+  public LambdaDescription(String name, Supplier<RequestHandler<I, O>> instanceSupplier) {
     this.name = name;
-    this.handler = handler;
+    this.instanceSupplier = instanceSupplier;
   }
 
   @Override
   public String toString() {
     return "LambdaDescription{" +
-           "handler='" + handler + '\'' +
+           "handler='" + instanceSupplier + '\'' +
            ", name='" + name + '\'' +
            ", timeout='" + timeout + '\'' +
            ", memorySize='" + memorySize + '\'' +
@@ -26,12 +30,12 @@ public class LambdaDescription {
            '}';
   }
 
-  public String getHandler() {
-    return handler;
+  public Supplier<RequestHandler<I, O>> getInstanceSupplier() {
+    return instanceSupplier;
   }
 
-  public void setHandler(String handler) {
-    this.handler = handler;
+  public void setInstanceSupplier(Supplier<RequestHandler<I, O>> handler) {
+    this.instanceSupplier = handler;
   }
 
   public String getName() {

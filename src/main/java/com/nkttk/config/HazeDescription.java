@@ -1,7 +1,10 @@
-package com.nkttk.yaml;
+package com.nkttk.config;
+
+import com.amazonaws.services.lambda.runtime.RequestHandler;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.function.Supplier;
 
 /**
  *
@@ -36,8 +39,8 @@ public class HazeDescription {
     return notificationServices;
   }
 
-  public void addLambda(String name, String handler) {
-    functions.add(new LambdaDescription(name, handler));
+  public <I,O> void addLambda(String name, Supplier<RequestHandler<I, O>> instanceSupplier) {
+    functions.add(new LambdaDescription(name, instanceSupplier));
   }
 
   public void addQueue(String name) {

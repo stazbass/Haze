@@ -5,9 +5,6 @@ import com.amazonaws.services.lambda.runtime.CognitoIdentity;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 
-/**
- * Created by cryptobat on 11/1/2016.
- */
 public class LambdaContext implements Context {
   private String functionName;
 

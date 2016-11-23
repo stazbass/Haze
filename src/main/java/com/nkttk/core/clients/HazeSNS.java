@@ -22,243 +22,279 @@ public class HazeSNS implements AmazonSNS {
   }
 
   @Override
-  public void setEndpoint(String s) throws IllegalArgumentException {
+  public void setEndpoint(String endpoint) {
 
   }
 
   @Override
-  public void setRegion(Region region) throws IllegalArgumentException {
+  public void setRegion(Region region) {
 
   }
 
   @Override
-  public ConfirmSubscriptionResult confirmSubscription(ConfirmSubscriptionRequest confirmSubscriptionRequest) throws AmazonServiceException, AmazonClientException {
+  public AddPermissionResult addPermission(AddPermissionRequest addPermissionRequest) {
     return null;
   }
 
   @Override
-  public CreatePlatformApplicationResult createPlatformApplication(CreatePlatformApplicationRequest createPlatformApplicationRequest) throws AmazonServiceException, AmazonClientException {
+  public AddPermissionResult addPermission(String topicArn, String label, List<String> aWSAccountIds, List<String>
+      actionNames) {
     return null;
   }
 
   @Override
-  public GetTopicAttributesResult getTopicAttributes(GetTopicAttributesRequest getTopicAttributesRequest) throws AmazonServiceException, AmazonClientException {
+  public CheckIfPhoneNumberIsOptedOutResult checkIfPhoneNumberIsOptedOut(CheckIfPhoneNumberIsOptedOutRequest
+                                                                               checkIfPhoneNumberIsOptedOutRequest) {
     return null;
   }
 
   @Override
-  public SubscribeResult subscribe(SubscribeRequest subscribeRequest) throws AmazonServiceException, AmazonClientException {
+  public ConfirmSubscriptionResult confirmSubscription(ConfirmSubscriptionRequest confirmSubscriptionRequest) {
     return null;
   }
 
   @Override
-  public void deleteEndpoint(DeleteEndpointRequest deleteEndpointRequest) throws AmazonServiceException, AmazonClientException {
-
-  }
-
-  @Override
-  public void setTopicAttributes(SetTopicAttributesRequest setTopicAttributesRequest) throws AmazonServiceException, AmazonClientException {
-
-  }
-
-  @Override
-  public void removePermission(RemovePermissionRequest removePermissionRequest) throws AmazonServiceException, AmazonClientException {
-
-  }
-
-  @Override
-  public GetEndpointAttributesResult getEndpointAttributes(GetEndpointAttributesRequest getEndpointAttributesRequest) throws AmazonServiceException, AmazonClientException {
+  public ConfirmSubscriptionResult confirmSubscription(String topicArn, String token, String
+      authenticateOnUnsubscribe) {
     return null;
   }
 
   @Override
-  public ListSubscriptionsResult listSubscriptions(ListSubscriptionsRequest listSubscriptionsRequest) throws AmazonServiceException, AmazonClientException {
+  public ConfirmSubscriptionResult confirmSubscription(String topicArn, String token) {
     return null;
   }
 
   @Override
-  public CreatePlatformEndpointResult createPlatformEndpoint(CreatePlatformEndpointRequest createPlatformEndpointRequest) throws AmazonServiceException, AmazonClientException {
+  public CreatePlatformApplicationResult createPlatformApplication(CreatePlatformApplicationRequest
+                                                                         createPlatformApplicationRequest) {
     return null;
   }
 
   @Override
-  public void setSubscriptionAttributes(SetSubscriptionAttributesRequest setSubscriptionAttributesRequest) throws AmazonServiceException, AmazonClientException {
-
-  }
-
-  @Override
-  public CreateTopicResult createTopic(CreateTopicRequest createTopicRequest) throws AmazonServiceException, AmazonClientException {
+  public CreatePlatformEndpointResult createPlatformEndpoint(CreatePlatformEndpointRequest
+                                                                   createPlatformEndpointRequest) {
     return null;
   }
 
   @Override
-  public GetSubscriptionAttributesResult getSubscriptionAttributes(GetSubscriptionAttributesRequest getSubscriptionAttributesRequest) throws AmazonServiceException, AmazonClientException {
+  public CreateTopicResult createTopic(CreateTopicRequest createTopicRequest) {
     return null;
   }
 
   @Override
-  public ListTopicsResult listTopics(ListTopicsRequest listTopicsRequest) throws AmazonServiceException, AmazonClientException {
+  public CreateTopicResult createTopic(String name) {
     return null;
   }
 
   @Override
-  public void deletePlatformApplication(DeletePlatformApplicationRequest deletePlatformApplicationRequest) throws AmazonServiceException, AmazonClientException {
-
-  }
-
-  @Override
-  public ListPlatformApplicationsResult listPlatformApplications(ListPlatformApplicationsRequest listPlatformApplicationsRequest) throws AmazonServiceException, AmazonClientException {
+  public DeleteEndpointResult deleteEndpoint(DeleteEndpointRequest deleteEndpointRequest) {
     return null;
   }
 
   @Override
-  public void setEndpointAttributes(SetEndpointAttributesRequest setEndpointAttributesRequest) throws AmazonServiceException, AmazonClientException {
-
-  }
-
-  @Override
-  public void unsubscribe(UnsubscribeRequest unsubscribeRequest) throws AmazonServiceException, AmazonClientException {
-
-  }
-
-  @Override
-  public void deleteTopic(DeleteTopicRequest deleteTopicRequest) throws AmazonServiceException, AmazonClientException {
-
-  }
-
-  @Override
-  public GetPlatformApplicationAttributesResult getPlatformApplicationAttributes(GetPlatformApplicationAttributesRequest getPlatformApplicationAttributesRequest) throws AmazonServiceException, AmazonClientException {
+  public DeletePlatformApplicationResult deletePlatformApplication(DeletePlatformApplicationRequest deletePlatformApplicationRequest) {
     return null;
   }
 
   @Override
-  public void setPlatformApplicationAttributes(SetPlatformApplicationAttributesRequest setPlatformApplicationAttributesRequest) throws AmazonServiceException, AmazonClientException {
-
-  }
-
-  @Override
-  public void addPermission(AddPermissionRequest addPermissionRequest) throws AmazonServiceException, AmazonClientException {
-
-  }
-
-  @Override
-  public ListEndpointsByPlatformApplicationResult listEndpointsByPlatformApplication(ListEndpointsByPlatformApplicationRequest listEndpointsByPlatformApplicationRequest) throws AmazonServiceException, AmazonClientException {
+  public DeleteTopicResult deleteTopic(DeleteTopicRequest deleteTopicRequest) {
     return null;
   }
 
   @Override
-  public ListSubscriptionsByTopicResult listSubscriptionsByTopic(ListSubscriptionsByTopicRequest listSubscriptionsByTopicRequest) throws AmazonServiceException, AmazonClientException {
+  public DeleteTopicResult deleteTopic(String topicArn) {
     return null;
   }
 
   @Override
-  public PublishResult publish(PublishRequest publishRequest) throws AmazonServiceException, AmazonClientException {
+  public GetEndpointAttributesResult getEndpointAttributes(GetEndpointAttributesRequest getEndpointAttributesRequest) {
+    return null;
+  }
+
+  @Override
+  public GetPlatformApplicationAttributesResult getPlatformApplicationAttributes
+      (GetPlatformApplicationAttributesRequest getPlatformApplicationAttributesRequest) {
+    return null;
+  }
+
+  @Override
+  public GetSMSAttributesResult getSMSAttributes(GetSMSAttributesRequest getSMSAttributesRequest) {
+    return null;
+  }
+
+  @Override
+  public GetSubscriptionAttributesResult getSubscriptionAttributes(GetSubscriptionAttributesRequest getSubscriptionAttributesRequest) {
+    return null;
+  }
+
+  @Override
+  public GetSubscriptionAttributesResult getSubscriptionAttributes(String subscriptionArn) {
+    return null;
+  }
+
+  @Override
+  public GetTopicAttributesResult getTopicAttributes(GetTopicAttributesRequest getTopicAttributesRequest) {
+    return null;
+  }
+
+  @Override
+  public GetTopicAttributesResult getTopicAttributes(String topicArn) {
+    return null;
+  }
+
+  @Override
+  public ListEndpointsByPlatformApplicationResult listEndpointsByPlatformApplication(ListEndpointsByPlatformApplicationRequest listEndpointsByPlatformApplicationRequest) {
+    return null;
+  }
+
+  @Override
+  public ListPhoneNumbersOptedOutResult listPhoneNumbersOptedOut(ListPhoneNumbersOptedOutRequest listPhoneNumbersOptedOutRequest) {
+    return null;
+  }
+
+  @Override
+  public ListPlatformApplicationsResult listPlatformApplications(ListPlatformApplicationsRequest
+                                                                       listPlatformApplicationsRequest) {
+    return null;
+  }
+
+  @Override
+  public ListPlatformApplicationsResult listPlatformApplications() {
+    return null;
+  }
+
+  @Override
+  public ListSubscriptionsResult listSubscriptions(ListSubscriptionsRequest listSubscriptionsRequest) {
+    return null;
+  }
+
+  @Override
+  public ListSubscriptionsResult listSubscriptions() {
+    return null;
+  }
+
+  @Override
+  public ListSubscriptionsResult listSubscriptions(String nextToken) {
+    return null;
+  }
+
+  @Override
+  public ListSubscriptionsByTopicResult listSubscriptionsByTopic(ListSubscriptionsByTopicRequest listSubscriptionsByTopicRequest) {
+    return null;
+  }
+
+  @Override
+  public ListSubscriptionsByTopicResult listSubscriptionsByTopic(String topicArn) {
+    return null;
+  }
+
+  @Override
+  public ListSubscriptionsByTopicResult listSubscriptionsByTopic(String topicArn, String nextToken) {
+    return null;
+  }
+
+  @Override
+  public ListTopicsResult listTopics(ListTopicsRequest listTopicsRequest) {
+    return null;
+  }
+
+  @Override
+  public ListTopicsResult listTopics() {
+    return null;
+  }
+
+  @Override
+  public ListTopicsResult listTopics(String nextToken) {
+    return null;
+  }
+
+  @Override
+  public OptInPhoneNumberResult optInPhoneNumber(OptInPhoneNumberRequest optInPhoneNumberRequest) {
+    return null;
+  }
+
+  @Override
+  public PublishResult publish(PublishRequest publishRequest) {
     engine.publishSNSMessage(publishRequest.getTopicArn(), publishRequest.getMessage());
     return new PublishResult();
   }
 
   @Override
-  public ListSubscriptionsResult listSubscriptions() throws AmazonServiceException, AmazonClientException {
+  public PublishResult publish(String topicArn, String message) {
+    engine.publishSNSMessage(topicArn, message);
+    return new PublishResult();
+  }
+
+  @Override
+  public PublishResult publish(String topicArn, String message, String subject) {
+    engine.publishSNSMessage(topicArn, message);
+    return new PublishResult();
+  }
+
+  @Override
+  public RemovePermissionResult removePermission(RemovePermissionRequest removePermissionRequest) {
     return null;
   }
 
   @Override
-  public ListTopicsResult listTopics() throws AmazonServiceException, AmazonClientException {
+  public RemovePermissionResult removePermission(String topicArn, String label) {
     return null;
   }
 
   @Override
-  public ListPlatformApplicationsResult listPlatformApplications() throws AmazonServiceException, AmazonClientException {
+  public SetEndpointAttributesResult setEndpointAttributes(SetEndpointAttributesRequest setEndpointAttributesRequest) {
     return null;
   }
 
   @Override
-  public ConfirmSubscriptionResult confirmSubscription(String s, String s1, String s2) throws AmazonServiceException, AmazonClientException {
+  public SetPlatformApplicationAttributesResult setPlatformApplicationAttributes
+      (SetPlatformApplicationAttributesRequest setPlatformApplicationAttributesRequest) {
     return null;
   }
 
   @Override
-  public ConfirmSubscriptionResult confirmSubscription(String s, String s1) throws AmazonServiceException, AmazonClientException {
+  public SetSMSAttributesResult setSMSAttributes(SetSMSAttributesRequest setSMSAttributesRequest) {
     return null;
   }
 
   @Override
-  public GetTopicAttributesResult getTopicAttributes(String s) throws AmazonServiceException, AmazonClientException {
+  public SetSubscriptionAttributesResult setSubscriptionAttributes(SetSubscriptionAttributesRequest setSubscriptionAttributesRequest) {
     return null;
   }
 
   @Override
-  public SubscribeResult subscribe(String s, String s1, String s2) throws AmazonServiceException, AmazonClientException {
+  public SetSubscriptionAttributesResult setSubscriptionAttributes(String subscriptionArn, String attributeName,
+                                                                   String attributeValue) {
     return null;
   }
 
   @Override
-  public void setTopicAttributes(String s, String s1, String s2) throws AmazonServiceException, AmazonClientException {
-
-  }
-
-  @Override
-  public void removePermission(String s, String s1) throws AmazonServiceException, AmazonClientException {
-
-  }
-
-  @Override
-  public ListSubscriptionsResult listSubscriptions(String s) throws AmazonServiceException, AmazonClientException {
+  public SetTopicAttributesResult setTopicAttributes(SetTopicAttributesRequest setTopicAttributesRequest) {
     return null;
   }
 
   @Override
-  public void setSubscriptionAttributes(String s, String s1, String s2) throws AmazonServiceException, AmazonClientException {
-
-  }
-
-  @Override
-  public CreateTopicResult createTopic(String s) throws AmazonServiceException, AmazonClientException {
+  public SetTopicAttributesResult setTopicAttributes(String topicArn, String attributeName, String attributeValue) {
     return null;
   }
 
   @Override
-  public GetSubscriptionAttributesResult getSubscriptionAttributes(String s) throws AmazonServiceException, AmazonClientException {
+  public SubscribeResult subscribe(SubscribeRequest subscribeRequest) {
     return null;
   }
 
   @Override
-  public ListTopicsResult listTopics(String s) throws AmazonServiceException, AmazonClientException {
+  public SubscribeResult subscribe(String topicArn, String protocol, String endpoint) {
     return null;
   }
 
   @Override
-  public void unsubscribe(String s) throws AmazonServiceException, AmazonClientException {
-
-  }
-
-  @Override
-  public void deleteTopic(String s) throws AmazonServiceException, AmazonClientException {
-
-  }
-
-  @Override
-  public void addPermission(String s, String s1, List<String> list, List<String> list1) throws AmazonServiceException, AmazonClientException {
-
-  }
-
-  @Override
-  public ListSubscriptionsByTopicResult listSubscriptionsByTopic(String s, String s1) throws AmazonServiceException, AmazonClientException {
+  public UnsubscribeResult unsubscribe(UnsubscribeRequest unsubscribeRequest) {
     return null;
   }
 
   @Override
-  public ListSubscriptionsByTopicResult listSubscriptionsByTopic(String s) throws AmazonServiceException, AmazonClientException {
-    return null;
-  }
-
-  @Override
-  public PublishResult publish(String s, String s1) throws AmazonServiceException, AmazonClientException {
-    return null;
-  }
-
-  @Override
-  public PublishResult publish(String s, String s1, String s2) throws AmazonServiceException, AmazonClientException {
+  public UnsubscribeResult unsubscribe(String subscriptionArn) {
     return null;
   }
 
@@ -268,7 +304,7 @@ public class HazeSNS implements AmazonSNS {
   }
 
   @Override
-  public ResponseMetadata getCachedResponseMetadata(AmazonWebServiceRequest amazonWebServiceRequest) {
+  public ResponseMetadata getCachedResponseMetadata(AmazonWebServiceRequest request) {
     return null;
   }
 }

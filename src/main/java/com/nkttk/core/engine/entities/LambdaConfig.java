@@ -1,18 +1,22 @@
 package com.nkttk.core.engine.entities;
 
+import com.amazonaws.services.lambda.runtime.RequestHandler;
+
+import java.util.function.Supplier;
+
 /**
  *
  */
-public class LambdaConfig {
+public class LambdaConfig<I,O> {
   private String id;
   private String name;
-  private String handler;
+  private Supplier<RequestHandler<I, O>> instanceSupplier;
 
-  public LambdaConfig(String id, String name, String handler) {
+  public LambdaConfig(String id, String name, Supplier<RequestHandler<I, O>> instanceSupplier) {
 
     this.id = id;
     this.name = name;
-    this.handler = handler;
+    this.instanceSupplier = instanceSupplier;
   }
 
   public String getId() {
@@ -31,11 +35,11 @@ public class LambdaConfig {
     this.name = name;
   }
 
-  public String getHandler() {
-    return handler;
+  public Supplier<RequestHandler<I, O>> getInstanceSupplier() {
+    return instanceSupplier;
   }
 
-  public void setHandler(String handler) {
-    this.handler = handler;
+  public void setInstanceSupplier(Supplier<RequestHandler<I, O>> instanceSupplier) {
+    this.instanceSupplier = instanceSupplier;
   }
 }

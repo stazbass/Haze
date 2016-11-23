@@ -1,4 +1,4 @@
-package com.nkttk.yaml;
+package com.nkttk.config;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;

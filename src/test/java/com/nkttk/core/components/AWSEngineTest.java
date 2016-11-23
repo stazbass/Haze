@@ -76,7 +76,7 @@ public class AWSEngineTest {
 
   @Test
   public void testRunLambda() throws Exception {
-    engine.addLambda("test_name", new RequestHandler<Object, String>() {
+    engine.addLambda("test_name", ()->new RequestHandler<Object, String>() {
       @Override
       public String handleRequest(Object input, Context context) {
         System.out.println("Handle request " + input);
