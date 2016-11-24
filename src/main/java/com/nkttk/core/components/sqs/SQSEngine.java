@@ -23,21 +23,21 @@ public class SQSEngine {
     instances.put(instance.getEndpointURL(), instance);
   }
 
-  public void sendMessage(String sqsName, String message) {
-    getSQS(sqsName).putMessage(new SQSMessage(message));
+  public void sendMessage(String sqsUrl, String message) {
+    getSQS(sqsUrl).putMessage(new SQSMessage(message));
   }
 
-  public void sendMessage(String sqsName, SQSMessage message) {
-    getSQS(sqsName).putMessage(message);
+  public void sendMessage(String sqsUrl, SQSMessage message) {
+    getSQS(sqsUrl).putMessage(message);
   }
 
-  public SQSMessage getMessage(String sqsName) {
-    SQSMessage message = getSQS(sqsName).getMessage();
+  public SQSMessage getMessage(String sqsUrl) {
+    SQSMessage message = getSQS(sqsUrl).getMessage();
     return message;
   }
 
-  public void deleteMessage(String sqsName, String receiptHandle) {
-    getSQS(sqsName).deleteMessage(receiptHandle);
+  public void deleteMessage(String sqsUrl, String receiptHandle) {
+    getSQS(sqsUrl).deleteMessage(receiptHandle);
   }
 
   public String getSQSEndpoint(String sqsName){
@@ -49,10 +49,10 @@ public class SQSEngine {
     throw new RuntimeException("Cant find sqs with name: " + sqsName);
   }
 
-  private SQSInstance getSQS(String sqsName) {
-    if (instances.containsKey(sqsName)) {
-      return instances.get(sqsName);
+  private SQSInstance getSQS(String sqsUrl) {
+    if (instances.containsKey(sqsUrl)) {
+      return instances.get(sqsUrl);
     }
-    throw new RuntimeException("Queue not found: " + sqsName);
+    throw new RuntimeException("Queue not found: " + sqsUrl);
   }
 }

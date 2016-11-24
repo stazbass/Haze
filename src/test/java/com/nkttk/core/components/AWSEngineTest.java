@@ -27,8 +27,9 @@ public class AWSEngineTest {
 
   @Test
   public void testAddSQS() throws Exception {
-    String url = "sqs_url";
-    engine.addSQS(url);
+    String name = "sqs_url";
+    engine.addSQS(name);
+    String url = engine.getSQSEndpoint(name);
     engine.publishSQSMessage(url, "some_message_body");
     Message message = engine.getSQSMessage(url);
     Assert.assertNotNull(message);
@@ -53,10 +54,11 @@ public class AWSEngineTest {
 
   @Test
   public void testSubscribeSQSToS3Event() throws Exception {
-    String sqsUrl = "sqs_url";
+    String sqs_name = "sqs_url";
     String bucketName = "bucket_name";
     String fileName = "file_name.txt";
-    engine.addSQS(sqsUrl);
+    engine.addSQS(sqs_name);
+    String sqsUrl = engine.getSQSEndpoint(sqs_name);
     engine.addBucket(bucketName);
     engine.subscribeSQSToS3Event(sqsUrl, bucketName, BucketEventType.PUT);
     engine.addFile(bucketName, fileName, "file_content");
