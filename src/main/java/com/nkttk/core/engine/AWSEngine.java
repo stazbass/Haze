@@ -42,9 +42,6 @@ public class AWSEngine {
   private SQSMessageFactory sqsMessageFactory;
   private SNSMessageFactory snsMessageFactory;
 
-  public void setLambdaDependencyInjector(Consumer<RequestHandler> lambdaDependencyInjector) {
-    this.lambdaDependencyInjector = lambdaDependencyInjector;
-  }
 
   private Consumer<RequestHandler> lambdaDependencyInjector;
 
@@ -81,18 +78,6 @@ public class AWSEngine {
     }
   }
 
-  public RequestHandler loadLambda(String className){
-    LOGGER.debug("Load lambda {}", className);
-    try {
-      Class classObject = Class.forName(className);
-      RequestHandler lambda = (RequestHandler) classObject.newInstance();
-      lambdaDependencyInjector.accept(lambda);
-      return lambda;
-    } catch (Exception e) {
-      throw new RuntimeException("Cant find lambda class " + className, e);
-    }
-  }
-
   public SQSInstance addSQS(String name) {
     LOGGER.debug("Add sqs {}", name);
     return sqsEngine.addInstance(new SQSInstance(name));
@@ -118,7 +103,7 @@ public class AWSEngine {
   public Message getSQSMessage(String sqsUrl) {
     LOGGER.debug("Get sqs message on url: {}", sqsUrl);
     SQSMessage message = sqsEngine.getMessage(sqsUrl);
-    Message nativeMessage = sqsMessageFactory.buildNativeMessage(message);
+    Message nativeMessage = message!=null ? sqsMessageFactory.buildNativeMessage(message):null;
     return nativeMessage;
   }
 
@@ -179,7 +164,7 @@ public class AWSEngine {
     lambdaEngine.addLambda(name, instanceSupplier);
   }
 
-  public LambdaClient provideLambdaClient(String name){
-    return new LambdaClient((I)->runLambda(name, I));
-  }
+//  public LambdaClient provideLambdaClient(String name){
+//    return new LambdaClient((I)->runLambda(name, I));
+//  }
 }

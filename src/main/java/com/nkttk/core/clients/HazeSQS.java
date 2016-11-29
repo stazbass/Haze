@@ -165,7 +165,10 @@ public class HazeSQS implements AmazonSQS {
     ReceiveMessageResult result = new ReceiveMessageResult();
     for(int i = 0; i < receiveMessageRequest.getMaxNumberOfMessages(); i++){
       Message message = engine.getSQSMessage(queueEndpoint);
-      resultMessages.add(message);
+      if(message != null)
+        resultMessages.add(message);
+      else
+        break;
     }
     result.setMessages(resultMessages);
     return result;

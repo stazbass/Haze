@@ -7,16 +7,22 @@ import com.amazonaws.ResponseMetadata;
 import com.amazonaws.regions.Region;
 import com.amazonaws.services.lambda.AWSLambda;
 import com.amazonaws.services.lambda.model.*;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.nkttk.core.components.lambda.LambdaContext;
+import com.nkttk.json.JsonMaster;
 
+import java.io.IOException;
 import java.nio.ByteBuffer;
-import java.util.function.Consumer;
-import java.util.function.Function;
+import java.util.function.Supplier;
 
-public class LambdaClient implements AWSLambda {
-  private Function<ByteBuffer, ByteBuffer> invokeFunction;
+public class LambdaClient<I,O> implements AWSLambda {
+  private Supplier<RequestHandler<I, O>> lambdaFactoryFunction;
+  private LambdaContext context;
 
-  public LambdaClient(Function<ByteBuffer,ByteBuffer> invokeFunction){
-    this.invokeFunction = invokeFunction;
+  public LambdaClient(Supplier<RequestHandler<I, O>> lambdaFactoryFunction, LambdaContext context){
+    this.lambdaFactoryFunction = lambdaFactoryFunction;
+    this.context = context;
   }
 
   @Override
@@ -94,9 +100,18 @@ public class LambdaClient implements AWSLambda {
 
   @Override
   public InvokeResult invoke(InvokeRequest invokeRequest) {
+    RequestHandler<I,O> lambdaInstance = lambdaFactoryFunction.get();
+
     InvokeResult result = new InvokeResult();
-    result.setPayload(this.invokeFunction.apply(invokeRequest.getPayload()));
-    return result;
+    String payloadInput = new String(invokeRequest.getPayload().array());
+    try {
+      O invokeResult = lambdaInstance.handleRequest(JsonMaster.readValue(payloadInput, new TypeReference<I>() {}), context);
+      if(invokeResult != null)result.setPayload(ByteBuffer.wrap(JsonMaster.toString(invokeResult).getBytes()));
+      return result;
+    } catch (IOException e) {
+      e.printStackTrace();
+      throw new RuntimeException(e);
+    }
   }
 
   @Override
