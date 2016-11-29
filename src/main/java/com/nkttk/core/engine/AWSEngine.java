@@ -12,6 +12,7 @@ import com.nkttk.core.components.s3.Bucket;
 import com.nkttk.core.components.s3.BucketObject;
 import com.nkttk.core.components.s3.FSEngine;
 import com.nkttk.core.components.sns.SNSEngine;
+import com.nkttk.core.components.sns.SNSTopic;
 import com.nkttk.core.components.sqs.SQSEngine;
 import com.nkttk.core.components.sqs.SQSInstance;
 import com.nkttk.core.components.sqs.entities.SQSMessage;
@@ -92,27 +93,31 @@ public class AWSEngine {
     }
   }
 
-  public void addSQS(String name) {
+  public SQSInstance addSQS(String name) {
     LOGGER.debug("Add sqs {}", name);
-    sqsEngine.addInstance(new SQSInstance(name));
+    return sqsEngine.addInstance(new SQSInstance(name));
   }
 
   public String getSQSEndpoint(String name){
-    return  sqsEngine.getSQSEndpoint(name);
+    return sqsEngine.getSQSEndpoint(name);
   }
 
-  public void addSNS(String topic) {
+  public String getSNSEndpoint(String topicName){
+    return snsEngine.getSNSEndpoint(topicName);
+  }
+
+  public SNSTopic addSNS(String topic) {
     LOGGER.debug("Add sns {}", topic);
-    snsEngine.addTopic(topic);
+    return snsEngine.addTopic(topic);
   }
 
   public void addSNSSubscriber(String topic, Consumer<String> subscriber) {
     snsEngine.addSubscriber(topic, subscriber);
   }
 
-  public Message getSQSMessage(String url) {
-    LOGGER.debug("Get sqs message on url: {}", url);
-    SQSMessage message = sqsEngine.getMessage(url);
+  public Message getSQSMessage(String sqsUrl) {
+    LOGGER.debug("Get sqs message on url: {}", sqsUrl);
+    SQSMessage message = sqsEngine.getMessage(sqsUrl);
     Message nativeMessage = sqsMessageFactory.buildNativeMessage(message);
     return nativeMessage;
   }

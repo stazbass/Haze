@@ -32,11 +32,9 @@ public class SQSMessageFactory {
    * @return
    */
   public static SQSMessage buildMessage(String body){
-    String id = UUID.randomUUID().toString();
     Message message = new Message();
-    message.setMessageId(id);
     message.setBody(body);
-    SQSMessage result = new SQSMessage(id, JsonMaster.toString(message));
+    SQSMessage result = new SQSMessage(JsonMaster.toString(message));
     return result;
   }
 

@@ -14,6 +14,7 @@ public class SQSInstance {
   private Collection<SQSMessage> messages = new LinkedList<>();
   private Collection<SQSMessage> hiddenMessages = new LinkedList<>();
   private Set<MessageLock> lockRecords = new HashSet<>();
+
   public SQSInstance(String name) {
     this.endpointURL = "http://" + UUID.randomUUID().toString();
     this.name = name;

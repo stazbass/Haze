@@ -6,6 +6,7 @@ import com.amazonaws.ResponseMetadata;
 import com.amazonaws.regions.Region;
 import com.amazonaws.services.sqs.AmazonSQS;
 import com.amazonaws.services.sqs.model.*;
+import com.nkttk.core.components.sqs.SQSInstance;
 import com.nkttk.core.engine.AWSEngine;
 
 import java.util.LinkedList;
@@ -65,12 +66,18 @@ public class HazeSQS implements AmazonSQS {
 
   @Override
   public CreateQueueResult createQueue(CreateQueueRequest createQueueRequest) {
-    return null;
+    CreateQueueResult result = new CreateQueueResult();
+    SQSInstance instance = engine.addSQS(createQueueRequest.getQueueName());
+    result.setQueueUrl(instance.getEndpointURL());
+    return result;
   }
 
   @Override
   public CreateQueueResult createQueue(String queueName) {
-    return null;
+    CreateQueueResult result = new CreateQueueResult();
+    SQSInstance instance = engine.addSQS(queueName);
+    result.setQueueUrl(instance.getEndpointURL());
+    return result;
   }
 
   @Override
@@ -153,10 +160,11 @@ public class HazeSQS implements AmazonSQS {
 
   @Override
   public ReceiveMessageResult receiveMessage(ReceiveMessageRequest receiveMessageRequest) throws AmazonClientException {
+    String queueEndpoint = receiveMessageRequest.getQueueUrl();
     List<Message> resultMessages = new LinkedList<>();
     ReceiveMessageResult result = new ReceiveMessageResult();
     for(int i = 0; i < receiveMessageRequest.getMaxNumberOfMessages(); i++){
-      Message message = engine.getSQSMessage(endpoint);
+      Message message = engine.getSQSMessage(queueEndpoint);
       resultMessages.add(message);
     }
     result.setMessages(resultMessages);

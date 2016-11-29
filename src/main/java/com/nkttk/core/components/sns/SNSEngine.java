@@ -26,8 +26,14 @@ public class SNSEngine {
     getTopic(topic).publishMessage(message);
   }
 
-  public void addTopic(String topic){
-    topics.add(new SNSTopic(topic));
+  public SNSTopic addTopic(String topic){
+    SNSTopic result = new SNSTopic(topic);
+    topics.add(result);
+    return result;
+  }
+
+  public String getSNSEndpoint(String topicName){
+    return getTopic(topicName).getUrl();
   }
 
   private SNSTopic getTopic(String name){

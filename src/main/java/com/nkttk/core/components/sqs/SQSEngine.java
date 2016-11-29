@@ -19,8 +19,9 @@ public class SQSEngine {
     return identifiers;
   }
 
-  public void addInstance(SQSInstance instance) {
+  public SQSInstance addInstance(SQSInstance instance) {
     instances.put(instance.getEndpointURL(), instance);
+    return instance;
   }
 
   public void sendMessage(String sqsUrl, String message) {
