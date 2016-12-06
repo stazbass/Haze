@@ -10,6 +10,7 @@ import com.amazonaws.services.lambda.model.*;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.nkttk.core.components.lambda.LambdaContext;
+import com.nkttk.core.engine.AWSEngine;
 import com.nkttk.json.JsonMaster;
 
 import java.io.IOException;
@@ -19,9 +20,10 @@ import java.util.function.Supplier;
 public class LambdaClient<I,O> implements AWSLambda {
   private Supplier<RequestHandler<I, O>> lambdaFactoryFunction;
   private LambdaContext context;
+  private AWSEngine awsEngine;
 
-  public LambdaClient(Supplier<RequestHandler<I, O>> lambdaFactoryFunction, LambdaContext context){
-    this.lambdaFactoryFunction = lambdaFactoryFunction;
+  public LambdaClient(AWSEngine awsEngine, LambdaContext context){ // TODO move to aws client
+    this.awsEngine = awsEngine;
     this.context = context;
   }
 
@@ -100,18 +102,16 @@ public class LambdaClient<I,O> implements AWSLambda {
 
   @Override
   public InvokeResult invoke(InvokeRequest invokeRequest) {
-    RequestHandler<I,O> lambdaInstance = lambdaFactoryFunction.get();
-
+    ByteBuffer resultPayload = null;
     InvokeResult result = new InvokeResult();
-    String payloadInput = new String(invokeRequest.getPayload().array());
     try {
-      O invokeResult = lambdaInstance.handleRequest(JsonMaster.readValue(payloadInput, new TypeReference<I>() {}), context);
-      if(invokeResult != null)result.setPayload(ByteBuffer.wrap(JsonMaster.toString(invokeResult).getBytes()));
-      return result;
+      resultPayload = awsEngine.runLambda(invokeRequest.getFunctionName(), invokeRequest.getPayload());
     } catch (IOException e) {
       e.printStackTrace();
-      throw new RuntimeException(e);
+      result.setFunctionError(e.getMessage());
     }
+    result.setPayload(resultPayload);
+    return result;
   }
 
   @Override

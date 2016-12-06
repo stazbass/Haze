@@ -27,7 +27,9 @@ import com.nkttk.config.SQSDescription;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.nio.ByteBuffer;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Consumer;
@@ -154,7 +156,7 @@ public class AWSEngine {
     return S3ObjectFactory.buildS3Object(bucket, bucketObject);
   }
 
-  public <I,O>O runLambda(String name, I args) {
+  public ByteBuffer runLambda(String name, ByteBuffer args) throws IOException {
     LOGGER.debug("Run lambda. Name : {} , args: {}", name, args);
     return lambdaEngine.runLambda(name, args);
   }

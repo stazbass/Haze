@@ -23,7 +23,6 @@
     <apache.commons.lang.version>3.0</apache.commons.lang.version>
     <mockito.core.version>1.10.19</mockito.core.version>
     <geojson.jackson.version>1.5.1</geojson.jackson.version>
-    <jackson.datatype.jsr310.version>2.6.1</jackson.datatype.jsr310.version>
     <point.compression.version>1.0</point.compression.version>
     <davidmoten.rtree.version>0.7.6</davidmoten.rtree.version>
     <davidmoten.grumpy.core.version>0.2.3</davidmoten.grumpy.core.version>

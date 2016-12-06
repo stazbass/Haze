@@ -10,6 +10,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.nio.ByteBuffer;
+
 /**
  *
  */
@@ -85,7 +87,7 @@ public class AWSEngineTest {
         return "OK";
       }
     });
-    engine.runLambda("test_name", "Lambda args");
+    engine.runLambda("test_name", ByteBuffer.wrap("Lambda args".getBytes()));
   }
 
 }

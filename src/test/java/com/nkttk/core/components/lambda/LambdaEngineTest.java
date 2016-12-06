@@ -4,6 +4,8 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import org.testng.annotations.Test;
 
+import java.nio.ByteBuffer;
+
 import static org.testng.Assert.*;
 
 /**
@@ -17,7 +19,7 @@ public class LambdaEngineTest {
       System.out.println(input);
       return null;
     });
-    engine.runLambda("test_name", "input");
+    engine.runLambda("test_name", ByteBuffer.wrap("input".getBytes()));
   }
 
   @Test
