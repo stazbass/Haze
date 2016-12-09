@@ -14,6 +14,7 @@ import com.nkttk.core.engine.AWSEngine;
 import com.nkttk.json.JsonMaster;
 
 import java.io.IOException;
+import java.net.HttpURLConnection;
 import java.nio.ByteBuffer;
 import java.util.function.Supplier;
 
@@ -106,11 +107,14 @@ public class LambdaClient<I,O> implements AWSLambda {
     InvokeResult result = new InvokeResult();
     try {
       resultPayload = awsEngine.runLambda(invokeRequest.getFunctionName(), invokeRequest.getPayload());
-    } catch (IOException e) {
+      result.setPayload(resultPayload);
+      result.setStatusCode(HttpURLConnection.HTTP_OK);
+    } catch (Exception e){
       e.printStackTrace();
+      result.setPayload(ByteBuffer.wrap(e.getMessage().getBytes()));
       result.setFunctionError(e.getMessage());
+      result.setStatusCode(HttpURLConnection.HTTP_INTERNAL_ERROR);
     }
-    result.setPayload(resultPayload);
     return result;
   }
 

@@ -87,7 +87,7 @@ public class HazeSQS implements AmazonSQS {
 
   @Override
   public DeleteMessageResult deleteMessage(String queueUrl, String receiptHandle) {
-    return null;
+    return null; // TODO : add message delete
   }
 
   @Override

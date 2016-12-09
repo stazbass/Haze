@@ -7,6 +7,7 @@ import com.nkttk.core.components.ComponentIdentifier;
 import com.nkttk.core.components.events.BucketEventType;
 import com.nkttk.core.components.events.EventBuilder;
 import com.nkttk.core.clients.LambdaClient;
+import com.nkttk.core.components.lambda.LambdaBuilder;
 import com.nkttk.core.components.lambda.LambdaEngine;
 import com.nkttk.core.components.s3.Bucket;
 import com.nkttk.core.components.s3.BucketObject;
@@ -33,6 +34,7 @@ import java.nio.ByteBuffer;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class AWSEngine {
@@ -43,20 +45,22 @@ public class AWSEngine {
   private LambdaEngine lambdaEngine;
   private SQSMessageFactory sqsMessageFactory;
   private SNSMessageFactory snsMessageFactory;
-
-
-  private Consumer<RequestHandler> lambdaDependencyInjector;
+  private LambdaBuilder lambdaBuilder = new LambdaBuilder();
 
   public AWSEngine() {
     this.sqsEngine = new SQSEngine();
     this.fsEngine = new FSEngine();
     this.snsEngine = new SNSEngine();
-    this.lambdaEngine = new LambdaEngine();
+    this.lambdaEngine = new LambdaEngine(lambdaBuilder);
     this.sqsMessageFactory = new SQSMessageFactory();
     this.snsMessageFactory = new SNSMessageFactory();
   }
 
-  public List<ComponentIdentifier> getAllIdentifiers(){
+  public void setLambdaBuilder(Function<String, RequestHandler<?,?>> lambdaBuilder) {
+    this.lambdaBuilder.setProduceFunction(lambdaBuilder);
+  }
+
+  public List<ComponentIdentifier> getAllIdentifiers() {
     List<ComponentIdentifier> result = new LinkedList<>();
     result.addAll(this.sqsEngine.getIdentifiers());
     result.addAll(this.snsEngine.getIdentifiers());
@@ -64,33 +68,20 @@ public class AWSEngine {
     return result;
   }
 
-  public void loadConfig(HazeDescription desc){
-    LOGGER.info("Loading cloud description : " + desc);
-    for(SNSDescription snsDesc : desc.getNotificationServices()){
+  public void loadConfig(HazeDescription desc) {
+    LOGGER.info("Loading cloud description : {}", desc);
+    for (SNSDescription snsDesc : desc.getNotificationServices()) {
       addSNS(snsDesc.getTopic());
     }
-    for(SQSDescription sqsDesc : desc.getQueueServices()){
+    for (SQSDescription sqsDesc : desc.getQueueServices()) {
       addSQS(sqsDesc.getName());
     }
-    for(String bucket : desc.getBuckets()){
+    for (String bucket : desc.getBuckets()) {
       addBucket(bucket);
     }
-    for(LambdaDescription lambdaDescription : desc.getFunctions()){
-      addLambda(lambdaDescription.getName(), lambdaDescription.getInstanceSupplier());
-    }
-  }
-
-  public SQSInstance addSQS(String name) {
-    LOGGER.debug("Add sqs {}", name);
-    return sqsEngine.addInstance(new SQSInstance(name));
-  }
-
-  public String getSQSEndpoint(String name){
-    return sqsEngine.getSQSEndpoint(name);
-  }
-
-  public String getSNSEndpoint(String topicName){
-    return snsEngine.getSNSEndpoint(topicName);
+//    for (LambdaDescription lambdaDescription : desc.getFunctions()) {
+//      addLambda(lambdaDescription.getName(), lambdaDescription.getInstanceSupplier());
+//    }
   }
 
   public SNSTopic addSNS(String topic) {
@@ -98,14 +89,38 @@ public class AWSEngine {
     return snsEngine.addTopic(topic);
   }
 
+  public SQSInstance addSQS(String name) {
+    LOGGER.debug("Add sqs {}", name);
+    return sqsEngine.addInstance(new SQSInstance(name));
+  }
+
+  public void addBucket(String name) {
+    LOGGER.debug("Add bucket: {}", name);
+    fsEngine.addBucket(name);
+  }
+
+//  public <I, O> void addLambda(String name) {
+//    LOGGER.debug("Add lambda. Name: {}", name);
+//    lambdaEngine.addLambda(name, ()->lambdaBuilder.apply(name));
+//  }
+
+  public String getSQSEndpoint(String name) {
+    return sqsEngine.getSQSEndpoint(name);
+  }
+
+  public String getSNSEndpoint(String topicName) {
+    return snsEngine.getSNSEndpoint(topicName);
+  }
+
   public void addSNSSubscriber(String topic, Consumer<String> subscriber) {
+    LOGGER.debug("Adding subscriber to topic {}", topic);
     snsEngine.addSubscriber(topic, subscriber);
   }
 
   public Message getSQSMessage(String sqsUrl) {
     LOGGER.debug("Get sqs message on url: {}", sqsUrl);
     SQSMessage message = sqsEngine.getMessage(sqsUrl);
-    Message nativeMessage = message!=null ? sqsMessageFactory.buildNativeMessage(message):null;
+    Message nativeMessage = message != null ? sqsMessageFactory.buildNativeMessage(message) : null;
     return nativeMessage;
   }
 
@@ -114,59 +129,41 @@ public class AWSEngine {
     snsEngine.publishMessage(topic, message);
   }
 
+  public void subscribeSQSToS3Event(String sqsUrl, String bucketName, BucketEventType eventType) {
+    Bucket bucket = fsEngine.getBucket(bucketName);
+
+    fsEngine.addEventSubscription(bucket, BucketEventType.PUT, event -> {
+      String eventJson = JsonMaster.toString(EventBuilder.buildS3Notification(eventType, bucket.getName(), bucket
+          .getUrl(), event.getBucketObject().getKey(), event.getBucketObject().getSize(), event.getBucketObject()
+                                                                                               .getEtag()));
+      LOGGER.debug("Bucket PUT event sent to SQS {}: {}", sqsUrl, eventJson);
+      publishSQSMessage(sqsUrl, eventJson);
+    });
+  }
+
   public void publishSQSMessage(String url, String messageBody) {
     LOGGER.debug("Publish SNS message. topic: '{}' body: \"{}\"", url, messageBody);
     sqsEngine.sendMessage(url, sqsMessageFactory.buildMessage(messageBody));
   }
 
-  public void subscribeSQSToS3Event(String sqsUrl, String bucketName, BucketEventType eventType) {
-    Bucket bucket = fsEngine.getBucket(bucketName);
-
-    fsEngine.addEventSubscription(bucket,
-                                  BucketEventType.PUT,
-                                  event -> {
-                                    String eventJson = JsonMaster.toString(EventBuilder.buildS3Notification(eventType,
-                                                                                                            bucket.getName(),
-                                                                                                            bucket.getUrl(),
-                                                                                                            event.getBucketObject().getKey(),
-                                                                                                            event.getBucketObject().getSize(),
-                                                                                                            event.getBucketObject().getEtag()));
-                                    publishSQSMessage(sqsUrl, eventJson);
-                                  });
-  }
-
-  public void addBucket(String name) {
-    LOGGER.debug("Add bucket: ", name);
-    fsEngine.addBucket(name);
-  }
-
-  public void addFile(String bucket, String name, String content){
+  public void addFile(String bucket, String name, String content) {
     LOGGER.debug("Add file. Bucket: {} file: {}", bucket, name);
     fsEngine.addFile(bucket, name, content);
   }
 
-  public void addFile(String bucket, String name, InputStream is){
+  public void addFile(String bucket, String name, InputStream is) {
     LOGGER.debug("Add file. Bucket: {} file: {}", bucket, name);
     fsEngine.addFile(bucket, name, is);
   }
 
-  public S3Object getObject(String bucket, String file){
+  public S3Object getObject(String bucket, String file) {
     LOGGER.debug("Get file object. Bucket: {} file: {}", bucket, file);
     BucketObject bucketObject = fsEngine.getBucket(bucket).getFile(file);
     return S3ObjectFactory.buildS3Object(bucket, bucketObject);
   }
 
-  public ByteBuffer runLambda(String name, ByteBuffer args) throws IOException {
-    LOGGER.debug("Run lambda. Name : {} , args: {}", name, args);
+  public ByteBuffer runLambda(String name, ByteBuffer args) throws IOException, ClassNotFoundException {
+    LOGGER.debug("Run lambda. Name : {} , args: {}", name);
     return lambdaEngine.runLambda(name, args);
   }
-
-  public <I,O>void addLambda(String name, Supplier<RequestHandler<I, O>> instanceSupplier){
-    LOGGER.debug("Add lambda. Name: {}", name);
-    lambdaEngine.addLambda(name, instanceSupplier);
-  }
-
-//  public LambdaClient provideLambdaClient(String name){
-//    return new LambdaClient((I)->runLambda(name, I));
-//  }
 }

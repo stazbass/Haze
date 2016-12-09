@@ -12,17 +12,21 @@ import java.io.IOException;
  *
  */
 public class JsonMaster {
-  private static ObjectMapper om = new ObjectMapper();
+  public static ObjectMapper om() {
+    return objectMapper;
+  }
+
+  private static ObjectMapper objectMapper = new ObjectMapper();
   public static <T> T readValue(String content, Class<T> valueType)
       throws IOException, JsonParseException, JsonMappingException
   {
     // !!! TODO
     //    	_setupClassLoaderForDeserialization(valueType);
-    return om.readValue(content, valueType);
+    return objectMapper.readValue(content, valueType);
   }
 
   public static <T> T readValue(String content, TypeReference valueTypeRef) throws IOException {
-    return om.readValue(content, valueTypeRef);
+    return objectMapper.readValue(content, valueTypeRef);
   }
 
   public static String toString(Object object){
@@ -33,7 +37,7 @@ public class JsonMaster {
 //      e.printStackTrace();
 //    }
     try {
-      return new String(om.writeValueAsBytes(object));
+      return new String(objectMapper.writeValueAsBytes(object));
     } catch (JsonProcessingException e) {
       e.printStackTrace();
       throw new RuntimeException("Deserialization failed ", e);
