@@ -12,6 +12,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.nkttk.core.components.lambda.LambdaContext;
 import com.nkttk.core.engine.AWSEngine;
 import com.nkttk.json.JsonMaster;
+import org.apache.http.HttpStatus;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -108,12 +109,12 @@ public class LambdaClient<I,O> implements AWSLambda {
     try {
       resultPayload = awsEngine.runLambda(invokeRequest.getFunctionName(), invokeRequest.getPayload());
       result.setPayload(resultPayload);
-      result.setStatusCode(HttpURLConnection.HTTP_OK);
+      result.setStatusCode(HttpStatus.SC_ACCEPTED);
     } catch (Exception e){
       e.printStackTrace();
       result.setPayload(ByteBuffer.wrap(e.getMessage().getBytes()));
       result.setFunctionError(e.getMessage());
-      result.setStatusCode(HttpURLConnection.HTTP_INTERNAL_ERROR);
+      result.setStatusCode(HttpStatus.SC_INTERNAL_SERVER_ERROR);
     }
     return result;
   }
