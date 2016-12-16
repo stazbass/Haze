@@ -14,17 +14,17 @@ public class LambdaContext implements Context {
 
   @Override
   public String getAwsRequestId() {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public String getLogGroupName() {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public String getLogStreamName() {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
@@ -39,17 +39,17 @@ public class LambdaContext implements Context {
 
   @Override
   public String getInvokedFunctionArn() {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public CognitoIdentity getIdentity() {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public ClientContext getClientContext() {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
@@ -64,6 +64,6 @@ public class LambdaContext implements Context {
 
   @Override
   public LambdaLogger getLogger() {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 }

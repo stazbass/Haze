@@ -36,32 +36,32 @@ public class HazeSQS implements AmazonSQS {
 
   @Override
   public AddPermissionResult addPermission(AddPermissionRequest addPermissionRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public AddPermissionResult addPermission(String queueUrl, String label, List<String> aWSAccountIds, List<String> actions) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public ChangeMessageVisibilityResult changeMessageVisibility(ChangeMessageVisibilityRequest changeMessageVisibilityRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public ChangeMessageVisibilityResult changeMessageVisibility(String queueUrl, String receiptHandle, Integer visibilityTimeout) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public ChangeMessageVisibilityBatchResult changeMessageVisibilityBatch(ChangeMessageVisibilityBatchRequest changeMessageVisibilityBatchRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public ChangeMessageVisibilityBatchResult changeMessageVisibilityBatch(String queueUrl, List<ChangeMessageVisibilityBatchRequestEntry> entries) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
@@ -82,42 +82,43 @@ public class HazeSQS implements AmazonSQS {
 
   @Override
   public DeleteMessageResult deleteMessage(DeleteMessageRequest deleteMessageRequest) {
-    return null;
+    return deleteMessage(deleteMessageRequest.getQueueUrl(), deleteMessageRequest.getReceiptHandle());
   }
 
   @Override
   public DeleteMessageResult deleteMessage(String queueUrl, String receiptHandle) {
-    return null; // TODO : add message delete
+    engine.deleteSQSMessage(queueUrl, receiptHandle);
+    return new DeleteMessageResult();
   }
 
   @Override
   public DeleteMessageBatchResult deleteMessageBatch(DeleteMessageBatchRequest deleteMessageBatchRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public DeleteMessageBatchResult deleteMessageBatch(String queueUrl, List<DeleteMessageBatchRequestEntry> entries) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public DeleteQueueResult deleteQueue(DeleteQueueRequest deleteQueueRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public DeleteQueueResult deleteQueue(String queueUrl) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public GetQueueAttributesResult getQueueAttributes(GetQueueAttributesRequest getQueueAttributesRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public GetQueueAttributesResult getQueueAttributes(String queueUrl, List<String> attributeNames) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
@@ -130,32 +131,32 @@ public class HazeSQS implements AmazonSQS {
 
   @Override
   public GetQueueUrlResult getQueueUrl(String queueName) {
-    return null;
-  }
+     throw new RuntimeException("NOT IMPLEMENTED");
+ }
 
   @Override
   public ListDeadLetterSourceQueuesResult listDeadLetterSourceQueues(ListDeadLetterSourceQueuesRequest listDeadLetterSourceQueuesRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public ListQueuesResult listQueues(ListQueuesRequest listQueuesRequest) {
-    return null;
-  }
+     throw new RuntimeException("NOT IMPLEMENTED");
+ }
 
   @Override
   public ListQueuesResult listQueues() {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public ListQueuesResult listQueues(String queueNamePrefix) {
-    return null;
-  }
+     throw new RuntimeException("NOT IMPLEMENTED");
+ }
 
   @Override
   public PurgeQueueResult purgeQueue(PurgeQueueRequest purgeQueueRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
@@ -176,47 +177,48 @@ public class HazeSQS implements AmazonSQS {
 
   @Override
   public ReceiveMessageResult receiveMessage(String queueUrl) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public RemovePermissionResult removePermission(RemovePermissionRequest removePermissionRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public RemovePermissionResult removePermission(String queueUrl, String label) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public SendMessageResult sendMessage(SendMessageRequest sendMessageRequest) {
-    return null;
+    engine.publishSQSMessage(sendMessageRequest.getQueueUrl(), sendMessageRequest.getMessageBody());
+    return new SendMessageResult();
   }
 
   @Override
   public SendMessageResult sendMessage(String queueUrl, String messageBody) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public SendMessageBatchResult sendMessageBatch(SendMessageBatchRequest sendMessageBatchRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public SendMessageBatchResult sendMessageBatch(String queueUrl, List<SendMessageBatchRequestEntry> entries) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public SetQueueAttributesResult setQueueAttributes(SetQueueAttributesRequest setQueueAttributesRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public SetQueueAttributesResult setQueueAttributes(String queueUrl, Map<String, String> attributes) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
@@ -226,6 +228,6 @@ public class HazeSQS implements AmazonSQS {
 
   @Override
   public ResponseMetadata getCachedResponseMetadata(AmazonWebServiceRequest request) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 }

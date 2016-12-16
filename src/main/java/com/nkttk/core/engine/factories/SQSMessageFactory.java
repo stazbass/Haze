@@ -20,6 +20,7 @@ public class SQSMessageFactory {
     Message result;
     try {
       result = JsonMaster.readValue(message.getBody(), Message.class);
+      result.setReceiptHandle(message.getReceiptHandle());
     } catch (IOException e) {
       throw new RuntimeException("SQS message deserialization failed ", e);
     }
@@ -35,6 +36,7 @@ public class SQSMessageFactory {
     Message message = new Message();
     message.setBody(body);
     SQSMessage result = new SQSMessage(JsonMaster.toString(message));
+    result.setReceiptHandle(message.getReceiptHandle());
     return result;
   }
 

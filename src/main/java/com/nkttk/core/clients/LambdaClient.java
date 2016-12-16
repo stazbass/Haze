@@ -20,11 +20,10 @@ import java.nio.ByteBuffer;
 import java.util.function.Supplier;
 
 public class LambdaClient<I,O> implements AWSLambda {
-  private Supplier<RequestHandler<I, O>> lambdaFactoryFunction;
   private LambdaContext context;
   private AWSEngine awsEngine;
 
-  public LambdaClient(AWSEngine awsEngine, LambdaContext context){ // TODO move to aws client
+  public LambdaClient(AWSEngine awsEngine, LambdaContext context){
     this.awsEngine = awsEngine;
     this.context = context;
   }
@@ -41,65 +40,65 @@ public class LambdaClient<I,O> implements AWSLambda {
 
   @Override
   public AddPermissionResult addPermission(AddPermissionRequest addPermissionRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public CreateAliasResult createAlias(CreateAliasRequest createAliasRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public CreateEventSourceMappingResult createEventSourceMapping(CreateEventSourceMappingRequest
                                                                        createEventSourceMappingRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public CreateFunctionResult createFunction(CreateFunctionRequest createFunctionRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public DeleteAliasResult deleteAlias(DeleteAliasRequest deleteAliasRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public DeleteEventSourceMappingResult deleteEventSourceMapping(DeleteEventSourceMappingRequest
                                                                        deleteEventSourceMappingRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public DeleteFunctionResult deleteFunction(DeleteFunctionRequest deleteFunctionRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public GetAliasResult getAlias(GetAliasRequest getAliasRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public GetEventSourceMappingResult getEventSourceMapping(GetEventSourceMappingRequest getEventSourceMappingRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public GetFunctionResult getFunction(GetFunctionRequest getFunctionRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public GetFunctionConfigurationResult getFunctionConfiguration(GetFunctionConfigurationRequest
                                                                        getFunctionConfigurationRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public GetPolicyResult getPolicy(GetPolicyRequest getPolicyRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
@@ -121,68 +120,68 @@ public class LambdaClient<I,O> implements AWSLambda {
 
   @Override
   public InvokeAsyncResult invokeAsync(InvokeAsyncRequest invokeAsyncRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public ListAliasesResult listAliases(ListAliasesRequest listAliasesRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public ListEventSourceMappingsResult listEventSourceMappings(ListEventSourceMappingsRequest listEventSourceMappingsRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public ListEventSourceMappingsResult listEventSourceMappings() {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public ListFunctionsResult listFunctions(ListFunctionsRequest listFunctionsRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public ListFunctionsResult listFunctions() {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public ListVersionsByFunctionResult listVersionsByFunction(ListVersionsByFunctionRequest listVersionsByFunctionRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public PublishVersionResult publishVersion(PublishVersionRequest publishVersionRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public RemovePermissionResult removePermission(RemovePermissionRequest removePermissionRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public UpdateAliasResult updateAlias(UpdateAliasRequest updateAliasRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public UpdateEventSourceMappingResult updateEventSourceMapping(UpdateEventSourceMappingRequest
                                                                        updateEventSourceMappingRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public UpdateFunctionCodeResult updateFunctionCode(UpdateFunctionCodeRequest updateFunctionCodeRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public UpdateFunctionConfigurationResult updateFunctionConfiguration(UpdateFunctionConfigurationRequest updateFunctionConfigurationRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
@@ -192,6 +191,6 @@ public class LambdaClient<I,O> implements AWSLambda {
 
   @Override
   public ResponseMetadata getCachedResponseMetadata(AmazonWebServiceRequest request) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 }

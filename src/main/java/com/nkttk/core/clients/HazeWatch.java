@@ -24,72 +24,72 @@ public class HazeWatch implements AmazonCloudWatch {
 
   @Override
   public DeleteAlarmsResult deleteAlarms(DeleteAlarmsRequest deleteAlarmsRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public DescribeAlarmHistoryResult describeAlarmHistory(DescribeAlarmHistoryRequest describeAlarmHistoryRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public DescribeAlarmHistoryResult describeAlarmHistory() {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public DescribeAlarmsResult describeAlarms(DescribeAlarmsRequest describeAlarmsRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public DescribeAlarmsResult describeAlarms() {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public DescribeAlarmsForMetricResult describeAlarmsForMetric(DescribeAlarmsForMetricRequest describeAlarmsForMetricRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public DisableAlarmActionsResult disableAlarmActions(DisableAlarmActionsRequest disableAlarmActionsRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public EnableAlarmActionsResult enableAlarmActions(EnableAlarmActionsRequest enableAlarmActionsRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public GetMetricStatisticsResult getMetricStatistics(GetMetricStatisticsRequest getMetricStatisticsRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public ListMetricsResult listMetrics(ListMetricsRequest listMetricsRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public ListMetricsResult listMetrics() {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public PutMetricAlarmResult putMetricAlarm(PutMetricAlarmRequest putMetricAlarmRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public PutMetricDataResult putMetricData(PutMetricDataRequest putMetricDataRequest) {
-    return null;
+    return new PutMetricDataResult();
   }
 
   @Override
   public SetAlarmStateResult setAlarmState(SetAlarmStateRequest setAlarmStateRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
@@ -99,11 +99,11 @@ public class HazeWatch implements AmazonCloudWatch {
 
   @Override
   public ResponseMetadata getCachedResponseMetadata(AmazonWebServiceRequest request) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public AmazonCloudWatchWaiters waiters() {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 }

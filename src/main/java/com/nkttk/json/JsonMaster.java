@@ -18,7 +18,7 @@ public class JsonMaster {
 
   private static ObjectMapper objectMapper = new ObjectMapper();
   public static <T> T readValue(String content, Class<T> valueType)
-      throws IOException, JsonParseException, JsonMappingException
+      throws IOException
   {
     // !!! TODO
     //    	_setupClassLoaderForDeserialization(valueType);

@@ -3,11 +3,8 @@ package com.nkttk.core.components.sqs;
 import com.nkttk.core.components.sqs.entities.SQSMessage;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
 
-/**
- * Created by cryptobat on 11/29/2016.
- */
 public class SQSEngineTest {
   @Test
   public void testSendMessage() throws Exception {

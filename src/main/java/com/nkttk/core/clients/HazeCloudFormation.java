@@ -1,7 +1,5 @@
 package com.nkttk.core.clients;
 
-import com.amazonaws.AmazonClientException;
-import com.amazonaws.AmazonServiceException;
 import com.amazonaws.AmazonWebServiceRequest;
 import com.amazonaws.ResponseMetadata;
 import com.amazonaws.regions.Region;
@@ -37,57 +35,57 @@ public class HazeCloudFormation implements AmazonCloudFormation {
 
   @Override
   public CancelUpdateStackResult cancelUpdateStack(CancelUpdateStackRequest cancelUpdateStackRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public ContinueUpdateRollbackResult continueUpdateRollback(ContinueUpdateRollbackRequest continueUpdateRollbackRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public CreateChangeSetResult createChangeSet(CreateChangeSetRequest createChangeSetRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public CreateStackResult createStack(CreateStackRequest createStackRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public DeleteChangeSetResult deleteChangeSet(DeleteChangeSetRequest deleteChangeSetRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public DeleteStackResult deleteStack(DeleteStackRequest deleteStackRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public DescribeAccountLimitsResult describeAccountLimits(DescribeAccountLimitsRequest describeAccountLimitsRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public DescribeChangeSetResult describeChangeSet(DescribeChangeSetRequest describeChangeSetRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public DescribeStackEventsResult describeStackEvents(DescribeStackEventsRequest describeStackEventsRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public DescribeStackResourceResult describeStackResource(DescribeStackResourceRequest describeStackResourceRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public DescribeStackResourcesResult describeStackResources(DescribeStackResourcesRequest describeStackResourcesRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
   private Output buildOutput(String key, String value){
     Output result = new Output();
@@ -111,82 +109,82 @@ public class HazeCloudFormation implements AmazonCloudFormation {
 
   @Override
   public DescribeStacksResult describeStacks() {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public EstimateTemplateCostResult estimateTemplateCost(EstimateTemplateCostRequest estimateTemplateCostRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public EstimateTemplateCostResult estimateTemplateCost() {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public ExecuteChangeSetResult executeChangeSet(ExecuteChangeSetRequest executeChangeSetRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public GetStackPolicyResult getStackPolicy(GetStackPolicyRequest getStackPolicyRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public GetTemplateResult getTemplate(GetTemplateRequest getTemplateRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public GetTemplateSummaryResult getTemplateSummary(GetTemplateSummaryRequest getTemplateSummaryRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public GetTemplateSummaryResult getTemplateSummary() {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public ListChangeSetsResult listChangeSets(ListChangeSetsRequest listChangeSetsRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public ListStackResourcesResult listStackResources(ListStackResourcesRequest listStackResourcesRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public ListStacksResult listStacks(ListStacksRequest listStacksRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public ListStacksResult listStacks() {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public SetStackPolicyResult setStackPolicy(SetStackPolicyRequest setStackPolicyRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public SignalResourceResult signalResource(SignalResourceRequest signalResourceRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public UpdateStackResult updateStack(UpdateStackRequest updateStackRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public ValidateTemplateResult validateTemplate(ValidateTemplateRequest validateTemplateRequest) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
@@ -196,11 +194,11 @@ public class HazeCloudFormation implements AmazonCloudFormation {
 
   @Override
   public ResponseMetadata getCachedResponseMetadata(AmazonWebServiceRequest request) {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 
   @Override
   public AmazonCloudFormationWaiters waiters() {
-    return null;
+    throw new RuntimeException("NOT IMPLEMENTED");
   }
 }

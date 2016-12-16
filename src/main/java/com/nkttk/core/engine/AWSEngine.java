@@ -145,6 +145,9 @@ public class AWSEngine {
     LOGGER.debug("Publish SNS message. topic: '{}' body: \"{}\"", url, messageBody);
     sqsEngine.sendMessage(url, sqsMessageFactory.buildMessage(messageBody));
   }
+  public void deleteSQSMessage(String sqs, String receiptHandle){
+    sqsEngine.deleteMessage(sqs, receiptHandle);
+  }
 
   public void addFile(String bucket, String name, String content) {
     LOGGER.debug("Add file. Bucket: {} file: {}", bucket, name);
@@ -166,4 +169,5 @@ public class AWSEngine {
     LOGGER.debug("Run lambda. Name : {} , args: {}", name);
     return lambdaEngine.runLambda(name, args);
   }
+
 }
