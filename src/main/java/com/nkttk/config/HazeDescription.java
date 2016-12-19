@@ -39,10 +39,6 @@ public class HazeDescription {
     return notificationServices;
   }
 
-  public <I,O> void addLambda(String name, Supplier<RequestHandler<I, O>> instanceSupplier) {
-    functions.add(new LambdaDescription(name, instanceSupplier));
-  }
-
   public void addQueue(String name) {
     queueServices.add(new SQSDescription(name));
   }

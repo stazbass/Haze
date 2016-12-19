@@ -1,0 +1,10 @@
+functions:
+  - instanceSupplier: com.meteogroup.observation.processor.infrastructure.aws.lambda.ProcessorRequestHandler
+    name: processor
+    timeout: 100
+    memorySize : 256
+    events:
+      - schedule: rate(1 minute) #Every minute
+sqs:
+  - name: sqs_name
+  - name: sqs_name2
