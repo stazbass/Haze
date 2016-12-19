@@ -35,10 +35,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 public class AWSEngine {
   private static final Logger LOGGER = LoggerFactory.getLogger(AWSEngine.class);
+
   private SQSEngine sqsEngine;
   private FSEngine fsEngine;
   private SNSEngine snsEngine;
@@ -79,9 +79,6 @@ public class AWSEngine {
     for (String bucket : desc.getBuckets()) {
       addBucket(bucket);
     }
-//    for (LambdaDescription lambdaDescription : desc.getFunctions()) {
-//      addLambda(lambdaDescription.getName(), lambdaDescription.getInstanceSupplier());
-//    }
   }
 
   public SNSTopic addSNS(String topic) {
@@ -99,17 +96,8 @@ public class AWSEngine {
     fsEngine.addBucket(name);
   }
 
-//  public <I, O> void addLambda(String name) {
-//    LOGGER.debug("Add lambda. Name: {}", name);
-//    lambdaEngine.addLambda(name, ()->lambdaBuilder.apply(name));
-//  }
-
   public String getSQSEndpoint(String name) {
     return sqsEngine.getSQSEndpoint(name);
-  }
-
-  public String getSNSEndpoint(String topicName) {
-    return snsEngine.getSNSEndpoint(topicName);
   }
 
   public void addSNSSubscriber(String topic, Consumer<String> subscriber) {
@@ -124,9 +112,10 @@ public class AWSEngine {
     return nativeMessage;
   }
 
-  public void publishSNSMessage(String topic, String message) {
-    LOGGER.debug("Publish SNS message. topic: '{}' body: \"{}\"", topic, message);
-    snsEngine.publishMessage(topic, message);
+  public void publishSNSMessage(String topicURL, String message) {
+    String topicName  = snsEngine.getTopicName(topicURL);
+    LOGGER.debug("Publish SNS message. url:'{}' name: '{}' body: \"{}\"", topicURL, topicName, message);
+    snsEngine.publishMessage(topicName, message);
   }
 
   public void subscribeSQSToS3Event(String sqsUrl, String bucketName, BucketEventType eventType) {
@@ -142,7 +131,7 @@ public class AWSEngine {
   }
 
   public void publishSQSMessage(String url, String messageBody) {
-    LOGGER.debug("Publish SNS message. topic: '{}' body: \"{}\"", url, messageBody);
+    LOGGER.debug("Publish SQS message. url: '{}' body: \"{}\"", url, messageBody);
     sqsEngine.sendMessage(url, sqsMessageFactory.buildMessage(messageBody));
   }
   public void deleteSQSMessage(String sqs, String receiptHandle){

@@ -22,8 +22,8 @@ public class SNSEngine {
     getTopic(topicName).addSubscriber(subscriber);
   }
 
-  public void publishMessage(String topic, String message){
-    getTopic(topic).publishMessage(message);
+  public void publishMessage(String topicName, String message){
+    getTopic(topicName).publishMessage(message);
   }
 
   public SNSTopic addTopic(String topic){
@@ -34,6 +34,15 @@ public class SNSEngine {
 
   public String getSNSEndpoint(String topicName){
     return getTopic(topicName).getUrl();
+  }
+
+  public String getTopicName(String topicARN){
+    for(SNSTopic topic : topics){
+      if(topicARN.equals(topic.getUrl())){
+        return topic.getName();
+      }
+    }
+    throw new RuntimeException("Topic not found : " + topicARN);
   }
 
   private SNSTopic getTopic(String name){
