@@ -3,10 +3,11 @@ package com.nkttk.core.engine;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.sqs.model.Message;
+import com.nkttk.config.cf.CloudFormationConfig;
+import com.nkttk.config.cf.ConfigLoader;
 import com.nkttk.core.components.ComponentIdentifier;
 import com.nkttk.core.components.events.BucketEventType;
 import com.nkttk.core.components.events.EventBuilder;
-import com.nkttk.core.clients.LambdaClient;
 import com.nkttk.core.components.lambda.LambdaBuilder;
 import com.nkttk.core.components.lambda.LambdaEngine;
 import com.nkttk.core.components.s3.Bucket;
@@ -21,10 +22,6 @@ import com.nkttk.core.engine.factories.S3ObjectFactory;
 import com.nkttk.core.engine.factories.SNSMessageFactory;
 import com.nkttk.core.engine.factories.SQSMessageFactory;
 import com.nkttk.json.JsonMaster;
-import com.nkttk.config.HazeDescription;
-import com.nkttk.config.LambdaDescription;
-import com.nkttk.config.SNSDescription;
-import com.nkttk.config.SQSDescription;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -68,17 +65,19 @@ public class AWSEngine {
     return result;
   }
 
-  public void loadConfig(HazeDescription desc) {
-    LOGGER.info("Loading cloud description : {}", desc);
-    for (SNSDescription snsDesc : desc.getNotificationServices()) {
-      addSNS(snsDesc.getTopic());
-    }
-    for (SQSDescription sqsDesc : desc.getQueueServices()) {
-      addSQS(sqsDesc.getName());
-    }
-    for (String bucket : desc.getBuckets()) {
-      addBucket(bucket);
-    }
+  public void loadConfig(InputStream is) throws IOException {
+//    LOGGER.info("Loading cloud description : {}", desc);
+    CloudFormationConfig cf = ConfigLoader.loadConfig(is);
+
+//    for (SNSDescription snsDesc : desc.getNotificationServices()) {
+//      addSNS(snsDesc.getTopic());
+//    }
+//    for (SQSDescription sqsDesc : desc.getQueueServices()) {
+//      addSQS(sqsDesc.getName());
+//    }
+//    for (String bucket : desc.getBuckets()) {
+//      addBucket(bucket);
+//    }
   }
 
   public SNSTopic addSNS(String topic) {

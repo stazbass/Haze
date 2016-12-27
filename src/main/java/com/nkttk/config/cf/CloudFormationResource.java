@@ -1,11 +1,13 @@
 package com.nkttk.config.cf;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Map;
 
 /**
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CloudFormationResource {
   @JsonProperty("Type")
   private ResourceType type;
@@ -20,7 +22,7 @@ public class CloudFormationResource {
     this.type = type;
   }
 
-  public Map<String, Object> getProperties() {
+  public Map<String, ?> getProperties() {
     return properties;
   }
 
