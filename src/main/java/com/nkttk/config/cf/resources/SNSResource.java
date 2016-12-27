@@ -1,39 +1,21 @@
 package com.nkttk.config.cf.resources;
 
-import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.nkttk.config.cf.resources.AWSResource;
+import com.nkttk.config.cf.resources.properties.LambdaProperties;
+import com.nkttk.config.cf.resources.properties.SNSProperties;
 
 /**
- * Created by Stanislav_Rogovskyi on 12/27/2016.
  */
-public class SNSResource {
-  private String displayName;
-  private String topicName;
+public class SNSResource extends AWSResource {
+  @JsonProperty("Properties")
+  private SNSProperties properties;
 
-  public static SNSResource build(Map params){
-    String displayName = (String) params.get("DisplayName");
-    String topicName = (String)params.get("TopicName");
-    return new SNSResource(displayName, topicName);
+  public SNSProperties getProperties() {
+    return properties;
   }
 
-
-  public SNSResource(String displayName, String topicName) {
-    this.displayName = displayName;
-    this.topicName = topicName;
-  }
-
-  public String getDisplayName() {
-    return displayName;
-  }
-
-  public void setDisplayName(String displayName) {
-    this.displayName = displayName;
-  }
-
-  public String getTopicName() {
-    return topicName;
-  }
-
-  public void setTopicName(String topicName) {
-    this.topicName = topicName;
+  public void setProperties(SNSProperties properties) {
+    this.properties = properties;
   }
 }

@@ -12,7 +12,7 @@ import java.io.IOException;
 public class ConfigLoaderTest {
   @Test
   public void testLoadConfig() throws IOException {
-    CloudFormationConfig cf = ConfigLoader.loadConfig(ConfigLoaderTest.class.getClassLoader().getResourceAsStream("cf_config_sqs.json"));
+    CloudFormationConfig cf = ConfigLoader.loadConfig(ConfigLoaderTest.class.getClassLoader().getResourceAsStream("cf/sample_cf_config.json"));
 
     System.out.println(new Gson().toJson(cf));
   }
