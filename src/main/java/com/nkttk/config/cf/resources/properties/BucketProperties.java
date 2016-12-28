@@ -1,20 +1,23 @@
 package com.nkttk.config.cf.resources.properties;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.nkttk.config.cf.resources.properties.notification.NotificationConfiguration;
 
 /**
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class BucketProperties {
   @JsonProperty("BucketName")
   private String bucketName;
   @JsonProperty("NotificationConfiguration")
-  private String notificationConfiguration;
+  private NotificationConfiguration notificationConfiguration;
 
-  public String getNotificationConfiguration() {
+  public NotificationConfiguration getNotificationConfiguration() {
     return notificationConfiguration;
   }
 
-  public void setNotificationConfiguration(String notificationConfiguration) {
+  public void setNotificationConfiguration(NotificationConfiguration notificationConfiguration) {
     this.notificationConfiguration = notificationConfiguration;
   }
 

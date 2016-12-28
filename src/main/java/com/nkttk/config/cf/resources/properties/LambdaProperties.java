@@ -1,9 +1,11 @@
 package com.nkttk.config.cf.resources.properties;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class LambdaProperties {
   @JsonProperty("FunctionName")
   private String functionName;
