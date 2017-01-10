@@ -5,6 +5,11 @@ import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.sqs.model.Message;
 import com.nkttk.config.cf.CloudFormationConfig;
 import com.nkttk.config.cf.ConfigLoader;
+import com.nkttk.config.cf.ResourceType;
+import com.nkttk.config.cf.resources.AWSResource;
+import com.nkttk.config.cf.resources.BucketResource;
+import com.nkttk.config.cf.resources.SNSResource;
+import com.nkttk.config.cf.resources.SQSResource;
 import com.nkttk.core.components.ComponentIdentifier;
 import com.nkttk.core.components.events.BucketEventType;
 import com.nkttk.core.components.events.EventBuilder;
@@ -53,7 +58,7 @@ public class AWSEngine {
     this.snsMessageFactory = new SNSMessageFactory();
   }
 
-  public void setLambdaBuilder(Function<String, RequestHandler<?,?>> lambdaBuilder) {
+  public void setLambdaBuilder(Function<String, RequestHandler<?, ?>> lambdaBuilder) {
     this.lambdaBuilder.setProduceFunction(lambdaBuilder);
   }
 
@@ -66,18 +71,116 @@ public class AWSEngine {
   }
 
   public void loadConfig(InputStream is) throws IOException {
-//    LOGGER.info("Loading cloud description : {}", desc);
     CloudFormationConfig cf = ConfigLoader.loadConfig(is);
+    createComponents(cf);
+  }
 
-//    for (SNSDescription snsDesc : desc.getNotificationServices()) {
-//      addSNS(snsDesc.getTopic());
-//    }
-//    for (SQSDescription sqsDesc : desc.getQueueServices()) {
-//      addSQS(sqsDesc.getName());
-//    }
-//    for (String bucket : desc.getBuckets()) {
-//      addBucket(bucket);
-//    }
+  private void processComponentSubscriptions(CloudFormationConfig cf) {
+    cf.getResources().values().forEach(resource -> {
+      switch (resource.getType()) {
+        case SQS:
+          SQSResource sqsConfig = (SQSResource) resource;
+          addSQS(sqsConfig.getProperties().getQueueName());
+          break;
+        case SNS:
+          SNSResource snsResource = (SNSResource) resource;
+          snsResource.getProperties().getSubscriptions().forEach(snsSubscription -> {
+            switch (snsSubscription.getProtocol()){
+              case SQS:
+                if(snsSubscription.getSubscriptionEndpoint().getEndpointArn()!=null){
+                  throw new RuntimeException("SQS subscription by ARN not implemented");
+                }else{
+                  String sqsName = snsSubscription.getSubscriptionEndpoint().getGetAttributeFunctionArgs().get(0);
+                  String sqsURL = sqsEngine.getSQSEndpoint(sqsName);
+                  snsEngine.addSubscriber(snsResource.getProperties().getTopicName(), message->{
+                    LOGGER.debug("Putting sns message into sqs");
+                    sqsEngine.sendMessage(sqsURL, message);
+                  });
+                }
+                break;
+            }
+          });
+          break;
+        case BUCKET:
+          BucketResource bucket = (BucketResource) resource;
+          addBucket(bucket.getProperties().getBucketName());
+          break;
+        case ALARM:
+          break;
+        case LAMBDA:
+          break;
+        case ROLE:
+          LOGGER.debug("Ignoring Role");
+          break;
+        case IAM_POLICY:
+          LOGGER.debug("Ignoring IAM policy config");
+          break;
+        case LAMBDA_VERSION:
+          LOGGER.debug("Ignoring lambda version");
+          break;
+        case EVENT_RULE:
+          LOGGER.debug("Ignoring event rule config");
+          break;
+        case LAMBDA_PERMISSION:
+          LOGGER.debug("Ignoring lambda permission");
+          break;
+        case QUEUE_POLICY:
+          LOGGER.debug("Ignoring ");
+          break;
+        case IAM_MANAGED_POLICY:
+          LOGGER.debug("Ignoring ");
+          break;
+      }
+    });
+  }
+
+  private void createComponents(CloudFormationConfig cf) {
+    cf.getResources().values().forEach(resource -> {
+      switch (resource.getType()) {
+        case SQS:
+          SQSResource sqsConfig = (SQSResource) resource;
+          addSQS(sqsConfig.getProperties().getQueueName());
+          break;
+        case SNS:
+          SNSResource snsResource = (SNSResource) resource;
+          addSNS(snsResource.getProperties().getTopicName());
+          break;
+        case BUCKET:
+          BucketResource bucket = (BucketResource) resource;
+          addBucket(bucket.getProperties().getBucketName());
+          break;
+        case ALARM:
+          break;
+        case LAMBDA:
+          break;
+        case ROLE:
+          LOGGER.debug("Ignoring Role");
+          break;
+        case IAM_POLICY:
+          LOGGER.debug("Ignoring IAM policy config");
+          break;
+        case LAMBDA_VERSION:
+          LOGGER.debug("Ignoring lambda version");
+          break;
+        case EVENT_RULE:
+          LOGGER.debug("Ignoring event rule config");
+          break;
+        case LAMBDA_PERMISSION:
+          LOGGER.debug("Ignoring lambda permission");
+          break;
+        case QUEUE_POLICY:
+          LOGGER.debug("Ignoring ");
+          break;
+        case IAM_MANAGED_POLICY:
+          LOGGER.debug("Ignoring ");
+          break;
+      }
+    });
+  }
+
+  public void loadCloudFormationConfig(InputStream configContentStream) throws IOException {
+    CloudFormationConfig config = ConfigLoader.loadConfig(configContentStream);
+
   }
 
   public SNSTopic addSNS(String topic) {
@@ -112,7 +215,7 @@ public class AWSEngine {
   }
 
   public void publishSNSMessage(String topicURL, String message) {
-    String topicName  = snsEngine.getTopicName(topicURL);
+    String topicName = snsEngine.getTopicName(topicURL);
     LOGGER.debug("Publish SNS message. url:'{}' name: '{}' body: \"{}\"", topicURL, topicName, message);
     snsEngine.publishMessage(topicName, message);
   }
@@ -123,7 +226,7 @@ public class AWSEngine {
     fsEngine.addEventSubscription(bucket, BucketEventType.PUT, event -> {
       String eventJson = JsonMaster.toString(EventBuilder.buildS3Notification(eventType, bucket.getName(), bucket
           .getUrl(), event.getBucketObject().getKey(), event.getBucketObject().getSize(), event.getBucketObject()
-                                                                                               .getEtag()));
+                                                                                  .getEtag()));
       LOGGER.debug("Bucket PUT event sent to SQS {}: {}", sqsUrl, eventJson);
       publishSQSMessage(sqsUrl, eventJson);
     });
@@ -133,7 +236,8 @@ public class AWSEngine {
     LOGGER.debug("Publish SQS message. url: '{}' body: \"{}\"", url, messageBody);
     sqsEngine.sendMessage(url, sqsMessageFactory.buildMessage(messageBody));
   }
-  public void deleteSQSMessage(String sqs, String receiptHandle){
+
+  public void deleteSQSMessage(String sqs, String receiptHandle) {
     sqsEngine.deleteMessage(sqs, receiptHandle);
   }
 

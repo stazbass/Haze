@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.nkttk.config.cf.ResourceType;
 
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
@@ -20,18 +21,18 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
                   @JsonSubTypes.Type(value = AWSResource.class, name = "AWS::Events::Rule"),
                   @JsonSubTypes.Type(value = AWSResource.class, name = "AWS::Lambda::Permission"),
                   @JsonSubTypes.Type(value = AWSResource.class, name = "AWS::SQS::QueuePolicy"),
-                  @JsonSubTypes.Type(value = AWSResource.class, name = "AWS::IAM::ManagedPolicy"),
+                  @JsonSubTypes.Type(value = AWSResource.class, name = "AWS::IAM::ManagedPolicy")
               })
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AWSResource {
   @JsonProperty("Type")
-  private String type;
+  private ResourceType type;
 
-  public String getType() {
+  public ResourceType getType() {
     return type;
   }
 
-  public void setType(String type) {
+  public void setType(ResourceType type) {
     this.type = type;
   }
 }

@@ -1,13 +1,11 @@
 package com.nkttk.config.cf.resources;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.nkttk.config.cf.resources.AWSResource;
-import com.nkttk.config.cf.resources.properties.LambdaProperties;
 import com.nkttk.config.cf.resources.properties.SQSProperties;
 
 /**
  */
-public class SQSResource extends AWSResource{
+public class SQSResource extends AWSResource {
   @JsonProperty("Properties")
   private SQSProperties properties;
 
