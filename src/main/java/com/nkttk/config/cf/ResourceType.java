@@ -18,7 +18,7 @@ public enum ResourceType {
   }
 
   @JsonCreator
-  public ResourceType fromName(String name){
+  public static ResourceType fromName(String name){
     ResourceType [] types = ResourceType.values();
     for(int i = 0; i < types.length; i++){
       if(name.equals(types[i]))return types[i];

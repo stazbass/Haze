@@ -1,4 +1,4 @@
-package com.nkttk.config.cf.resources.properties.notification;
+package com.nkttk.config.cf.resources.properties.notification.configuration;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.nkttk.config.cf.resources.notifications.S3EventType;

@@ -2,8 +2,9 @@ package com.nkttk.config.cf.resources.properties.notification;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.util.List;
+import com.nkttk.config.cf.resources.properties.notification.configuration.CloudFunctionConfiguration;
+import com.nkttk.config.cf.resources.properties.notification.configuration.QueueConfiguration;
+import com.nkttk.config.cf.resources.properties.notification.configuration.TopicConfiguration;
 
 /**
  */

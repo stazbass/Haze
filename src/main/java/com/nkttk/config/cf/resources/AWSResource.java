@@ -26,13 +26,17 @@ import com.nkttk.config.cf.ResourceType;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AWSResource {
   @JsonProperty("Type")
-  private ResourceType type;
+  private String type;
 
-  public ResourceType getType() {
+  public String getType() {
     return type;
   }
 
-  public void setType(ResourceType type) {
+  public ResourceType getResourceType(){
+    return ResourceType.fromName(type);
+  }
+
+  public void setType(String type) {
     this.type = type;
   }
 }

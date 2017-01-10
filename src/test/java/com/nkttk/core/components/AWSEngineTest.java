@@ -2,6 +2,7 @@ package com.nkttk.core.components;
 
 import com.amazonaws.services.sqs.model.Message;
 import com.nkttk.core.components.events.BucketEventType;
+import com.nkttk.core.components.sns.SNSTopic;
 import com.nkttk.core.engine.AWSEngine;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -38,11 +39,11 @@ public class AWSEngineTest {
   @Test
   public void testAddSNS() throws Exception {
     String topic = "topic_name";
-    engine.addSNS(topic);
+    SNSTopic topicObject = engine.addSNS(topic);
     final StringBuilder messageContentPlaceholder = new StringBuilder();
     engine.addSNSSubscriber(topic, message -> messageContentPlaceholder.append(message));
     String message = "some_mess";
-    engine.publishSNSMessage(topic, message);
+    engine.publishSNSMessage(topicObject.getUrl(), message);
     Assert.assertEquals(messageContentPlaceholder.toString(), message);
   }
 

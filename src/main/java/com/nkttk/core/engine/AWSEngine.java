@@ -77,7 +77,7 @@ public class AWSEngine {
 
   private void processComponentSubscriptions(CloudFormationConfig cf) {
     cf.getResources().values().forEach(resource -> {
-      switch (resource.getType()) {
+      switch (resource.getResourceType()) {
         case SQS:
           SQSResource sqsConfig = (SQSResource) resource;
           addSQS(sqsConfig.getProperties().getQueueName());
@@ -136,7 +136,7 @@ public class AWSEngine {
 
   private void createComponents(CloudFormationConfig cf) {
     cf.getResources().values().forEach(resource -> {
-      switch (resource.getType()) {
+      switch (resource.getResourceType()) {
         case SQS:
           SQSResource sqsConfig = (SQSResource) resource;
           addSQS(sqsConfig.getProperties().getQueueName());

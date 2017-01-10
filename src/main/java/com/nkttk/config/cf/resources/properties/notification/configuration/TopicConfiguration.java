@@ -1,22 +1,22 @@
-package com.nkttk.config.cf.resources.properties.notification;
+package com.nkttk.config.cf.resources.properties.notification.configuration;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.nkttk.config.cf.resources.notifications.S3EventType;
 
 /**
  */
-public class QueueConfiguration {
-  @JsonProperty("Queue")
-  private String queue;
+public class TopicConfiguration {
+  @JsonProperty("Topic")
+  private String topic;
   @JsonProperty("Event")
   private S3EventType eventType;
 
-  public String getQueue() {
-    return queue;
+  public String getTopic() {
+    return topic;
   }
 
-  public void setQueue(String queue) {
-    this.queue = queue;
+  public void setTopic(String topic) {
+    this.topic = topic;
   }
 
   public S3EventType getEventType() {
