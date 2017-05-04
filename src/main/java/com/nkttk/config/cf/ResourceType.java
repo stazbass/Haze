@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 /**
  */
 public enum ResourceType {
-  SQS("AWS::SQS::Queue"),SNS("AWS::SNS::Topic"),BUCKET("AWS::S3::Bucket"), ALARM("AWS::CloudWatch::Alarm");
+  SQS("AWS::SQS::Queue"),SNS("AWS::SNS::Topic"),BUCKET("AWS::S3::Bucket"), ALARM("AWS::CloudWatch::Alarm"), LAMBDA("AWS::Lambda::Function");
 
   private String name;
 

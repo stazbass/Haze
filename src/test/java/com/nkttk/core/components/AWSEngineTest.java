@@ -30,7 +30,7 @@ public class AWSEngineTest {
     engine.addSQS(name);
     String url = engine.getSQSEndpoint(name);
     engine.publishSQSMessage(url, "some_message_body");
-    Message message = engine.getSQSMessage(url);
+    Message message = engine.getSQSMessageByUrl(url);
     Assert.assertNotNull(message);
     Assert.assertEquals(message.getBody(), "some_message_body");
   }
@@ -62,7 +62,7 @@ public class AWSEngineTest {
     engine.subscribeSQSToS3Event(sqsUrl, bucketName, BucketEventType.PUT);
     engine.addFile(bucketName, fileName, "file_content");
 
-    System.out.println(engine.getSQSMessage(sqsUrl));
+    System.out.println(engine.getSQSMessageByUrl(sqsUrl));
   }
 
   @Test

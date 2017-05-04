@@ -105,7 +105,7 @@ public class AWSEngine {
     snsEngine.addSubscriber(topic, subscriber);
   }
 
-  public Message getSQSMessage(String sqsUrl) {
+  public Message getSQSMessageByUrl(String sqsUrl) {
     LOGGER.debug("Get sqs message on url: {}", sqsUrl);
     SQSMessage message = sqsEngine.getMessage(sqsUrl);
     Message nativeMessage = message != null ? sqsMessageFactory.buildNativeMessage(message) : null;
