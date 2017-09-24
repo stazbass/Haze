@@ -20,8 +20,6 @@ public class JsonMaster {
   public static <T> T readValue(String content, Class<T> valueType)
       throws IOException
   {
-    // !!! TODO
-    //    	_setupClassLoaderForDeserialization(valueType);
     return objectMapper.readValue(content, valueType);
   }
 
@@ -30,12 +28,6 @@ public class JsonMaster {
   }
 
   public static String toString(Object object){
-//    ByteArrayOutputStream bos = new ByteArrayOutputStream();
-//    try {
-//      ;
-//    } catch (IOException e) {
-//      e.printStackTrace();
-//    }
     try {
       return new String(objectMapper.writeValueAsBytes(object));
     } catch (JsonProcessingException e) {
