@@ -15,7 +15,6 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.function.Function;
-import java.util.stream.Stream;
 
 public class LambdaEngine {
   private static final Logger LOGGER = LoggerFactory.getLogger(LambdaEngine.class);

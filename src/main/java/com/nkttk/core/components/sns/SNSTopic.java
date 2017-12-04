@@ -12,6 +12,7 @@ public class SNSTopic {
   private String name;
   private String url;
   private List<Consumer<String>> subscribers = new LinkedList<>();
+
   public SNSTopic(String name) {
     this.name = name;
     this.url = UUID.randomUUID().toString();

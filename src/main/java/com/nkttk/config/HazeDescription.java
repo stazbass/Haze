@@ -1,10 +1,7 @@
 package com.nkttk.config;
 
-import com.amazonaws.services.lambda.runtime.RequestHandler;
-
 import java.util.LinkedList;
 import java.util.List;
-import java.util.function.Supplier;
 
 /**
  *

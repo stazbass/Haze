@@ -23,7 +23,7 @@ functions:
     events:
       - schedule: rate(1 minute) #Every minute
 
- # you can add CloudFormation resource templates here.
+ # you can add CloudFormationConfig resource templates here.
 resources:
     Resources:
 
@@ -51,7 +51,7 @@ resources:
             maxReceiveCount: 3
 
 
-##################################PROVISIONING NECESSARY POLICY#################################
+##################################PROVISIONING NECESSARY IAM_POLICY#################################
       #Adding notify permission to queus for s3 bucket.
       AllowQueusToGetEventFromS3Bucket:
         Type: AWS::SQS::QueuePolicy

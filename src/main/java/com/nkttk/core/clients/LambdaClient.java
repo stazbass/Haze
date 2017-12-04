@@ -1,23 +1,15 @@
 package com.nkttk.core.clients;
 
-import com.amazonaws.AmazonClientException;
-import com.amazonaws.AmazonServiceException;
 import com.amazonaws.AmazonWebServiceRequest;
 import com.amazonaws.ResponseMetadata;
 import com.amazonaws.regions.Region;
 import com.amazonaws.services.lambda.AWSLambda;
 import com.amazonaws.services.lambda.model.*;
-import com.amazonaws.services.lambda.runtime.RequestHandler;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.nkttk.core.components.lambda.LambdaContext;
 import com.nkttk.core.engine.AWSEngine;
-import com.nkttk.json.JsonMaster;
 import org.apache.http.HttpStatus;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
 import java.nio.ByteBuffer;
-import java.util.function.Supplier;
 
 public class LambdaClient<I,O> implements AWSLambda {
   private LambdaContext context;

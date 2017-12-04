@@ -14,4 +14,10 @@ public class JsonMasterTest {
     Message result = JsonMaster.readValue(json, Message.class);
     System.out.println(json);
   }
+
+
+  @Test
+  public void testSomeMehtod(){
+    System.out.println("Test method");
+  }
 }
