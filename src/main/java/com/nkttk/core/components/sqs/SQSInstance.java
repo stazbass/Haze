@@ -32,15 +32,14 @@ public class SQSInstance {
     messages.add(message);
   }
 
-  public SQSMessage getMessage() {
+  public Optional<SQSMessage> getMessage() {
     unhideMessages();
     SQSMessage message = ((Queue<SQSMessage>) messages).peek();
     if (message != null) {
       hideMessage(message.getId());
       message.setReceiptHandle(UUID.randomUUID().toString());
-      return message;
     }
-    return null;
+    return Optional.of(message);
   }
 
   public void deleteMessage(String handle) {

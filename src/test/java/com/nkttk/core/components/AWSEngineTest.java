@@ -39,7 +39,7 @@ public class AWSEngineTest {
   @Test
   public void testAddSNS() throws Exception {
     String topic = "topic_name";
-    SNSTopic topicObject = engine.addSNS(topic);
+    SNSTopic topicObject = engine.addSNSTopic(topic);
     final StringBuilder messageContentPlaceholder = new StringBuilder();
     engine.addSNSSubscriber(topic, message -> messageContentPlaceholder.append(message));
     String message = "some_mess";

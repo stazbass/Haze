@@ -7,10 +7,10 @@ import org.testng.annotations.Test;
 /**
  *
  */
-public class FSEngineTest {
+public class S3EngineTest {
   @Test
   public void testAddFile() {
-    FSEngine engine = new FSEngine();
+    S3Engine engine = new S3Engine();
     String bucketName = "sample_bucket";
     engine.addBucket(bucketName);
     String fileName = "sample.txt";
@@ -21,7 +21,7 @@ public class FSEngineTest {
 
   @Test
   public void testEventSubscription() {
-    FSEngine engine = new FSEngine();
+    S3Engine engine = new S3Engine();
     String bucketName = "sample_bucket";
     Bucket bucket = engine.addBucket(bucketName);
     String fileName = "sample.txt";

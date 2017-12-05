@@ -7,15 +7,14 @@ import java.util.function.Function;
 /**
  */
 public class LambdaBuilder {
-  private Function<String, RequestHandler<?,?>> produceFunction;
+    private Function<String, RequestHandler<?, ?>> produceFunction;
 
 
+    public Function<String, RequestHandler<?, ?>> getProduceFunction() {
+        return produceFunction;
+    }
 
-  public Function<String, RequestHandler<?,?>> getProduceFunction() {
-    return produceFunction;
-  }
-
-  public void setProduceFunction(Function<String, RequestHandler<?,?>> produceFunction) {
-    this.produceFunction = produceFunction;
-  }
+    public void setProduceFunction(Function<String, RequestHandler<?, ?>> produceFunction) {
+        this.produceFunction = produceFunction;
+    }
 }
