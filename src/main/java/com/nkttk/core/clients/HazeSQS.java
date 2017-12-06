@@ -161,18 +161,19 @@ public class HazeSQS implements AmazonSQS {
 
   @Override
   public ReceiveMessageResult receiveMessage(ReceiveMessageRequest receiveMessageRequest) throws AmazonClientException {
-    String queueEndpoint = receiveMessageRequest.getQueueUrl();
-    List<Message> resultMessages = new LinkedList<>();
-    ReceiveMessageResult result = new ReceiveMessageResult();
-    for(int i = 0; i < receiveMessageRequest.getMaxNumberOfMessages(); i++){
-      Message message = engine.getSQSMessage(queueEndpoint);
-      if(message != null)
-        resultMessages.add(message);
-      else
-        break;
-    }
-    result.setMessages(resultMessages);
-    return result;
+      throw new RuntimeException("Not implemented");
+      //    String queueUrl = receiveMessageRequest.getQueueUrl();
+//    List<Message> resultMessages = new LinkedList<>();
+//    ReceiveMessageResult result = new ReceiveMessageResult();
+//    for(int i = 0; i < receiveMessageRequest.getMaxNumberOfMessages(); i++){
+//      Message message = engine.getSQSMessageByUrl(queueUrl);
+//      if(message != null)
+//        resultMessages.add(message);
+//      else
+//        break;
+//    }
+//    result.setMessages(resultMessages);
+//    return null;
   }
 
   @Override

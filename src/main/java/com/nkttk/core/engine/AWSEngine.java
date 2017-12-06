@@ -33,6 +33,7 @@ import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
@@ -192,8 +193,9 @@ public class AWSEngine {
         return sqsEngine.addInstance(new SQSInstance(name));
     }
 
-    public S3Engine addS3Instace(String bucketName){
-
+    public void addS3Bucket(String bucketName){
+        LOGGER.debug("Add bucket {}", bucketName);
+        s3Engine.addBucket(bucketName);
     }
 
     @Deprecated //logic shoud be moved into dedicated class"
@@ -226,6 +228,7 @@ public class AWSEngine {
         snsEngine.publishMessage(topicName, message);
     }
 
+    @Deprecated // into message processing class
     public void subscribeSQSToS3Event(String sqsUrl, String bucketName, BucketEventType eventType) {
         Bucket bucket = s3Engine.getBucket(bucketName);
 
@@ -262,7 +265,7 @@ public class AWSEngine {
     }
 
     @Deprecated //logic shoud be moved into dedicated class"
-    public S3Object getObject(String bucket, String file) {
+    public S3Object getFile(String bucket, String file) {
         LOGGER.debug("Get file object. Bucket: {} file: {}", bucket, file);
         BucketObject bucketObject = s3Engine.getBucket(bucket).getFile(file);
         return S3ObjectFactory.buildS3Object(bucket, bucketObject);

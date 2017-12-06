@@ -5,7 +5,6 @@ import com.nkttk.core.components.sqs.entities.SQSMessage;
 import com.nkttk.json.JsonMaster;
 
 import java.io.IOException;
-import java.util.UUID;
 
 /**
  *

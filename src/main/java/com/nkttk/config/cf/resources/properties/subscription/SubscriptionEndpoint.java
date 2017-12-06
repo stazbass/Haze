@@ -3,7 +3,6 @@ package com.nkttk.config.cf.resources.properties.subscription;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.nkttk.config.cf.ResourceType;
 
 import java.util.List;
 

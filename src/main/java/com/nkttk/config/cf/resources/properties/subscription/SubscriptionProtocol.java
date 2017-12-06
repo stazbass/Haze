@@ -2,7 +2,6 @@ package com.nkttk.config.cf.resources.properties.subscription;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.nkttk.config.cf.ResourceType;
 
 /**
  */

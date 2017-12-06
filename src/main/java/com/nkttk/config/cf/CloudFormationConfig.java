@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.nkttk.config.cf.resources.AWSResource;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 /**

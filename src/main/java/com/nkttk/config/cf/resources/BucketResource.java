@@ -2,7 +2,6 @@ package com.nkttk.config.cf.resources;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.nkttk.config.cf.resources.properties.BucketProperties;
-import com.nkttk.config.cf.resources.properties.LambdaProperties;
 
 /**
  */

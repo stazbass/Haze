@@ -1,8 +1,6 @@
 package com.nkttk.config.cf.resources;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.nkttk.config.cf.resources.AWSResource;
-import com.nkttk.config.cf.resources.properties.LambdaProperties;
 import com.nkttk.config.cf.resources.properties.SNSProperties;
 
 /**

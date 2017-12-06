@@ -255,12 +255,12 @@ public class HazeS3 implements AmazonS3 {
 
   @Override
   public S3Object getObject(String bucketName, String key) throws AmazonClientException, AmazonServiceException {
-    return engine.getObject(bucketName, key);
+    return engine.getFile(bucketName, key);
   }
 
   @Override
   public S3Object getObject(GetObjectRequest getObjectRequest) throws AmazonClientException, AmazonServiceException {
-    return engine.getObject(getObjectRequest.getBucketName(), getObjectRequest.getKey());
+    return engine.getFile(getObjectRequest.getBucketName(), getObjectRequest.getKey());
   }
 
   @Override
