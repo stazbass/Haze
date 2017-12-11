@@ -3,11 +3,13 @@ package com.nkttk.core.components.s3;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.mockito.cglib.core.ReflectUtils;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.io.ByteArrayInputStream;
 import java.util.function.Function;
 
 public class BucketTest {
@@ -30,23 +32,33 @@ public class BucketTest {
     }
 
     @Test
-    public void testAddFile() throws Exception {
+    public void testAddObject() throws Exception {
         BucketObject expectedBucketObjcet = new BucketObject(TEST_BUCKET_OBJECT_NAME);
         Mockito.when(objectFactory.apply(Mockito.anyString())).thenReturn(expectedBucketObjcet);
+
         BucketObject result = bucket.addObject(TEST_BUCKET_OBJECT_NAME);
+
         Assert.assertEquals(result, expectedBucketObjcet);
     }
 
     @Test
-    public void testAddFile1() throws Exception {
+    public void testAddObjectWithStringContent() throws Exception {
         BucketObject expectedBucketObjcet = new BucketObject(TEST_BUCKET_OBJECT_NAME);
         Mockito.when(objectFactory.apply(Mockito.anyString())).thenReturn(expectedBucketObjcet);
+
         BucketObject result = bucket.addObject(TEST_BUCKET_OBJECT_NAME, TEST_OBJECT_CONTENT);
-        Assert.assertEquals(result.getContent(), TEST_OBJECT_CONTENT);
+
+        Assert.assertEquals(new String(result.getContent()), TEST_OBJECT_CONTENT);
     }
 
     @Test
-    public void testAddFile2() throws Exception {
+    public void testAddObjectWithInputStreamContent() throws Exception {
+        BucketObject expectedBucketObjcet = new BucketObject(TEST_BUCKET_OBJECT_NAME);
+        Mockito.when(objectFactory.apply(Mockito.anyString())).thenReturn(expectedBucketObjcet);
+
+        BucketObject result = bucket.addObject(TEST_BUCKET_OBJECT_NAME, new ByteArrayInputStream(TEST_OBJECT_CONTENT.getBytes()));
+
+        Assert.assertEquals(new String(result.getContent()), TEST_OBJECT_CONTENT);
     }
 
     @Test

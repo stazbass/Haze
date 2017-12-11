@@ -10,8 +10,7 @@ import com.amazonaws.services.s3.S3ClientOptions;
 import com.amazonaws.services.s3.S3ResponseMetadata;
 import com.amazonaws.services.s3.model.*;
 import com.amazonaws.services.s3.waiters.AmazonS3Waiters;
-import com.nkttk.core.components.s3.S3Engine;
-import com.nkttk.core.engine.ComponentContainer;
+import com.nkttk.core.components.s3.S3Component;
 
 import java.io.File;
 import java.io.InputStream;
@@ -20,12 +19,12 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Custom s3 client implementation, proxy calls into provided S3Engine (s3-fs component into component container)
+ * Custom s3 client implementation, proxy calls into provided S3Component (s3-fs component into component container)
  */
 public class HazeS3 implements AmazonS3 {
-    S3Engine fsEngine;
+    S3Component fsEngine;
 
-    public HazeS3(S3Engine engine) {
+    public HazeS3(S3Component engine) {
         fsEngine = engine;
     }
 

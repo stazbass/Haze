@@ -14,7 +14,7 @@ import com.nkttk.core.components.lambda.LambdaBuilder;
 import com.nkttk.core.components.lambda.LambdaEngine;
 import com.nkttk.core.components.s3.Bucket;
 import com.nkttk.core.components.s3.BucketObject;
-import com.nkttk.core.components.s3.S3Engine;
+import com.nkttk.core.components.s3.S3Component;
 import com.nkttk.core.components.sns.SNSEngine;
 import com.nkttk.core.components.sns.SNSTopic;
 import com.nkttk.core.components.sqs.SQSEngine;
@@ -38,7 +38,7 @@ public class ComponentContainer {
     private static final Logger LOGGER = LoggerFactory.getLogger(ComponentContainer.class);
 
     private SQSEngine sqsEngine;
-    private S3Engine s3Engine;
+    private S3Component s3Component;
     private SNSEngine snsEngine;
     private LambdaEngine lambdaEngine;
     private SQSMessageFactory sqsMessageFactory;
@@ -58,7 +58,7 @@ public class ComponentContainer {
 
     public ComponentContainer(ComponentFactory componentFactory, ClientFactory clientFactory) {
         this.componentFactory = componentFactory;
-        this.s3Engine = new S3Engine(bucketName -> new Bucket(bucketName, objectName -> new BucketObject(objectName)));
+        this.s3Component = new S3Component(bucketName -> new Bucket(bucketName, objectName -> new BucketObject(objectName)));
         this.clientFactory = clientFactory;
     }
 
@@ -196,13 +196,13 @@ public class ComponentContainer {
 
     public void addS3Bucket(String bucketName) {
         LOGGER.debug("Add bucket {}", bucketName);
-        s3Engine.addBucket(bucketName);
+        s3Component.addBucket(bucketName);
     }
 
     @Deprecated //logic shoud be moved into dedicated class"
     public void addBucket(String name) {
         LOGGER.debug("Add bucket: {}", name);
-        s3Engine.addBucket(name);
+        s3Component.addBucket(name);
     }
 
     public String getSQSEndpoint(String name) {
@@ -231,9 +231,9 @@ public class ComponentContainer {
 
     @Deprecated // into message processing class
     public void subscribeSQSToS3Event(String sqsUrl, String bucketName, BucketEventType eventType) {
-//        Bucket bucket = s3Engine.getBucket(bucketName);
+//        Bucket bucket = s3Component.getBucket(bucketName);
 //
-//        s3Engine.addEventSubscription(bucket, BucketEventType.PUT, event -> {
+//        s3Component.addEventSubscription(bucket, BucketEventType.PUT, event -> {
 //            String eventJson = JsonMaster.toString(EventBuilder.buildS3Notification(eventType, bucket.getName(), bucket
 //                    .getUrl(), event.getBucketObject().getKey(), event.getBucketObject().getSize(), event.getBucketObject()
 //                    .getEtag()));
@@ -256,20 +256,21 @@ public class ComponentContainer {
     @Deprecated //logic shoud be moved into dedicated class"
     public void addFile(String bucket, String name, String content) {
         LOGGER.debug("Add file. Bucket: {} file: {}", bucket, name);
-        s3Engine.addFile(bucket, name, content);
+//        s3Component.addFile(bucket, name, content);
+        throw new RuntimeException("2 MOVE INTO COMPONENT");
     }
 
     @Deprecated //logic shoud be moved into dedicated class"
     public void addFile(String bucket, String name, InputStream is) {
         LOGGER.debug("Add file. Bucket: {} file: {}", bucket, name);
-        s3Engine.addFile(bucket, name, is);
+        throw new RuntimeException("2 MOVE INTO COMPONENT");
     }
 
     @Deprecated //logic shoud be moved into dedicated class"
     public S3Object getFile(String bucket, String file) {
         LOGGER.debug("Get file object. Bucket: {} file: {}", bucket, file);
         throw new RuntimeException("NOT IMPLEMENTED");
-//        BucketObject bucketObject = s3Engine.getBucket(bucket).orElseThrow(() -> new RuntimeException("No bucket found : " + bucket)).getFile(file);
+//        BucketObject bucketObject = s3Component.getBucket(bucket).orElseThrow(() -> new RuntimeException("No bucket found : " + bucket)).getFile(file);
 //        return S3ObjectFactory.buildS3Object(bucket, bucketObject);
     }
 

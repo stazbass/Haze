@@ -1,18 +1,22 @@
 package com.nkttk.core.components.s3;
 
-import com.nkttk.io.IOUtils;
+import com.nkttk.core.engine.ComponentContainer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
 import java.util.function.Function;
 
 /**
  *
  */
 public class Bucket {
+    private static final Logger LOGGER = LoggerFactory.getLogger(Bucket.class);
+
     private String name;
     private Set<BucketObject> files;
     private Function<String, BucketObject> bucketObjectFactory;
@@ -24,18 +28,19 @@ public class Bucket {
     }
 
     public BucketObject addObject(String key) {
+        LOGGER.debug("Add object {}", key);
         BucketObject file = bucketObjectFactory.apply(key);
         files.add(file);
         return file;
     }
 
     public BucketObject addObject(String name, String content) {
-        BucketObject object = addObject(name);
-        object.writeContent( new ByteArrayInputStream(content.getBytes()));
-        return object;
+        LOGGER.debug("Add object {}", name);
+        return addObject(name, new ByteArrayInputStream(content.getBytes()));
     }
 
     public BucketObject addObject(String name, InputStream content) {
+        LOGGER.debug("Add object {}", name);
         BucketObject file = addObject(name);
         file.writeContent(content);
         return file;
@@ -45,7 +50,8 @@ public class Bucket {
         return name;
     }
 
-    public Optional<BucketObject> getFile(String key) {
+    public Optional<BucketObject> getObject(String key) {
+        LOGGER.debug("Get object {}", key);
         return files.stream().filter(o->o.getKey().equals(key)).findFirst();
     }
 
