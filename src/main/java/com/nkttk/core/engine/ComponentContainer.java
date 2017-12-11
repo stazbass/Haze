@@ -9,9 +9,7 @@ import com.nkttk.config.cf.ConfigLoader;
 import com.nkttk.config.cf.resources.BucketResource;
 import com.nkttk.config.cf.resources.SNSResource;
 import com.nkttk.config.cf.resources.SQSResource;
-import com.nkttk.core.components.ComponentIdentifier;
 import com.nkttk.core.components.events.BucketEventType;
-import com.nkttk.core.components.events.EventBuilder;
 import com.nkttk.core.components.lambda.LambdaBuilder;
 import com.nkttk.core.components.lambda.LambdaEngine;
 import com.nkttk.core.components.s3.Bucket;
@@ -23,18 +21,19 @@ import com.nkttk.core.components.sqs.SQSEngine;
 import com.nkttk.core.components.sqs.SQSInstance;
 import com.nkttk.core.components.sqs.entities.SQSMessage;
 import com.nkttk.core.engine.factories.*;
-import com.nkttk.json.JsonMaster;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
+
+/**
+ * Container for S3, SNS, SQS, Lambda subsystems, their event subscriptions.
+ */
 public class ComponentContainer {
     private static final Logger LOGGER = LoggerFactory.getLogger(ComponentContainer.class);
 
@@ -48,22 +47,23 @@ public class ComponentContainer {
     private ComponentFactory componentFactory;
     private ClientFactory clientFactory;
 
+    @Deprecated
     public ComponentContainer() {
         this.sqsEngine = new SQSEngine();
-        this.s3Engine = new S3Engine(bucketName->new Bucket(bucketName));
         this.snsEngine = new SNSEngine();
         this.lambdaEngine = new LambdaEngine(lambdaBuilder);
         this.sqsMessageFactory = new SQSMessageFactory();
         this.snsMessageFactory = new SNSMessageFactory();
     }
 
-    public ComponentContainer(ComponentFactory componentFactory, ClientFactory clientFactory){
+    public ComponentContainer(ComponentFactory componentFactory, ClientFactory clientFactory) {
         this.componentFactory = componentFactory;
+        this.s3Engine = new S3Engine(bucketName -> new Bucket(bucketName, objectName -> new BucketObject(objectName)));
         this.clientFactory = clientFactory;
     }
 
-    public AmazonS3 getS3Client(){
-        return clientFactory.buildS3Client(this);
+    public AmazonS3 getS3Client() {
+        return clientFactory.buildS3Client();
     }
 
     public void setLambdaBuilder(Function<String, RequestHandler<?, ?>> lambdaBuilder) {
@@ -194,7 +194,7 @@ public class ComponentContainer {
         return sqsEngine.addInstance(new SQSInstance(name));
     }
 
-    public void addS3Bucket(String bucketName){
+    public void addS3Bucket(String bucketName) {
         LOGGER.debug("Add bucket {}", bucketName);
         s3Engine.addBucket(bucketName);
     }
@@ -268,8 +268,9 @@ public class ComponentContainer {
     @Deprecated //logic shoud be moved into dedicated class"
     public S3Object getFile(String bucket, String file) {
         LOGGER.debug("Get file object. Bucket: {} file: {}", bucket, file);
-        BucketObject bucketObject = s3Engine.getBucket(bucket).orElseThrow(()->new RuntimeException("No bucket found : " + bucket)).getFile(file);
-        return S3ObjectFactory.buildS3Object(bucket, bucketObject);
+        throw new RuntimeException("NOT IMPLEMENTED");
+//        BucketObject bucketObject = s3Engine.getBucket(bucket).orElseThrow(() -> new RuntimeException("No bucket found : " + bucket)).getFile(file);
+//        return S3ObjectFactory.buildS3Object(bucket, bucketObject);
     }
 
     @Deprecated //logic shoud be moved into dedicated class"

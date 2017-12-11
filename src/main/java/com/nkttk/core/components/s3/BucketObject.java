@@ -1,5 +1,11 @@
 package com.nkttk.core.components.s3;
 
+import com.nkttk.io.IOUtils;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.UUID;
 
 /**
@@ -19,28 +25,12 @@ public class BucketObject {
         return key;
     }
 
-    public void setKey(String key) {
-        this.key = key;
-    }
-
-    public int getSize() {
-        return content.length;
-    }
-
     public byte[] getContent() {
         return content;
     }
 
-    public void setContent(byte[] content) {
-        this.content = content;
-    }
-
-    public String getEtag() {
-        return etag;
-    }
-
-    public void setEtag(String etag) {
-        this.etag = etag;
+    public void setContent(String content) {
+        writeContent(new ByteArrayInputStream(content.getBytes()));
     }
 
     @Override
@@ -56,5 +46,22 @@ public class BucketObject {
     @Override
     public String toString() {
         return "BucketObject[" + key + "]";
+    }
+
+    public void writeContent(InputStream is) {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        try {
+            IOUtils.copy(is, outputStream);
+            content = (outputStream.toByteArray());
+        } catch (IOException e) {
+            throw new RuntimeException("Exception writing to file ", e);
+        } finally {
+            try {
+                outputStream.close();
+                is.close();
+            } catch (IOException e) {
+                throw new RuntimeException("Exception writing to file ", e);
+            }
+        }
     }
 }
