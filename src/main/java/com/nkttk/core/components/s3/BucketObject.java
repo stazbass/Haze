@@ -37,6 +37,9 @@ public class BucketObject {
        writeContent(new ByteArrayInputStream(contentsSource));
     }
 
+    public void setContent(InputStream contentsSource) {
+        writeContent(contentsSource);
+    }
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof BucketObject) {
@@ -56,7 +59,7 @@ public class BucketObject {
         return "BucketObject[" + key + "]";
     }
 
-    public void writeContent(InputStream is) {
+    private void writeContent(InputStream is) {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         try {
             IOUtils.copy(is, outputStream);

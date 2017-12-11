@@ -42,7 +42,7 @@ public class Bucket {
     public BucketObject addObject(String name, InputStream content) {
         LOGGER.debug("Add object {}", name);
         BucketObject file = addObject(name);
-        file.writeContent(content);
+        file.setContent(content);
         return file;
     }
 
