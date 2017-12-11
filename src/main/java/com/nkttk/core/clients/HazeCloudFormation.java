@@ -7,7 +7,7 @@ import com.amazonaws.services.cloudformation.AmazonCloudFormation;
 import com.amazonaws.services.cloudformation.model.*;
 import com.amazonaws.services.cloudformation.waiters.AmazonCloudFormationWaiters;
 import com.nkttk.core.components.ComponentIdentifier;
-import com.nkttk.core.engine.AWSEngine;
+import com.nkttk.core.engine.ComponentContainer;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -17,9 +17,9 @@ import java.util.stream.Collectors;
  *
  */
 public class HazeCloudFormation implements AmazonCloudFormation {
-  AWSEngine engine;
+  ComponentContainer engine;
 
-  public HazeCloudFormation(AWSEngine engine){
+  public HazeCloudFormation(ComponentContainer engine){
     this.engine = engine;
   }
 

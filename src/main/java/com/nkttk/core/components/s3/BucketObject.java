@@ -6,40 +6,55 @@ import java.util.UUID;
  *
  */
 public class BucketObject {
-  private String etag;
-  private String key;
-  private byte[] content;
+    private String etag;
+    private String key;
+    private byte[] content;
 
-  public BucketObject(String key) {
-    this.key = key;
-    this.etag = UUID.randomUUID().toString();
-  }
+    public BucketObject(String key) {
+        this.key = key;
+        this.etag = UUID.randomUUID().toString();
+    }
 
-  public String getKey() {
-    return key;
-  }
+    public String getKey() {
+        return key;
+    }
 
-  public void setKey(String key) {
-    this.key = key;
-  }
+    public void setKey(String key) {
+        this.key = key;
+    }
 
-  public int getSize(){
-    return content.length;
-  }
+    public int getSize() {
+        return content.length;
+    }
 
-  public byte[] getContent() {
-    return content;
-  }
+    public byte[] getContent() {
+        return content;
+    }
 
-  public void setContent(byte[] content) {
-    this.content = content;
-  }
+    public void setContent(byte[] content) {
+        this.content = content;
+    }
 
-  public String getEtag() {
-    return etag;
-  }
+    public String getEtag() {
+        return etag;
+    }
 
-  public void setEtag(String etag) {
-    this.etag = etag;
-  }
+    public void setEtag(String etag) {
+        this.etag = etag;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return key.equals(obj);
+    }
+
+    @Override
+    public int hashCode() {
+        return key.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "BucketObject[" + key + "]";
+    }
 }

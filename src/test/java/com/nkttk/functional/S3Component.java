@@ -1,7 +1,10 @@
 package com.nkttk.functional;
 
+import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.S3Object;
-import com.nkttk.core.engine.AWSEngine;
+import com.nkttk.core.engine.ComponentContainer;
+import com.nkttk.core.engine.factories.ClientFactory;
+import com.nkttk.core.engine.factories.ComponentFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -10,8 +13,11 @@ import java.io.*;
 public class S3Component {
     @Test
     public void testS3() throws IOException {
-        AWSEngine engine = new AWSEngine();
-        engine.addS3Bucket("testbucket");
+        ClientFactory clientFactory = new ClientFactory();
+        ComponentFactory componentFactory = new ComponentFactory();
+        ComponentContainer engine = new ComponentContainer(componentFactory, clientFactory);
+        AmazonS3 s3Client = engine.getS3Client();
+        s3Client.createBucket("testbucket");
         engine.addFile("testbucket", "some_file", "some_content");
         S3Object o = engine.getFile("testbucket", "some_file");
         InputStream stream = o.getObjectContent();

@@ -7,9 +7,8 @@ import com.amazonaws.regions.Region;
 import com.amazonaws.services.sqs.AmazonSQS;
 import com.amazonaws.services.sqs.model.*;
 import com.nkttk.core.components.sqs.SQSInstance;
-import com.nkttk.core.engine.AWSEngine;
+import com.nkttk.core.engine.ComponentContainer;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -17,10 +16,10 @@ import java.util.Map;
  *
  */
 public class HazeSQS implements AmazonSQS {
-  private AWSEngine engine;
+  private ComponentContainer engine;
   private String endpoint;
 
-  public HazeSQS(AWSEngine engine){
+  public HazeSQS(ComponentContainer engine){
     this.engine = engine;
   }
 

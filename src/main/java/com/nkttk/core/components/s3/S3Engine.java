@@ -7,21 +7,26 @@ import com.nkttk.core.components.events.BucketEventType;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  *
  */
 public class S3Engine {
     private List<EventSubscription> eventSubscriptions = new LinkedList<>();
-    private Map<String, Bucket> buckets = new HashMap<>();
+    private Set<Bucket> buckets;
+    private Function<String, Bucket> bucketFactory;
+
+    public S3Engine(Function<String, Bucket> bucketFactory){
+        this.bucketFactory = bucketFactory;
+        this.buckets = new HashSet<>();
+    }
 
     public Bucket addBucket(String name) {
-        Bucket result = new Bucket(name);
+        Bucket result = bucketFactory.apply(name);
         buckets.put(name, result);
         return result;
     }
@@ -49,9 +54,8 @@ public class S3Engine {
         return bucketObject;
     }
 
-    public Bucket getBucket(String name) {
-        if (!buckets.containsKey(name)) throw new RuntimeException("Bucket not found : " + name);
-        return buckets.get(name);
+    public Optional<Bucket> getBucket(String name) {
+        return  Optional.of(buckets.get(name));
     }
 
     public void addEventSubscription(Bucket bucket, BucketEventType type, Consumer<BucketEvent> subscription) {

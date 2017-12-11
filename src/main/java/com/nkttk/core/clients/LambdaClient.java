@@ -6,17 +6,17 @@ import com.amazonaws.regions.Region;
 import com.amazonaws.services.lambda.AWSLambda;
 import com.amazonaws.services.lambda.model.*;
 import com.nkttk.core.components.lambda.LambdaContext;
-import com.nkttk.core.engine.AWSEngine;
+import com.nkttk.core.engine.ComponentContainer;
 import org.apache.http.HttpStatus;
 
 import java.nio.ByteBuffer;
 
 public class LambdaClient<I,O> implements AWSLambda {
   private LambdaContext context;
-  private AWSEngine awsEngine;
+  private ComponentContainer componentContainer;
 
-  public LambdaClient(AWSEngine awsEngine, LambdaContext context){
-    this.awsEngine = awsEngine;
+  public LambdaClient(ComponentContainer componentContainer, LambdaContext context){
+    this.componentContainer = componentContainer;
     this.context = context;
   }
 
@@ -98,7 +98,7 @@ public class LambdaClient<I,O> implements AWSLambda {
     ByteBuffer resultPayload = null;
     InvokeResult result = new InvokeResult();
     try {
-      resultPayload = awsEngine.runLambda(invokeRequest.getFunctionName(), invokeRequest.getPayload());
+      resultPayload = componentContainer.runLambda(invokeRequest.getFunctionName(), invokeRequest.getPayload());
       result.setPayload(resultPayload);
       result.setStatusCode(HttpStatus.SC_ACCEPTED);
     } catch (Exception e){

@@ -1,9 +1,7 @@
 package com.nkttk.core.components;
 
-import com.amazonaws.services.sqs.model.Message;
-import com.nkttk.core.components.events.BucketEventType;
 import com.nkttk.core.components.sns.SNSTopic;
-import com.nkttk.core.engine.AWSEngine;
+import com.nkttk.core.engine.ComponentContainer;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -12,12 +10,12 @@ import org.testng.annotations.Test;
 /**
  *
  */
-public class AWSEngineTest {
-  AWSEngine engine;
+public class ComponentContainerTest {
+  ComponentContainer engine;
 
   @BeforeMethod
   public void setUp() throws Exception {
-    engine = new AWSEngine();
+    engine = new ComponentContainer();
   }
 
   @AfterMethod

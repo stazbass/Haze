@@ -1,6 +1,7 @@
 package com.nkttk.core.engine;
 
 import com.amazonaws.services.lambda.runtime.RequestHandler;
+import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.sqs.model.Message;
 import com.nkttk.config.cf.CloudFormationConfig;
@@ -21,9 +22,7 @@ import com.nkttk.core.components.sns.SNSTopic;
 import com.nkttk.core.components.sqs.SQSEngine;
 import com.nkttk.core.components.sqs.SQSInstance;
 import com.nkttk.core.components.sqs.entities.SQSMessage;
-import com.nkttk.core.engine.factories.S3ObjectFactory;
-import com.nkttk.core.engine.factories.SNSMessageFactory;
-import com.nkttk.core.engine.factories.SQSMessageFactory;
+import com.nkttk.core.engine.factories.*;
 import com.nkttk.json.JsonMaster;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,12 +32,11 @@ import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-public class AWSEngine {
-    private static final Logger LOGGER = LoggerFactory.getLogger(AWSEngine.class);
+public class ComponentContainer {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ComponentContainer.class);
 
     private SQSEngine sqsEngine;
     private S3Engine s3Engine;
@@ -47,26 +45,29 @@ public class AWSEngine {
     private SQSMessageFactory sqsMessageFactory;
     private SNSMessageFactory snsMessageFactory;
     private LambdaBuilder lambdaBuilder = new LambdaBuilder();
+    private ComponentFactory componentFactory;
+    private ClientFactory clientFactory;
 
-    public AWSEngine() {
+    public ComponentContainer() {
         this.sqsEngine = new SQSEngine();
-        this.s3Engine = new S3Engine();
+        this.s3Engine = new S3Engine(bucketName->new Bucket(bucketName));
         this.snsEngine = new SNSEngine();
         this.lambdaEngine = new LambdaEngine(lambdaBuilder);
         this.sqsMessageFactory = new SQSMessageFactory();
         this.snsMessageFactory = new SNSMessageFactory();
     }
 
-    public void setLambdaBuilder(Function<String, RequestHandler<?, ?>> lambdaBuilder) {
-        this.lambdaBuilder.setProduceFunction(lambdaBuilder);
+    public ComponentContainer(ComponentFactory componentFactory, ClientFactory clientFactory){
+        this.componentFactory = componentFactory;
+        this.clientFactory = clientFactory;
     }
 
-    public List<ComponentIdentifier> getAllIdentifiers() {
-        List<ComponentIdentifier> result = new LinkedList<>();
-        result.addAll(this.sqsEngine.getIdentifiers());
-        result.addAll(this.snsEngine.getIdentifiers());
-        result.addAll(this.s3Engine.getIdentifiers());
-        return result;
+    public AmazonS3 getS3Client(){
+        return clientFactory.buildS3Client(this);
+    }
+
+    public void setLambdaBuilder(Function<String, RequestHandler<?, ?>> lambdaBuilder) {
+        this.lambdaBuilder.setProduceFunction(lambdaBuilder);
     }
 
     public void loadConfig(InputStream is) throws IOException {
@@ -230,15 +231,15 @@ public class AWSEngine {
 
     @Deprecated // into message processing class
     public void subscribeSQSToS3Event(String sqsUrl, String bucketName, BucketEventType eventType) {
-        Bucket bucket = s3Engine.getBucket(bucketName);
-
-        s3Engine.addEventSubscription(bucket, BucketEventType.PUT, event -> {
-            String eventJson = JsonMaster.toString(EventBuilder.buildS3Notification(eventType, bucket.getName(), bucket
-                    .getUrl(), event.getBucketObject().getKey(), event.getBucketObject().getSize(), event.getBucketObject()
-                    .getEtag()));
-            LOGGER.debug("Bucket PUT event sent to SQS {}: {}", sqsUrl, eventJson);
-            publishSQSMessage(sqsUrl, eventJson);
-        });
+//        Bucket bucket = s3Engine.getBucket(bucketName);
+//
+//        s3Engine.addEventSubscription(bucket, BucketEventType.PUT, event -> {
+//            String eventJson = JsonMaster.toString(EventBuilder.buildS3Notification(eventType, bucket.getName(), bucket
+//                    .getUrl(), event.getBucketObject().getKey(), event.getBucketObject().getSize(), event.getBucketObject()
+//                    .getEtag()));
+//            LOGGER.debug("Bucket PUT event sent to SQS {}: {}", sqsUrl, eventJson);
+//            publishSQSMessage(sqsUrl, eventJson);
+//        });
     }
 
     @Deprecated //logic shoud be moved into dedicated class"
@@ -267,7 +268,7 @@ public class AWSEngine {
     @Deprecated //logic shoud be moved into dedicated class"
     public S3Object getFile(String bucket, String file) {
         LOGGER.debug("Get file object. Bucket: {} file: {}", bucket, file);
-        BucketObject bucketObject = s3Engine.getBucket(bucket).getFile(file);
+        BucketObject bucketObject = s3Engine.getBucket(bucket).orElseThrow(()->new RuntimeException("No bucket found : " + bucket)).getFile(file);
         return S3ObjectFactory.buildS3Object(bucket, bucketObject);
     }
 

@@ -10,7 +10,8 @@ import com.amazonaws.services.s3.S3ClientOptions;
 import com.amazonaws.services.s3.S3ResponseMetadata;
 import com.amazonaws.services.s3.model.*;
 import com.amazonaws.services.s3.waiters.AmazonS3Waiters;
-import com.nkttk.core.engine.AWSEngine;
+import com.nkttk.core.components.s3.S3Engine;
+import com.nkttk.core.engine.ComponentContainer;
 
 import java.io.File;
 import java.io.InputStream;
@@ -22,10 +23,10 @@ import java.util.List;
  *
  */
 public class HazeS3 implements AmazonS3 {
-  AWSEngine engine;
+  S3Engine fsEngine;
 
-  public HazeS3(AWSEngine engine){
-    this.engine = engine;
+  public HazeS3(S3Engine engine){
+      fsEngine = engine;
   }
 
   @Override
@@ -165,7 +166,8 @@ public class HazeS3 implements AmazonS3 {
 
   @Override
   public Bucket createBucket(String bucketName) throws AmazonClientException, AmazonServiceException {
-    throw new RuntimeException("NOT IMPLEMENTED");
+    fsEngine.addBucket(bucketName);
+    return engine.getS3Client(r).ceateBucket(bucketName);
   }
 
   @Override
