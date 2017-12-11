@@ -62,7 +62,11 @@ public class Bucket {
 
     @Override
     public boolean equals(Object obj) {
-        return name.equals(obj);
+        if(obj instanceof Bucket){
+            return name.equals(((Bucket)obj).getName());
+        }else{
+            return super.equals(obj);
+        }
     }
 
     @Override

@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- *
+ * Bucket content - object. File in S3 terms, which identifies by it's key ( aka path  )
  */
 public class BucketObject {
     private static final Logger LOGGER = LoggerFactory.getLogger(BucketObject.class);

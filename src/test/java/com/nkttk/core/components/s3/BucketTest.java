@@ -62,37 +62,20 @@ public class BucketTest {
 
     @Test
     public void testGetName() throws Exception {
+        Assert.assertEquals(bucket.getName(), TEST_BUCKET_NAME);
     }
 
-    @Test
-    public void testWriteFileContent() throws Exception {
-    }
-
-    @Test
-    public void testWriteFileContent1() throws Exception {
-    }
-
-    @Test
-    public void testGetFile() throws Exception {
-    }
-
-    @Test
-    public void testGetUrl() throws Exception {
-    }
-
-    @Test
-    public void testSetUrl() throws Exception {
-    }
 
     @Test
     public void testHashCode() throws Exception {
+        Assert.assertEquals(bucket.hashCode(), TEST_BUCKET_NAME.hashCode());
     }
 
     @Test
     public void testEquals() throws Exception {
-    }
-
-    @Test
-    public void testToString() throws Exception {
+        String bucketName = "some_name";
+        Bucket bucketA = new Bucket(bucketName, (name)->new BucketObject(name));
+        Bucket bucketB = new Bucket(bucketName, (name)->new BucketObject(name));
+        Assert.assertTrue(bucketA.equals(bucketB) && bucketB.equals(bucketA));
     }
 }
