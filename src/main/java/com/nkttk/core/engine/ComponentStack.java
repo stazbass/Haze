@@ -34,8 +34,8 @@ import java.util.function.Function;
 /**
  * Container for S3, SNS, SQS, Lambda subsystems, their event subscriptions.
  */
-public class ComponentContainer {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ComponentContainer.class);
+public class ComponentStack {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ComponentStack.class);
 
     private SQSEngine sqsEngine;
     private S3Component s3Component;
@@ -48,7 +48,7 @@ public class ComponentContainer {
     private ClientFactory clientFactory;
 
     @Deprecated
-    public ComponentContainer() {
+    public ComponentStack() {
         this.sqsEngine = new SQSEngine();
         this.snsEngine = new SNSEngine();
         this.lambdaEngine = new LambdaEngine(lambdaBuilder);
@@ -56,7 +56,7 @@ public class ComponentContainer {
         this.snsMessageFactory = new SNSMessageFactory();
     }
 
-    public ComponentContainer(ComponentFactory componentFactory, ClientFactory clientFactory) {
+    public ComponentStack(ComponentFactory componentFactory, ClientFactory clientFactory) {
         this.componentFactory = componentFactory;
         this.s3Component = new S3Component(bucketName -> new Bucket(bucketName, objectName -> new BucketObject(objectName)));
         this.clientFactory = clientFactory;

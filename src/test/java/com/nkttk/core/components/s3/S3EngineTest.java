@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 public class S3EngineTest {
   @Test
   public void testAddFile() {
-//    S3Component engine = new S3Component();
+//    S3ComponentTest engine = new S3ComponentTest();
 //    String bucketName = "sample_bucket";
 //    engine.addBucket(bucketName);
 //    String fileName = "sample.txt";
@@ -21,7 +21,7 @@ public class S3EngineTest {
 
   @Test
   public void testEventSubscription() {
-//    S3Component engine = new S3Component();
+//    S3ComponentTest engine = new S3ComponentTest();
 //    String bucketName = "sample_bucket";
 //    Bucket bucket = engine.addBucket(bucketName);
 //    String fileName = "sample.txt";

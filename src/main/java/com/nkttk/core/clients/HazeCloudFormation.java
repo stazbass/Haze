@@ -6,15 +6,15 @@ import com.amazonaws.regions.Region;
 import com.amazonaws.services.cloudformation.AmazonCloudFormation;
 import com.amazonaws.services.cloudformation.model.*;
 import com.amazonaws.services.cloudformation.waiters.AmazonCloudFormationWaiters;
-import com.nkttk.core.engine.ComponentContainer;
+import com.nkttk.core.engine.ComponentStack;
 
 /**
  *
  */
 public class HazeCloudFormation implements AmazonCloudFormation {
-    ComponentContainer engine;
+    ComponentStack engine;
 
-    public HazeCloudFormation(ComponentContainer engine) {
+    public HazeCloudFormation(ComponentStack engine) {
         this.engine = engine;
     }
 

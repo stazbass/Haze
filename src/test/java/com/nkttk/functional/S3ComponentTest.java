@@ -4,12 +4,12 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-public class S3Component {
+public class S3ComponentTest {
     @Test
     public void testS3() throws IOException {
 //        ClientFactory clientFactory = new ClientFactory();
 //        ComponentFactory componentFactory = new ComponentFactory();
-//        ComponentContainer engine = new ComponentContainer(componentFactory, clientFactory);
+//        ComponentStack engine = new ComponentStack(componentFactory, clientFactory);
 //        AmazonS3 s3Client = engine.getS3Client();
 //        s3Client.createBucket("testbucket");
 //        engine.addFile("testbucket", "some_file", "some_content");
@@ -19,6 +19,4 @@ public class S3Component {
 //        String content = br.readLine();
 //        Assert.assertEquals(content, "some_content");
     }
-
-
 }

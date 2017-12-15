@@ -1,6 +1,5 @@
 package com.nkttk.core.components.s3;
 
-import com.nkttk.core.engine.ComponentContainer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -5,7 +5,7 @@ import com.amazonaws.ResponseMetadata;
 import com.amazonaws.regions.Region;
 import com.amazonaws.services.sns.AmazonSNS;
 import com.amazonaws.services.sns.model.*;
-import com.nkttk.core.engine.ComponentContainer;
+import com.nkttk.core.engine.ComponentStack;
 
 import java.util.List;
 
@@ -13,9 +13,9 @@ import java.util.List;
  *
  */
 public class HazeSNS implements AmazonSNS {
-  private ComponentContainer engine;
+  private ComponentStack engine;
 
-  public HazeSNS(ComponentContainer engine){
+  public HazeSNS(ComponentStack engine){
     this.engine = engine;
   }
 

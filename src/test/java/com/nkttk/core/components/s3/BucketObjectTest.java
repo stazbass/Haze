@@ -1,12 +1,10 @@
 package com.nkttk.core.components.s3;
 
-import org.mockito.MockitoAnnotations;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
 
 public class BucketObjectTest {
     private static final String BUCKET_OBJECT_KEY = "BUCKET_OBJECT_KEY";

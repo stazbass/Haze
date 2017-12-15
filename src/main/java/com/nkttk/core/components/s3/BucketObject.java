@@ -64,7 +64,7 @@ public class BucketObject {
         try {
             IOUtils.copy(is, outputStream);
             content = (outputStream.toByteArray());
-            LOGGER.debug("Setting object '{}' content '{}'", new String(content));
+            LOGGER.debug("Writing content to object '{}' :'{}'", key, new String(content));
         } catch (IOException e) {
             throw new RuntimeException("Exception writing to object ", e);
         } finally {

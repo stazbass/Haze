@@ -65,6 +65,14 @@ public class BucketTest {
         Assert.assertEquals(bucket.getName(), TEST_BUCKET_NAME);
     }
 
+    @Test
+    public void testGetObject(){
+        BucketObject expectedBucketObjcet = new BucketObject(TEST_BUCKET_OBJECT_NAME);
+        Mockito.when(objectFactory.apply(Mockito.anyString())).thenReturn(expectedBucketObjcet);
+        bucket.addObject(TEST_BUCKET_OBJECT_NAME);
+        BucketObject actualObject = bucket.getObject(TEST_BUCKET_OBJECT_NAME).get();
+        Assert.assertEquals(actualObject, expectedBucketObjcet);
+    }
 
     @Test
     public void testHashCode() throws Exception {

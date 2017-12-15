@@ -1,7 +1,7 @@
 package com.nkttk.core.components;
 
 import com.nkttk.core.components.sns.SNSTopic;
-import com.nkttk.core.engine.ComponentContainer;
+import com.nkttk.core.engine.ComponentStack;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -10,12 +10,12 @@ import org.testng.annotations.Test;
 /**
  *
  */
-public class ComponentContainerTest {
-  ComponentContainer engine;
+public class ComponentStackTest {
+  ComponentStack engine;
 
   @BeforeMethod
   public void setUp() throws Exception {
-    engine = new ComponentContainer();
+    engine = new ComponentStack();
   }
 
   @AfterMethod
