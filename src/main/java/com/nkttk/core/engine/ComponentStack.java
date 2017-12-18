@@ -9,18 +9,18 @@ import com.nkttk.config.cf.ConfigLoader;
 import com.nkttk.config.cf.resources.BucketResource;
 import com.nkttk.config.cf.resources.SNSResource;
 import com.nkttk.config.cf.resources.SQSResource;
-import com.nkttk.core.components.events.BucketEventType;
-import com.nkttk.core.components.lambda.LambdaBuilder;
-import com.nkttk.core.components.lambda.LambdaEngine;
-import com.nkttk.core.components.s3.Bucket;
-import com.nkttk.core.components.s3.BucketObject;
-import com.nkttk.core.components.s3.S3Component;
-import com.nkttk.core.components.sns.SNSEngine;
-import com.nkttk.core.components.sns.SNSTopic;
-import com.nkttk.core.components.sqs.SQSEngine;
-import com.nkttk.core.components.sqs.SQSInstance;
-import com.nkttk.core.components.sqs.entities.SQSMessage;
-import com.nkttk.core.engine.factories.*;
+import com.nkttk.core.engine.component.event.BucketEventType;
+import com.nkttk.core.engine.component.lambda.LambdaBuilder;
+import com.nkttk.core.engine.component.lambda.LambdaEngine;
+import com.nkttk.core.engine.component.s3.Bucket;
+import com.nkttk.core.engine.component.s3.BucketObject;
+import com.nkttk.core.engine.component.s3.S3Component;
+import com.nkttk.core.engine.component.sns.SNSEngine;
+import com.nkttk.core.engine.component.sns.SNSTopic;
+import com.nkttk.core.engine.component.sqs.SQSEngine;
+import com.nkttk.core.engine.component.sqs.SQSInstance;
+import com.nkttk.core.engine.component.sqs.entities.SQSMessage;
+import com.nkttk.core.engine.factory.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,6 +34,7 @@ import java.util.function.Function;
 /**
  * Container for S3, SNS, SQS, Lambda subsystems, their event subscriptions.
  */
+@Deprecated
 public class ComponentStack {
     private static final Logger LOGGER = LoggerFactory.getLogger(ComponentStack.class);
 

@@ -26,7 +26,7 @@ public class LambdaDescription<I,O> {
            ", name='" + name + '\'' +
            ", timeout='" + timeout + '\'' +
            ", memorySize='" + memorySize + '\'' +
-           ", events=" + events +
+           ", event=" + events +
            '}';
   }
 
