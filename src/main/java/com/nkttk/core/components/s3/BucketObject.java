@@ -14,6 +14,7 @@ import java.io.InputStream;
  */
 public class BucketObject {
     private static final Logger LOGGER = LoggerFactory.getLogger(BucketObject.class);
+
     private String key;
     private byte[] content;
 
@@ -29,17 +30,18 @@ public class BucketObject {
         return content;
     }
 
-    public void setContent(String contentSource) {
-        writeContent(new ByteArrayInputStream(contentSource.getBytes()));
-    }
-
     public void setContent(byte[] contentsSource) {
-       writeContent(new ByteArrayInputStream(contentsSource));
+        writeContent(new ByteArrayInputStream(contentsSource));
     }
 
     public void setContent(InputStream contentsSource) {
         writeContent(contentsSource);
     }
+
+    public void setContent(String contentSource) {
+        writeContent(new ByteArrayInputStream(contentSource.getBytes()));
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof BucketObject) {

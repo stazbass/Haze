@@ -1,9 +1,12 @@
 package com.nkttk.core.components.s3;
 
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
+import com.nkttk.core.components.events.ComponentEvent;
+import com.nkttk.core.components.events.IEventConsumer;
+import com.nkttk.core.components.events.IEventProducer;
+
 import java.util.*;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 /**
