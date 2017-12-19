@@ -11,8 +11,6 @@ public class ClientFactory {
         this.s3Component = s3Component;
     }
 
-
-
     public AmazonS3 buildS3Client(){
         return new HazeS3(s3Component);
     }
