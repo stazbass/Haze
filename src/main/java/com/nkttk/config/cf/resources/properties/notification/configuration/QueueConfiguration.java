@@ -6,24 +6,34 @@ import com.nkttk.config.cf.resources.notifications.S3EventType;
 /**
  */
 public class QueueConfiguration {
-  @JsonProperty("Queue")
-  private String queue;
-  @JsonProperty("Event")
-  private S3EventType eventType;
+    @JsonProperty("Id")
+    private String id;
+    @JsonProperty("Queue")
+    private String queue;
+    @JsonProperty("Event")
+    private S3EventType eventType;
 
-  public String getQueue() {
-    return queue;
-  }
+    public String getId() {
+        return id;
+    }
 
-  public void setQueue(String queue) {
-    this.queue = queue;
-  }
+    public void setId(String id) {
+        this.id = id;
+    }
 
-  public S3EventType getEventType() {
-    return eventType;
-  }
+    public String getQueue() {
+        return queue;
+    }
 
-  public void setEventType(S3EventType eventType) {
-    this.eventType = eventType;
-  }
+    public void setQueue(String queue) {
+        this.queue = queue;
+    }
+
+    public S3EventType getEventType() {
+        return eventType;
+    }
+
+    public void setEventType(S3EventType eventType) {
+        this.eventType = eventType;
+    }
 }

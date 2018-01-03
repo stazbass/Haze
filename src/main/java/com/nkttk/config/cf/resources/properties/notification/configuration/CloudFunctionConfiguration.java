@@ -16,4 +16,27 @@ public class CloudFunctionConfiguration {
   @JsonProperty("Event")
   private S3EventType eventType;
 
+  public Map getFunction() {
+    return function;
+  }
+
+  public void setFunction(Map function) {
+    this.function = function;
+  }
+
+  public S3KeyFilter getFilter() {
+    return filter;
+  }
+
+  public void setFilter(S3KeyFilter filter) {
+    this.filter = filter;
+  }
+
+  public S3EventType getEventType() {
+    return eventType;
+  }
+
+  public void setEventType(S3EventType eventType) {
+    this.eventType = eventType;
+  }
 }

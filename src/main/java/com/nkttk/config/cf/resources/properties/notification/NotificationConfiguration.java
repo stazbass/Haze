@@ -10,11 +10,11 @@ import com.nkttk.config.cf.resources.properties.notification.configuration.Topic
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NotificationConfiguration {
-  @JsonProperty("QueueConfigurations")
+  @JsonProperty("LambdaConfiguration")
   private CloudFunctionConfiguration lambdaConfigurations;
-  @JsonProperty("LambdaConfigurations")
+  @JsonProperty("QueueConfiguration")
   private QueueConfiguration queueConfiguration;
-  @JsonProperty("TopicConfigurations")
+  @JsonProperty("TopicConfiguration")
   private TopicConfiguration topicConfigurations;
 
   public CloudFunctionConfiguration getLambdaConfigurations() {
