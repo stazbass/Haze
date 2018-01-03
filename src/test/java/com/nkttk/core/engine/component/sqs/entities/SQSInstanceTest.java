@@ -34,14 +34,14 @@ public class SQSInstanceTest {
   }
 
   @Test
-  public void test_restore() throws InterruptedException {
+  public void test_restore() {
     instance.setMessageLockInterval(100);
     instance.putMessage(new SQSMessage("test1"));
 
   }
 
   @Test
-  public void test_not_yet_restored() throws InterruptedException {
+  public void test_not_yet_restored() {
 //    instance.putMessage(new SQSMessage("test1"));
 //    assertNull(message2);
   }

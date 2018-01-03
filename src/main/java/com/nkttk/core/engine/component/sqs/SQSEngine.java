@@ -3,7 +3,9 @@ package com.nkttk.core.engine.component.sqs;
 import com.nkttk.core.engine.component.ComponentIdentifier;
 import com.nkttk.core.engine.component.sqs.entities.SQSMessage;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class SQSEngine {

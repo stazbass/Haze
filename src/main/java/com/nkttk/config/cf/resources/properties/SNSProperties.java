@@ -10,34 +10,34 @@ import java.util.List;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SNSProperties {
-  @JsonProperty("DisplayName")
-  private String displayName;
-  @JsonProperty("TopicName")
-  private String topicName;
-  @JsonProperty("Subscription")
-  private List<SNSSubscription> subscriptions;
+    @JsonProperty("DisplayName")
+    private String displayName;
+    @JsonProperty("TopicName")
+    private String topicName;
+    @JsonProperty("Subscription")
+    private List<SNSSubscription> subscriptions;
 
-  public String getDisplayName() {
-    return displayName;
-  }
+    public String getDisplayName() {
+        return displayName;
+    }
 
-  public void setDisplayName(String displayName) {
-    this.displayName = displayName;
-  }
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
 
-  public String getTopicName() {
-    return topicName;
-  }
+    public String getTopicName() {
+        return topicName;
+    }
 
-  public void setTopicName(String topicName) {
-    this.topicName = topicName;
-  }
+    public void setTopicName(String topicName) {
+        this.topicName = topicName;
+    }
 
-  public List<SNSSubscription> getSubscriptions() {
-    return subscriptions;
-  }
+    public List<SNSSubscription> getSubscriptions() {
+        return subscriptions;
+    }
 
-  public void setSubscriptions(List<SNSSubscription> subscriptions) {
-    this.subscriptions = subscriptions;
-  }
+    public void setSubscriptions(List<SNSSubscription> subscriptions) {
+        this.subscriptions = subscriptions;
+    }
 }

@@ -6,14 +6,14 @@ import com.nkttk.config.cf.resources.properties.SNSProperties;
 /**
  */
 public class SNSResource extends AWSResource {
-  @JsonProperty("Properties")
-  private SNSProperties properties;
+    @JsonProperty("Properties")
+    private SNSProperties properties;
 
-  public SNSProperties getProperties() {
-    return properties;
-  }
+    public SNSProperties getProperties() {
+        return properties;
+    }
 
-  public void setProperties(SNSProperties properties) {
-    this.properties = properties;
-  }
+    public void setProperties(SNSProperties properties) {
+        this.properties = properties;
+    }
 }

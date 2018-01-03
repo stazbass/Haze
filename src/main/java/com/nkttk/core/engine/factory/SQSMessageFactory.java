@@ -10,33 +10,35 @@ import java.io.IOException;
  *
  */
 public class SQSMessageFactory {
-  /**
-   * Getting from queue
-   * @param message
-   * @return
-   */
-  public static Message buildNativeMessage(SQSMessage message){
-    Message result;
-    try {
-      result = JsonMaster.readValue(message.getBody(), Message.class);
-      result.setReceiptHandle(message.getReceiptHandle());
-    } catch (IOException e) {
-      throw new RuntimeException("SQS message deserialization failed ", e);
+    /**
+     * Getting from queue
+     *
+     * @param message
+     * @return
+     */
+    public static Message buildNativeMessage(SQSMessage message) {
+        Message result;
+        try {
+            result = JsonMaster.readValue(message.getBody(), Message.class);
+            result.setReceiptHandle(message.getReceiptHandle());
+        } catch (IOException e) {
+            throw new RuntimeException("SQS message deserialization failed ", e);
+        }
+        return result;
     }
-    return result;
-  }
 
-  /**
-   * For putting in queue
-   * @param body
-   * @return
-   */
-  public static SQSMessage buildMessage(String body){
-    Message message = new Message();
-    message.setBody(body);
-    SQSMessage result = new SQSMessage(JsonMaster.toString(message));
-    result.setReceiptHandle(message.getReceiptHandle());
-    return result;
-  }
+    /**
+     * For putting in queue
+     *
+     * @param body
+     * @return
+     */
+    public static SQSMessage buildMessage(String body) {
+        Message message = new Message();
+        message.setBody(body);
+        SQSMessage result = new SQSMessage(JsonMaster.toString(message));
+        result.setReceiptHandle(message.getReceiptHandle());
+        return result;
+    }
 
 }

@@ -6,14 +6,14 @@ import com.nkttk.config.cf.resources.properties.BucketProperties;
 /**
  */
 public class BucketResource extends AWSResource {
-  @JsonProperty("Properties")
-  private BucketProperties properties;
+    @JsonProperty("Properties")
+    private BucketProperties properties;
 
-  public BucketProperties getProperties() {
-    return properties;
-  }
+    public BucketProperties getProperties() {
+        return properties;
+    }
 
-  public void setProperties(BucketProperties properties) {
-    this.properties = properties;
-  }
+    public void setProperties(BucketProperties properties) {
+        this.properties = properties;
+    }
 }

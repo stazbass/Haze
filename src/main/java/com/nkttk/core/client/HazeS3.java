@@ -34,235 +34,230 @@ public class HazeS3 implements AmazonS3 {
     }
 
     @Override
-    public void setRegion(Region region) throws IllegalArgumentException {
-
-    }
-
-    @Override
     public void setS3ClientOptions(S3ClientOptions clientOptions) {
 
     }
 
     @Override
-    public void changeObjectStorageClass(String bucketName, String key, StorageClass newStorageClass) throws AmazonClientException, AmazonServiceException {
+    public void changeObjectStorageClass(String bucketName, String key, StorageClass newStorageClass) throws AmazonClientException {
 
     }
 
     @Override
-    public void setObjectRedirectLocation(String bucketName, String key, String newRedirectLocation) throws AmazonClientException, AmazonServiceException {
+    public void setObjectRedirectLocation(String bucketName, String key, String newRedirectLocation) throws AmazonClientException {
 
     }
 
     @Override
-    public ObjectListing listObjects(String bucketName) throws AmazonClientException, AmazonServiceException {
+    public ObjectListing listObjects(String bucketName) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public ObjectListing listObjects(String bucketName, String prefix) throws AmazonClientException, AmazonServiceException {
+    public ObjectListing listObjects(String bucketName, String prefix) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public ObjectListing listObjects(ListObjectsRequest listObjectsRequest) throws AmazonClientException, AmazonServiceException {
+    public ObjectListing listObjects(ListObjectsRequest listObjectsRequest) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public ListObjectsV2Result listObjectsV2(String bucketName) throws AmazonClientException, AmazonServiceException {
+    public ListObjectsV2Result listObjectsV2(String bucketName) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public ListObjectsV2Result listObjectsV2(String bucketName, String prefix) throws AmazonClientException, AmazonServiceException {
+    public ListObjectsV2Result listObjectsV2(String bucketName, String prefix) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public ListObjectsV2Result listObjectsV2(ListObjectsV2Request listObjectsV2Request) throws AmazonClientException, AmazonServiceException {
+    public ListObjectsV2Result listObjectsV2(ListObjectsV2Request listObjectsV2Request) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public ObjectListing listNextBatchOfObjects(ObjectListing previousObjectListing) throws AmazonClientException, AmazonServiceException {
+    public ObjectListing listNextBatchOfObjects(ObjectListing previousObjectListing) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public ObjectListing listNextBatchOfObjects(ListNextBatchOfObjectsRequest listNextBatchOfObjectsRequest) throws AmazonClientException, AmazonServiceException {
+    public ObjectListing listNextBatchOfObjects(ListNextBatchOfObjectsRequest listNextBatchOfObjectsRequest) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public VersionListing listVersions(String bucketName, String prefix) throws AmazonClientException, AmazonServiceException {
+    public VersionListing listVersions(String bucketName, String prefix) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public VersionListing listNextBatchOfVersions(VersionListing previousVersionListing) throws AmazonClientException, AmazonServiceException {
+    public VersionListing listNextBatchOfVersions(VersionListing previousVersionListing) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public VersionListing listNextBatchOfVersions(ListNextBatchOfVersionsRequest listNextBatchOfVersionsRequest) throws AmazonClientException, AmazonServiceException {
+    public VersionListing listNextBatchOfVersions(ListNextBatchOfVersionsRequest listNextBatchOfVersionsRequest) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public VersionListing listVersions(String bucketName, String prefix, String keyMarker, String versionIdMarker, String delimiter, Integer maxResults) throws AmazonClientException, AmazonServiceException {
+    public VersionListing listVersions(String bucketName, String prefix, String keyMarker, String versionIdMarker, String delimiter, Integer maxResults) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public VersionListing listVersions(ListVersionsRequest listVersionsRequest) throws AmazonClientException, AmazonServiceException {
+    public VersionListing listVersions(ListVersionsRequest listVersionsRequest) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public Owner getS3AccountOwner() throws AmazonClientException, AmazonServiceException {
+    public Owner getS3AccountOwner() throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public Owner getS3AccountOwner(GetS3AccountOwnerRequest getS3AccountOwnerRequest) throws AmazonClientException, AmazonServiceException {
+    public Owner getS3AccountOwner(GetS3AccountOwnerRequest getS3AccountOwnerRequest) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public boolean doesBucketExist(String bucketName) throws AmazonClientException, AmazonServiceException {
+    public boolean doesBucketExist(String bucketName) throws AmazonClientException {
         return false;
     }
 
     @Override
-    public HeadBucketResult headBucket(HeadBucketRequest headBucketRequest) throws AmazonClientException, AmazonServiceException {
+    public HeadBucketResult headBucket(HeadBucketRequest headBucketRequest) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public List<Bucket> listBuckets() throws AmazonClientException, AmazonServiceException {
+    public List<Bucket> listBuckets() throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public List<Bucket> listBuckets(ListBucketsRequest listBucketsRequest) throws AmazonClientException, AmazonServiceException {
+    public List<Bucket> listBuckets(ListBucketsRequest listBucketsRequest) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public String getBucketLocation(String bucketName) throws AmazonClientException, AmazonServiceException {
+    public String getBucketLocation(String bucketName) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public String getBucketLocation(GetBucketLocationRequest getBucketLocationRequest) throws AmazonClientException, AmazonServiceException {
+    public String getBucketLocation(GetBucketLocationRequest getBucketLocationRequest) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public Bucket createBucket(CreateBucketRequest createBucketRequest) throws AmazonClientException, AmazonServiceException {
+    public Bucket createBucket(CreateBucketRequest createBucketRequest) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public Bucket createBucket(String bucketName) throws AmazonClientException, AmazonServiceException {
+    public Bucket createBucket(String bucketName) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
 //    fsEngine.addBucket(bucketName);
 //    return engine.getS3Client(r).ceateBucket(bucketName);
     }
 
     @Override
-    public Bucket createBucket(String bucketName, com.amazonaws.services.s3.model.Region region) throws AmazonClientException, AmazonServiceException {
+    public Bucket createBucket(String bucketName, com.amazonaws.services.s3.model.Region region) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public Bucket createBucket(String bucketName, String region) throws AmazonClientException, AmazonServiceException {
+    public Bucket createBucket(String bucketName, String region) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public AccessControlList getObjectAcl(String bucketName, String key) throws AmazonClientException, AmazonServiceException {
+    public AccessControlList getObjectAcl(String bucketName, String key) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public AccessControlList getObjectAcl(String bucketName, String key, String versionId) throws AmazonClientException, AmazonServiceException {
+    public AccessControlList getObjectAcl(String bucketName, String key, String versionId) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public AccessControlList getObjectAcl(GetObjectAclRequest getObjectAclRequest) throws AmazonClientException, AmazonServiceException {
+    public AccessControlList getObjectAcl(GetObjectAclRequest getObjectAclRequest) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public void setObjectAcl(String bucketName, String key, AccessControlList acl) throws AmazonClientException, AmazonServiceException {
+    public void setObjectAcl(String bucketName, String key, AccessControlList acl) throws AmazonClientException {
 
     }
 
     @Override
-    public void setObjectAcl(String bucketName, String key, CannedAccessControlList acl) throws AmazonClientException, AmazonServiceException {
+    public void setObjectAcl(String bucketName, String key, CannedAccessControlList acl) throws AmazonClientException {
 
     }
 
     @Override
-    public void setObjectAcl(String bucketName, String key, String versionId, AccessControlList acl) throws AmazonClientException, AmazonServiceException {
+    public void setObjectAcl(String bucketName, String key, String versionId, AccessControlList acl) throws AmazonClientException {
 
     }
 
     @Override
-    public void setObjectAcl(String bucketName, String key, String versionId, CannedAccessControlList acl) throws AmazonClientException, AmazonServiceException {
+    public void setObjectAcl(String bucketName, String key, String versionId, CannedAccessControlList acl) throws AmazonClientException {
 
     }
 
     @Override
-    public void setObjectAcl(SetObjectAclRequest setObjectAclRequest) throws AmazonClientException, AmazonServiceException {
+    public void setObjectAcl(SetObjectAclRequest setObjectAclRequest) throws AmazonClientException {
 
     }
 
     @Override
-    public AccessControlList getBucketAcl(String bucketName) throws AmazonClientException, AmazonServiceException {
+    public AccessControlList getBucketAcl(String bucketName) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public void setBucketAcl(SetBucketAclRequest setBucketAclRequest) throws AmazonClientException, AmazonServiceException {
+    public void setBucketAcl(SetBucketAclRequest setBucketAclRequest) throws AmazonClientException {
 
     }
 
     @Override
-    public AccessControlList getBucketAcl(GetBucketAclRequest getBucketAclRequest) throws AmazonClientException, AmazonServiceException {
+    public AccessControlList getBucketAcl(GetBucketAclRequest getBucketAclRequest) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public void setBucketAcl(String bucketName, AccessControlList acl) throws AmazonClientException, AmazonServiceException {
+    public void setBucketAcl(String bucketName, AccessControlList acl) throws AmazonClientException {
 
     }
 
     @Override
-    public void setBucketAcl(String bucketName, CannedAccessControlList acl) throws AmazonClientException, AmazonServiceException {
+    public void setBucketAcl(String bucketName, CannedAccessControlList acl) throws AmazonClientException {
 
     }
 
     @Override
-    public ObjectMetadata getObjectMetadata(String bucketName, String key) throws AmazonClientException, AmazonServiceException {
+    public ObjectMetadata getObjectMetadata(String bucketName, String key) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public ObjectMetadata getObjectMetadata(GetObjectMetadataRequest getObjectMetadataRequest) throws AmazonClientException, AmazonServiceException {
+    public ObjectMetadata getObjectMetadata(GetObjectMetadataRequest getObjectMetadataRequest) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public S3Object getObject(String bucketName, String key) throws AmazonClientException, AmazonServiceException {
+    public S3Object getObject(String bucketName, String key) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
 //        return engine.getFile(bucketName, key);
     }
 
     @Override
-    public S3Object getObject(GetObjectRequest getObjectRequest) throws AmazonClientException, AmazonServiceException {
+    public S3Object getObject(GetObjectRequest getObjectRequest) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
 //        return engine.getFile(getObjectRequest.getBucketName(), getObjectRequest.getKey());
     }
@@ -273,17 +268,17 @@ public class HazeS3 implements AmazonS3 {
     }
 
     @Override
-    public String getObjectAsString(String bucketName, String key) throws AmazonServiceException, AmazonClientException {
+    public String getObjectAsString(String bucketName, String key) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public void deleteBucket(DeleteBucketRequest deleteBucketRequest) throws AmazonClientException, AmazonServiceException {
+    public void deleteBucket(DeleteBucketRequest deleteBucketRequest) throws AmazonClientException {
 
     }
 
     @Override
-    public void deleteBucket(String bucketName) throws AmazonClientException, AmazonServiceException {
+    public void deleteBucket(String bucketName) throws AmazonClientException {
 
     }
 
@@ -293,27 +288,27 @@ public class HazeS3 implements AmazonS3 {
     }
 
     @Override
-    public PutObjectResult putObject(String bucketName, String key, File file) throws AmazonClientException, AmazonServiceException {
+    public PutObjectResult putObject(String bucketName, String key, File file) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public PutObjectResult putObject(String bucketName, String key, InputStream input, ObjectMetadata metadata) throws AmazonClientException, AmazonServiceException {
+    public PutObjectResult putObject(String bucketName, String key, InputStream input, ObjectMetadata metadata) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public PutObjectResult putObject(String bucketName, String key, String content) throws AmazonServiceException, AmazonClientException {
+    public PutObjectResult putObject(String bucketName, String key, String content) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public CopyObjectResult copyObject(String sourceBucketName, String sourceKey, String destinationBucketName, String destinationKey) throws AmazonClientException, AmazonServiceException {
+    public CopyObjectResult copyObject(String sourceBucketName, String sourceKey, String destinationBucketName, String destinationKey) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public CopyObjectResult copyObject(CopyObjectRequest copyObjectRequest) throws AmazonClientException, AmazonServiceException {
+    public CopyObjectResult copyObject(CopyObjectRequest copyObjectRequest) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
@@ -323,57 +318,57 @@ public class HazeS3 implements AmazonS3 {
     }
 
     @Override
-    public void deleteObject(String bucketName, String key) throws AmazonClientException, AmazonServiceException {
+    public void deleteObject(String bucketName, String key) throws AmazonClientException {
 
     }
 
     @Override
-    public void deleteObject(DeleteObjectRequest deleteObjectRequest) throws AmazonClientException, AmazonServiceException {
+    public void deleteObject(DeleteObjectRequest deleteObjectRequest) throws AmazonClientException {
 
     }
 
     @Override
-    public DeleteObjectsResult deleteObjects(DeleteObjectsRequest deleteObjectsRequest) throws AmazonClientException, AmazonServiceException {
+    public DeleteObjectsResult deleteObjects(DeleteObjectsRequest deleteObjectsRequest) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public void deleteVersion(String bucketName, String key, String versionId) throws AmazonClientException, AmazonServiceException {
+    public void deleteVersion(String bucketName, String key, String versionId) throws AmazonClientException {
 
     }
 
     @Override
-    public void deleteVersion(DeleteVersionRequest deleteVersionRequest) throws AmazonClientException, AmazonServiceException {
+    public void deleteVersion(DeleteVersionRequest deleteVersionRequest) throws AmazonClientException {
 
     }
 
     @Override
-    public BucketLoggingConfiguration getBucketLoggingConfiguration(String bucketName) throws AmazonClientException, AmazonServiceException {
+    public BucketLoggingConfiguration getBucketLoggingConfiguration(String bucketName) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public BucketLoggingConfiguration getBucketLoggingConfiguration(GetBucketLoggingConfigurationRequest getBucketLoggingConfigurationRequest) throws AmazonClientException, AmazonServiceException {
+    public BucketLoggingConfiguration getBucketLoggingConfiguration(GetBucketLoggingConfigurationRequest getBucketLoggingConfigurationRequest) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public void setBucketLoggingConfiguration(SetBucketLoggingConfigurationRequest setBucketLoggingConfigurationRequest) throws AmazonClientException, AmazonServiceException {
+    public void setBucketLoggingConfiguration(SetBucketLoggingConfigurationRequest setBucketLoggingConfigurationRequest) throws AmazonClientException {
 
     }
 
     @Override
-    public BucketVersioningConfiguration getBucketVersioningConfiguration(String bucketName) throws AmazonClientException, AmazonServiceException {
+    public BucketVersioningConfiguration getBucketVersioningConfiguration(String bucketName) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public BucketVersioningConfiguration getBucketVersioningConfiguration(GetBucketVersioningConfigurationRequest getBucketVersioningConfigurationRequest) throws AmazonClientException, AmazonServiceException {
+    public BucketVersioningConfiguration getBucketVersioningConfiguration(GetBucketVersioningConfigurationRequest getBucketVersioningConfigurationRequest) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public void setBucketVersioningConfiguration(SetBucketVersioningConfigurationRequest setBucketVersioningConfigurationRequest) throws AmazonClientException, AmazonServiceException {
+    public void setBucketVersioningConfiguration(SetBucketVersioningConfigurationRequest setBucketVersioningConfigurationRequest) throws AmazonClientException {
 
     }
 
@@ -468,82 +463,82 @@ public class HazeS3 implements AmazonS3 {
     }
 
     @Override
-    public BucketNotificationConfiguration getBucketNotificationConfiguration(String bucketName) throws AmazonClientException, AmazonServiceException {
+    public BucketNotificationConfiguration getBucketNotificationConfiguration(String bucketName) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public BucketNotificationConfiguration getBucketNotificationConfiguration(GetBucketNotificationConfigurationRequest getBucketNotificationConfigurationRequest) throws AmazonClientException, AmazonServiceException {
+    public BucketNotificationConfiguration getBucketNotificationConfiguration(GetBucketNotificationConfigurationRequest getBucketNotificationConfigurationRequest) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public void setBucketNotificationConfiguration(SetBucketNotificationConfigurationRequest setBucketNotificationConfigurationRequest) throws AmazonClientException, AmazonServiceException {
+    public void setBucketNotificationConfiguration(SetBucketNotificationConfigurationRequest setBucketNotificationConfigurationRequest) throws AmazonClientException {
 
     }
 
     @Override
-    public void setBucketNotificationConfiguration(String bucketName, BucketNotificationConfiguration bucketNotificationConfiguration) throws AmazonClientException, AmazonServiceException {
+    public void setBucketNotificationConfiguration(String bucketName, BucketNotificationConfiguration bucketNotificationConfiguration) throws AmazonClientException {
 
     }
 
     @Override
-    public BucketWebsiteConfiguration getBucketWebsiteConfiguration(String bucketName) throws AmazonClientException, AmazonServiceException {
+    public BucketWebsiteConfiguration getBucketWebsiteConfiguration(String bucketName) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public BucketWebsiteConfiguration getBucketWebsiteConfiguration(GetBucketWebsiteConfigurationRequest getBucketWebsiteConfigurationRequest) throws AmazonClientException, AmazonServiceException {
+    public BucketWebsiteConfiguration getBucketWebsiteConfiguration(GetBucketWebsiteConfigurationRequest getBucketWebsiteConfigurationRequest) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public void setBucketWebsiteConfiguration(String bucketName, BucketWebsiteConfiguration configuration) throws AmazonClientException, AmazonServiceException {
+    public void setBucketWebsiteConfiguration(String bucketName, BucketWebsiteConfiguration configuration) throws AmazonClientException {
 
     }
 
     @Override
-    public void setBucketWebsiteConfiguration(SetBucketWebsiteConfigurationRequest setBucketWebsiteConfigurationRequest) throws AmazonClientException, AmazonServiceException {
+    public void setBucketWebsiteConfiguration(SetBucketWebsiteConfigurationRequest setBucketWebsiteConfigurationRequest) throws AmazonClientException {
 
     }
 
     @Override
-    public void deleteBucketWebsiteConfiguration(String bucketName) throws AmazonClientException, AmazonServiceException {
+    public void deleteBucketWebsiteConfiguration(String bucketName) throws AmazonClientException {
 
     }
 
     @Override
-    public void deleteBucketWebsiteConfiguration(DeleteBucketWebsiteConfigurationRequest deleteBucketWebsiteConfigurationRequest) throws AmazonClientException, AmazonServiceException {
+    public void deleteBucketWebsiteConfiguration(DeleteBucketWebsiteConfigurationRequest deleteBucketWebsiteConfigurationRequest) throws AmazonClientException {
 
     }
 
     @Override
-    public BucketPolicy getBucketPolicy(String bucketName) throws AmazonClientException, AmazonServiceException {
+    public BucketPolicy getBucketPolicy(String bucketName) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public BucketPolicy getBucketPolicy(GetBucketPolicyRequest getBucketPolicyRequest) throws AmazonClientException, AmazonServiceException {
+    public BucketPolicy getBucketPolicy(GetBucketPolicyRequest getBucketPolicyRequest) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public void setBucketPolicy(String bucketName, String policyText) throws AmazonClientException, AmazonServiceException {
+    public void setBucketPolicy(String bucketName, String policyText) throws AmazonClientException {
 
     }
 
     @Override
-    public void setBucketPolicy(SetBucketPolicyRequest setBucketPolicyRequest) throws AmazonClientException, AmazonServiceException {
+    public void setBucketPolicy(SetBucketPolicyRequest setBucketPolicyRequest) throws AmazonClientException {
 
     }
 
     @Override
-    public void deleteBucketPolicy(String bucketName) throws AmazonClientException, AmazonServiceException {
+    public void deleteBucketPolicy(String bucketName) throws AmazonClientException {
 
     }
 
     @Override
-    public void deleteBucketPolicy(DeleteBucketPolicyRequest deleteBucketPolicyRequest) throws AmazonClientException, AmazonServiceException {
+    public void deleteBucketPolicy(DeleteBucketPolicyRequest deleteBucketPolicyRequest) throws AmazonClientException {
 
     }
 
@@ -573,7 +568,7 @@ public class HazeS3 implements AmazonS3 {
     }
 
     @Override
-    public PartListing listParts(ListPartsRequest request) throws AmazonClientException, AmazonServiceException {
+    public PartListing listParts(ListPartsRequest request) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
@@ -588,7 +583,7 @@ public class HazeS3 implements AmazonS3 {
     }
 
     @Override
-    public MultipartUploadListing listMultipartUploads(ListMultipartUploadsRequest request) throws AmazonClientException, AmazonServiceException {
+    public MultipartUploadListing listMultipartUploads(ListMultipartUploadsRequest request) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
@@ -608,78 +603,83 @@ public class HazeS3 implements AmazonS3 {
     }
 
     @Override
-    public void enableRequesterPays(String bucketName) throws AmazonServiceException, AmazonClientException {
+    public void enableRequesterPays(String bucketName) throws AmazonClientException {
 
     }
 
     @Override
-    public void disableRequesterPays(String bucketName) throws AmazonServiceException, AmazonClientException {
+    public void disableRequesterPays(String bucketName) throws AmazonClientException {
 
     }
 
     @Override
-    public boolean isRequesterPaysEnabled(String bucketName) throws AmazonServiceException, AmazonClientException {
+    public boolean isRequesterPaysEnabled(String bucketName) throws AmazonClientException {
         return false;
     }
 
     @Override
-    public void setBucketReplicationConfiguration(String bucketName, BucketReplicationConfiguration configuration) throws AmazonServiceException, AmazonClientException {
+    public void setBucketReplicationConfiguration(String bucketName, BucketReplicationConfiguration configuration) throws AmazonClientException {
 
     }
 
     @Override
-    public void setBucketReplicationConfiguration(SetBucketReplicationConfigurationRequest setBucketReplicationConfigurationRequest) throws AmazonServiceException, AmazonClientException {
+    public void setBucketReplicationConfiguration(SetBucketReplicationConfigurationRequest setBucketReplicationConfigurationRequest) throws AmazonClientException {
 
     }
 
     @Override
-    public BucketReplicationConfiguration getBucketReplicationConfiguration(String bucketName) throws AmazonServiceException, AmazonClientException {
+    public BucketReplicationConfiguration getBucketReplicationConfiguration(String bucketName) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public BucketReplicationConfiguration getBucketReplicationConfiguration(GetBucketReplicationConfigurationRequest getBucketReplicationConfigurationRequest) throws AmazonServiceException, AmazonClientException {
+    public BucketReplicationConfiguration getBucketReplicationConfiguration(GetBucketReplicationConfigurationRequest getBucketReplicationConfigurationRequest) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public void deleteBucketReplicationConfiguration(String bucketName) throws AmazonServiceException, AmazonClientException {
+    public void deleteBucketReplicationConfiguration(String bucketName) throws AmazonClientException {
 
     }
 
     @Override
-    public void deleteBucketReplicationConfiguration(DeleteBucketReplicationConfigurationRequest request) throws AmazonServiceException, AmazonClientException {
+    public void deleteBucketReplicationConfiguration(DeleteBucketReplicationConfigurationRequest request) throws AmazonClientException {
 
     }
 
     @Override
-    public boolean doesObjectExist(String bucketName, String objectName) throws AmazonServiceException, AmazonClientException {
+    public boolean doesObjectExist(String bucketName, String objectName) throws AmazonClientException {
         return false;
     }
 
     @Override
-    public BucketAccelerateConfiguration getBucketAccelerateConfiguration(String bucket) throws AmazonServiceException, AmazonClientException {
+    public BucketAccelerateConfiguration getBucketAccelerateConfiguration(String bucket) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public BucketAccelerateConfiguration getBucketAccelerateConfiguration(GetBucketAccelerateConfigurationRequest getBucketAccelerateConfigurationRequest) throws AmazonServiceException, AmazonClientException {
+    public BucketAccelerateConfiguration getBucketAccelerateConfiguration(GetBucketAccelerateConfigurationRequest getBucketAccelerateConfigurationRequest) throws AmazonClientException {
         throw new RuntimeException("NOT IMPLEMENTED");
     }
 
     @Override
-    public void setBucketAccelerateConfiguration(String bucketName, BucketAccelerateConfiguration accelerateConfiguration) throws AmazonServiceException, AmazonClientException {
+    public void setBucketAccelerateConfiguration(String bucketName, BucketAccelerateConfiguration accelerateConfiguration) throws AmazonClientException {
 
     }
 
     @Override
-    public void setBucketAccelerateConfiguration(SetBucketAccelerateConfigurationRequest setBucketAccelerateConfigurationRequest) throws AmazonServiceException, AmazonClientException {
+    public void setBucketAccelerateConfiguration(SetBucketAccelerateConfigurationRequest setBucketAccelerateConfigurationRequest) throws AmazonClientException {
 
     }
 
     @Override
     public com.amazonaws.services.s3.model.Region getRegion() {
         throw new RuntimeException("NOT IMPLEMENTED");
+    }
+
+    @Override
+    public void setRegion(Region region) throws IllegalArgumentException {
+
     }
 
     @Override

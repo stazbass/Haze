@@ -6,14 +6,14 @@ import com.nkttk.config.cf.resources.properties.SQSProperties;
 /**
  */
 public class SQSResource extends AWSResource {
-  @JsonProperty("Properties")
-  private SQSProperties properties;
+    @JsonProperty("Properties")
+    private SQSProperties properties;
 
-  public SQSProperties getProperties() {
-    return properties;
-  }
+    public SQSProperties getProperties() {
+        return properties;
+    }
 
-  public void setProperties(SQSProperties properties) {
-    this.properties = properties;
-  }
+    public void setProperties(SQSProperties properties) {
+        this.properties = properties;
+    }
 }

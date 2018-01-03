@@ -10,34 +10,34 @@ import com.nkttk.config.cf.resources.properties.notification.configuration.Topic
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NotificationConfiguration {
-  @JsonProperty("LambdaConfiguration")
-  private CloudFunctionConfiguration lambdaConfigurations;
-  @JsonProperty("QueueConfiguration")
-  private QueueConfiguration queueConfiguration;
-  @JsonProperty("TopicConfiguration")
-  private TopicConfiguration topicConfigurations;
+    @JsonProperty("LambdaConfiguration")
+    private CloudFunctionConfiguration lambdaConfigurations;
+    @JsonProperty("QueueConfiguration")
+    private QueueConfiguration queueConfiguration;
+    @JsonProperty("TopicConfiguration")
+    private TopicConfiguration topicConfigurations;
 
-  public CloudFunctionConfiguration getLambdaConfigurations() {
-    return lambdaConfigurations;
-  }
+    public CloudFunctionConfiguration getLambdaConfigurations() {
+        return lambdaConfigurations;
+    }
 
-  public void setLambdaConfigurations(CloudFunctionConfiguration lambdaConfigurations) {
-    this.lambdaConfigurations = lambdaConfigurations;
-  }
+    public void setLambdaConfigurations(CloudFunctionConfiguration lambdaConfigurations) {
+        this.lambdaConfigurations = lambdaConfigurations;
+    }
 
-  public QueueConfiguration getQueueConfiguration() {
-    return queueConfiguration;
-  }
+    public QueueConfiguration getQueueConfiguration() {
+        return queueConfiguration;
+    }
 
-  public void setQueueConfiguration(QueueConfiguration queueConfiguration) {
-    this.queueConfiguration = queueConfiguration;
-  }
+    public void setQueueConfiguration(QueueConfiguration queueConfiguration) {
+        this.queueConfiguration = queueConfiguration;
+    }
 
-  public TopicConfiguration getTopicConfigurations() {
-    return topicConfigurations;
-  }
+    public TopicConfiguration getTopicConfigurations() {
+        return topicConfigurations;
+    }
 
-  public void setTopicConfigurations(TopicConfiguration topicConfigurations) {
-    this.topicConfigurations = topicConfigurations;
-  }
+    public void setTopicConfigurations(TopicConfiguration topicConfigurations) {
+        this.topicConfigurations = topicConfigurations;
+    }
 }

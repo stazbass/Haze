@@ -10,28 +10,28 @@ import java.io.IOException;
  *
  */
 public class JsonMaster {
-  public static ObjectMapper om() {
-    return objectMapper;
-  }
+    private static ObjectMapper objectMapper = new ObjectMapper();
 
-  private static ObjectMapper objectMapper = new ObjectMapper();
-  public static <T> T readValue(String content, Class<T> valueType)
-      throws IOException
-  {
-    return objectMapper.readValue(content, valueType);
-  }
-
-  public static <T> T readValue(String content, TypeReference valueTypeRef) throws IOException {
-    return objectMapper.readValue(content, valueTypeRef);
-  }
-
-  public static String toString(Object object){
-    try {
-      return new String(objectMapper.writeValueAsBytes(object));
-    } catch (JsonProcessingException e) {
-      e.printStackTrace();
-      throw new RuntimeException("Deserialization failed ", e);
+    public static ObjectMapper om() {
+        return objectMapper;
     }
-  }
+
+    public static <T> T readValue(String content, Class<T> valueType)
+            throws IOException {
+        return objectMapper.readValue(content, valueType);
+    }
+
+    public static <T> T readValue(String content, TypeReference valueTypeRef) throws IOException {
+        return objectMapper.readValue(content, valueTypeRef);
+    }
+
+    public static String toString(Object object) {
+        try {
+            return new String(objectMapper.writeValueAsBytes(object));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Deserialization failed ", e);
+        }
+    }
 
 }

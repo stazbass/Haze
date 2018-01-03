@@ -4,17 +4,17 @@ package com.nkttk.core.engine.component.sns.entities;
  * Created by cryptobat on 11/1/2016.
  */
 public class SNSMessage {
-  private String body;
+    private String body;
 
-  public SNSMessage(String body) {
-    this.body = body;
-  }
+    public SNSMessage(String body) {
+        this.body = body;
+    }
 
-  public String getBody() {
-    return body;
-  }
+    public String getBody() {
+        return body;
+    }
 
-  public void setBody(String body) {
-    this.body = body;
-  }
+    public void setBody(String body) {
+        this.body = body;
+    }
 }

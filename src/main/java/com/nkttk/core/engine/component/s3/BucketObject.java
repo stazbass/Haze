@@ -30,16 +30,16 @@ public class BucketObject {
         return content;
     }
 
+    public void setContent(String contentSource) {
+        writeContent(new ByteArrayInputStream(contentSource.getBytes()));
+    }
+
     public void setContent(byte[] contentsSource) {
         writeContent(new ByteArrayInputStream(contentsSource));
     }
 
     public void setContent(InputStream contentsSource) {
         writeContent(contentsSource);
-    }
-
-    public void setContent(String contentSource) {
-        writeContent(new ByteArrayInputStream(contentSource.getBytes()));
     }
 
     @Override

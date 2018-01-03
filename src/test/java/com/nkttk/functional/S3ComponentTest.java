@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class S3ComponentTest {
     @Test
-    public void testS3() throws IOException {
+    public void testS3() {
 //        ClientFactory clientFactory = new ClientFactory();
 //        ComponentFactory componentFactory = new ComponentFactory();
 //        ComponentStack engine = new ComponentStack(componentFactory, clientFactory);

@@ -7,30 +7,30 @@ import java.util.List;
 
 public class SNSEngineTest {
     @Test
-    public void testGetIdentifiers() throws Exception {
+    public void testGetIdentifiers() {
         SNSEngine engine = new SNSEngine();
         List<ComponentIdentifier> identifierList = engine.getIdentifiers();
 
     }
 
     @Test
-    public void testAddSubscriber() throws Exception {
+    public void testAddSubscriber() {
     }
 
     @Test
-    public void testPublishMessage() throws Exception {
+    public void testPublishMessage() {
     }
 
     @Test
-    public void testAddTopic() throws Exception {
+    public void testAddTopic() {
     }
 
     @Test
-    public void testGetSNSEndpoint() throws Exception {
+    public void testGetSNSEndpoint() {
     }
 
     @Test
-    public void testGetTopicName() throws Exception {
+    public void testGetTopicName() {
     }
 
 }

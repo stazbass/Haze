@@ -14,22 +14,22 @@ public class ComponentStackTest {
   ComponentStack engine;
 
   @BeforeMethod
-  public void setUp() throws Exception {
+  public void setUp() {
     engine = new ComponentStack();
   }
 
   @AfterMethod
-  public void tearDown() throws Exception {
+  public void tearDown() {
 
   }
 
   @Test
-  public void testAddSQS() throws Exception {
+  public void testAddSQS() {
 
   }
 
   @Test
-  public void testAddSNS() throws Exception {
+  public void testAddSNS() {
     String topic = "topic_name";
     SNSTopic topicObject = engine.addSNSTopic(topic);
     final StringBuilder messageContentPlaceholder = new StringBuilder();
@@ -40,27 +40,27 @@ public class ComponentStackTest {
   }
 
   @Test
-  public void testGetSQSMessage() throws Exception {
+  public void testGetSQSMessage() {
 
   }
 
   @Test
-  public void testSubscribeSQSToS3Event() throws Exception {
+  public void testSubscribeSQSToS3Event() {
 
   }
 
   @Test
-  public void testAddBucket() throws Exception {
+  public void testAddBucket() {
 
   }
 
   @Test
-  public void testDispatchS3Event() throws Exception {
+  public void testDispatchS3Event() {
 
   }
 
   @Test
-  public void testRunLambda() throws Exception {
+  public void testRunLambda() {
     //    engine.addLambda("test_name", ()->new RequestHandler<Object, String>() {
     //      @Override
     //      public String handleRequest(Object input, Context context) {

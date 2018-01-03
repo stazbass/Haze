@@ -8,7 +8,7 @@ import java.io.InputStream;
  *
  */
 public class ServerlessParser {
-  public void parse(InputStream yamlConfig){
-    Yaml yaml = new Yaml();
-  }
+    public void parse(InputStream yamlConfig) {
+        Yaml yaml = new Yaml();
+    }
 }

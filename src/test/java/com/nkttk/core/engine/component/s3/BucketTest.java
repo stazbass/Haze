@@ -21,17 +21,17 @@ public class BucketTest {
     private Function<String, BucketObject> objectFactory;
 
     @BeforeMethod
-    public void setUp() throws Exception {
+    public void setUp() {
         MockitoAnnotations.initMocks(this);
         bucket = new Bucket(TEST_BUCKET_NAME, objectFactory);
     }
 
     @AfterMethod
-    public void tearDown() throws Exception {
+    public void tearDown() {
     }
 
     @Test
-    public void testAddObject() throws Exception {
+    public void testAddObject() {
         BucketObject expectedBucketObjcet = new BucketObject(TEST_BUCKET_OBJECT_NAME);
         Mockito.when(objectFactory.apply(Mockito.anyString())).thenReturn(expectedBucketObjcet);
 
@@ -41,7 +41,7 @@ public class BucketTest {
     }
 
     @Test
-    public void testAddObjectWithStringContent() throws Exception {
+    public void testAddObjectWithStringContent() {
         BucketObject expectedBucketObjcet = new BucketObject(TEST_BUCKET_OBJECT_NAME);
         Mockito.when(objectFactory.apply(Mockito.anyString())).thenReturn(expectedBucketObjcet);
 
@@ -51,7 +51,7 @@ public class BucketTest {
     }
 
     @Test
-    public void testAddObjectWithInputStreamContent() throws Exception {
+    public void testAddObjectWithInputStreamContent() {
         BucketObject expectedBucketObjcet = new BucketObject(TEST_BUCKET_OBJECT_NAME);
         Mockito.when(objectFactory.apply(Mockito.anyString())).thenReturn(expectedBucketObjcet);
 
@@ -61,7 +61,7 @@ public class BucketTest {
     }
 
     @Test
-    public void testGetName() throws Exception {
+    public void testGetName() {
         Assert.assertEquals(bucket.getName(), TEST_BUCKET_NAME);
     }
 
@@ -75,12 +75,12 @@ public class BucketTest {
     }
 
     @Test
-    public void testHashCode() throws Exception {
+    public void testHashCode() {
         Assert.assertEquals(bucket.hashCode(), TEST_BUCKET_NAME.hashCode());
     }
 
     @Test
-    public void testEquals() throws Exception {
+    public void testEquals() {
         String bucketName = "some_name";
         Bucket bucketA = new Bucket(bucketName, (name)->new BucketObject(name));
         Bucket bucketB = new Bucket(bucketName, (name)->new BucketObject(name));

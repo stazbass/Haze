@@ -25,7 +25,7 @@ public class LambdaEngine {
     }
 
     public ByteBuffer runLambda(String name, ByteBuffer arg) throws IOException, ClassNotFoundException {
-        RequestHandler<?, ?> requestHandler = (RequestHandler<?, ?>) lambdaBuilder.getProduceFunction().apply(name);
+        RequestHandler<?, ?> requestHandler = lambdaBuilder.getProduceFunction().apply(name);
         if (name != null) {
             return execute(name, arg, requestHandler);
         } else {
@@ -33,7 +33,7 @@ public class LambdaEngine {
         }
     }
 
-    public <I, O> ByteBuffer execute(String name, ByteBuffer input, RequestHandler<I, O> requestHandler) throws IOException, ClassNotFoundException {
+    public <I, O> ByteBuffer execute(String name, ByteBuffer input, RequestHandler<I, O> requestHandler) throws ClassNotFoundException {
         String arg = new String(input.array());
         TypeReference<I> typeReference = new TypeReference<I>() {
         };

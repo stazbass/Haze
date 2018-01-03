@@ -7,7 +7,7 @@ import static org.testng.Assert.assertEquals;
 
 public class SQSEngineTest {
     @Test
-    public void testSendMessage() throws Exception {
+    public void testSendMessage() {
         SQSEngine engine = new SQSEngine();
         engine.addInstance(new SQSInstance("sqs_name"));
         String endpointUrl = engine.getInstanceByName("sqs_name").getEndpointURL();
@@ -18,22 +18,22 @@ public class SQSEngineTest {
     }
 
     @Test
-    public void testSendMessage1() throws Exception {
+    public void testSendMessage1() {
 
     }
 
     @Test
-    public void testGetMessage() throws Exception {
+    public void testGetMessage() {
 
     }
 
     @Test
-    public void testDeleteMessage() throws Exception {
+    public void testDeleteMessage() {
 
     }
 
     @Test
-    public void testGetSQSEndpoint() throws Exception {
+    public void testGetSQSEndpoint() {
 
     }
 

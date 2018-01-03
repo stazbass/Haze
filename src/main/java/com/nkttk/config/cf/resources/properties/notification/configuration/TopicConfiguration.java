@@ -6,24 +6,24 @@ import com.nkttk.config.cf.resources.notifications.S3EventType;
 /**
  */
 public class TopicConfiguration {
-  @JsonProperty("Topic")
-  private String topic;
-  @JsonProperty("Event")
-  private S3EventType eventType;
+    @JsonProperty("Topic")
+    private String topic;
+    @JsonProperty("Event")
+    private S3EventType eventType;
 
-  public String getTopic() {
-    return topic;
-  }
+    public String getTopic() {
+        return topic;
+    }
 
-  public void setTopic(String topic) {
-    this.topic = topic;
-  }
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
 
-  public S3EventType getEventType() {
-    return eventType;
-  }
+    public S3EventType getEventType() {
+        return eventType;
+    }
 
-  public void setEventType(S3EventType eventType) {
-    this.eventType = eventType;
-  }
+    public void setEventType(S3EventType eventType) {
+        this.eventType = eventType;
+    }
 }

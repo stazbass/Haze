@@ -10,14 +10,14 @@ import java.util.Map;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CloudFormationConfig {
-  @JsonProperty("Resources")
-  private Map<String, AWSResource> resources;
+    @JsonProperty("Resources")
+    private Map<String, AWSResource> resources;
 
-  public Map<String, AWSResource> getResources() {
-    return resources;
-  }
+    public Map<String, AWSResource> getResources() {
+        return resources;
+    }
 
-  public void setResources(Map<String, AWSResource> resources) {
-    this.resources = resources;
-  }
+    public void setResources(Map<String, AWSResource> resources) {
+        this.resources = resources;
+    }
 }

@@ -20,7 +20,10 @@ import com.nkttk.core.engine.component.sns.SNSTopic;
 import com.nkttk.core.engine.component.sqs.SQSEngine;
 import com.nkttk.core.engine.component.sqs.SQSInstance;
 import com.nkttk.core.engine.component.sqs.entities.SQSMessage;
-import com.nkttk.core.engine.factory.*;
+import com.nkttk.core.engine.factory.ClientFactory;
+import com.nkttk.core.engine.factory.ComponentFactory;
+import com.nkttk.core.engine.factory.SNSMessageFactory;
+import com.nkttk.core.engine.factory.SQSMessageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -219,7 +222,7 @@ public class ComponentStack {
     public Message getSQSMessage(String sqsUrl) {
         LOGGER.debug("Get sqs message on url: {}", sqsUrl);
         SQSMessage message = sqsEngine.pullMessage(sqsUrl).get();
-        Message nativeMessage = message != null ? sqsMessageFactory.buildNativeMessage(message) : null;
+        Message nativeMessage = message != null ? SQSMessageFactory.buildNativeMessage(message) : null;
         return nativeMessage;
     }
 
@@ -246,7 +249,7 @@ public class ComponentStack {
     @Deprecated //logic shoud be moved into dedicated class"
     public void publishSQSMessage(String url, String messageBody) {
         LOGGER.debug("Publish SQS message. url: '{}' body: \"{}\"", url, messageBody);
-        sqsEngine.sendMessage(url, sqsMessageFactory.buildMessage(messageBody));
+        sqsEngine.sendMessage(url, SQSMessageFactory.buildMessage(messageBody));
     }
 
     @Deprecated //logic shoud be moved into dedicated class"

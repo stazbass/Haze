@@ -4,12 +4,12 @@ import org.testng.annotations.Test;
 
 public class LambdaEngineTest {
   @Test
-  public void testAddLambda() throws Exception {
+  public void testAddLambda() {
 
   }
 
   @Test
-  public void testRunLambda() throws Exception {
+  public void testRunLambda() {
 
   }
 

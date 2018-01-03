@@ -6,64 +6,64 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 
 public class LambdaContext implements Context {
-  private String functionName;
+    private String functionName;
 
-  public LambdaContext(String functionName) {
-    this.functionName = functionName;
-  }
+    public LambdaContext(String functionName) {
+        this.functionName = functionName;
+    }
 
-  @Override
-  public String getAwsRequestId() {
-    throw new RuntimeException("NOT IMPLEMENTED");
-  }
+    @Override
+    public String getAwsRequestId() {
+        throw new RuntimeException("NOT IMPLEMENTED");
+    }
 
-  @Override
-  public String getLogGroupName() {
-    throw new RuntimeException("NOT IMPLEMENTED");
-  }
+    @Override
+    public String getLogGroupName() {
+        throw new RuntimeException("NOT IMPLEMENTED");
+    }
 
-  @Override
-  public String getLogStreamName() {
-    throw new RuntimeException("NOT IMPLEMENTED");
-  }
+    @Override
+    public String getLogStreamName() {
+        throw new RuntimeException("NOT IMPLEMENTED");
+    }
 
-  @Override
-  public String getFunctionName() {
-    return functionName;
-  }
+    @Override
+    public String getFunctionName() {
+        return functionName;
+    }
 
-  @Override
-  public String getFunctionVersion() {
-    return "1";
-  }
+    @Override
+    public String getFunctionVersion() {
+        return "1";
+    }
 
-  @Override
-  public String getInvokedFunctionArn() {
-    throw new RuntimeException("NOT IMPLEMENTED");
-  }
+    @Override
+    public String getInvokedFunctionArn() {
+        throw new RuntimeException("NOT IMPLEMENTED");
+    }
 
-  @Override
-  public CognitoIdentity getIdentity() {
-    throw new RuntimeException("NOT IMPLEMENTED");
-  }
+    @Override
+    public CognitoIdentity getIdentity() {
+        throw new RuntimeException("NOT IMPLEMENTED");
+    }
 
-  @Override
-  public ClientContext getClientContext() {
-    throw new RuntimeException("NOT IMPLEMENTED");
-  }
+    @Override
+    public ClientContext getClientContext() {
+        throw new RuntimeException("NOT IMPLEMENTED");
+    }
 
-  @Override
-  public int getRemainingTimeInMillis() {
-    return 0;
-  }
+    @Override
+    public int getRemainingTimeInMillis() {
+        return 0;
+    }
 
-  @Override
-  public int getMemoryLimitInMB() {
-    return 256;
-  }
+    @Override
+    public int getMemoryLimitInMB() {
+        return 256;
+    }
 
-  @Override
-  public LambdaLogger getLogger() {
-    throw new RuntimeException("NOT IMPLEMENTED");
-  }
+    @Override
+    public LambdaLogger getLogger() {
+        throw new RuntimeException("NOT IMPLEMENTED");
+    }
 }

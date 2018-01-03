@@ -11,18 +11,18 @@ public class EventBus {
     private List<IEventDispatcher> dispatchers;
     private List<IEventListener> listeners;
 
-    public EventBus(){
+    public EventBus() {
         this.listeners = new LinkedList<>();
         this.dispatchers = new LinkedList<>();
     }
 
-    public void registerListener(IEventListener listener){
+    public void registerListener(IEventListener listener) {
         listeners.add(listener);
     }
 
-    public void registerDispatcher(IEventDispatcher dispatcher){
-        dispatcher.registerCallback((event)->{
-            listeners.stream().forEach(l->l.handleEvent(event));
+    public void registerDispatcher(IEventDispatcher dispatcher) {
+        dispatcher.registerCallback((event) -> {
+            listeners.stream().forEach(l -> l.handleEvent(event));
         });
     }
 }

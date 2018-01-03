@@ -34,14 +34,14 @@ public class S3ComponentTest {
     }
 
     @Test
-    public void testAddBucket() throws Exception {
+    public void testAddBucket() {
         component.addBucket(TEST_BUCKET_NAME_1);
         Optional<Bucket> bucket = component.getBucket(TEST_BUCKET_NAME_1);
         assertTrue(bucket.isPresent() && bucket.get().getName().equals(TEST_BUCKET_NAME_1));
     }
 
     @Test
-    public void testGetBucket() throws Exception {
+    public void testGetBucket() {
         component.addBucket(TEST_BUCKET_NAME_1);
         component.addBucket(TEST_BUCKET_NAME_2);
         Optional<Bucket> bucket = component.getBucket(TEST_BUCKET_NAME_1);

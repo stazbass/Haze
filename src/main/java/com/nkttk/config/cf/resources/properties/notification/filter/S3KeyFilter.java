@@ -7,14 +7,14 @@ import java.util.List;
 /**
  */
 public class S3KeyFilter {
-  @JsonProperty("Rules")
-  private List<FilterRule> rules;
+    @JsonProperty("Rules")
+    private List<FilterRule> rules;
 
-  public List<FilterRule> getRules() {
-    return rules;
-  }
+    public List<FilterRule> getRules() {
+        return rules;
+    }
 
-  public void setRules(List<FilterRule> rules) {
-    this.rules = rules;
-  }
+    public void setRules(List<FilterRule> rules) {
+        this.rules = rules;
+    }
 }

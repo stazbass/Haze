@@ -9,34 +9,34 @@ import java.util.Map;
 /**
  */
 public class CloudFunctionConfiguration {
-  @JsonProperty("Function")
-  private Map function;
-  @JsonProperty("Filter")
-  private S3KeyFilter filter;
-  @JsonProperty("Event")
-  private S3EventType eventType;
+    @JsonProperty("Function")
+    private Map function;
+    @JsonProperty("Filter")
+    private S3KeyFilter filter;
+    @JsonProperty("Event")
+    private S3EventType eventType;
 
-  public Map getFunction() {
-    return function;
-  }
+    public Map getFunction() {
+        return function;
+    }
 
-  public void setFunction(Map function) {
-    this.function = function;
-  }
+    public void setFunction(Map function) {
+        this.function = function;
+    }
 
-  public S3KeyFilter getFilter() {
-    return filter;
-  }
+    public S3KeyFilter getFilter() {
+        return filter;
+    }
 
-  public void setFilter(S3KeyFilter filter) {
-    this.filter = filter;
-  }
+    public void setFilter(S3KeyFilter filter) {
+        this.filter = filter;
+    }
 
-  public S3EventType getEventType() {
-    return eventType;
-  }
+    public S3EventType getEventType() {
+        return eventType;
+    }
 
-  public void setEventType(S3EventType eventType) {
-    this.eventType = eventType;
-  }
+    public void setEventType(S3EventType eventType) {
+        this.eventType = eventType;
+    }
 }

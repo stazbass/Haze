@@ -11,35 +11,35 @@ public class BucketObjectTest {
     private BucketObject bucketObject;
 
     @BeforeMethod
-    public void setUp() throws Exception {
+    public void setUp() {
         bucketObject = new BucketObject(BUCKET_OBJECT_KEY);
     }
 
     @AfterMethod
-    public void tearDown() throws Exception {
+    public void tearDown() {
     }
 
     @Test
-    public void testGetKey() throws Exception {
+    public void testGetKey() {
         assertEquals(bucketObject.getKey(), BUCKET_OBJECT_KEY);
     }
 
     @Test
-    public void testGetContent() throws Exception {
+    public void testGetContent() {
         String expectedContent = "SAMPLE_CONTENT";
         bucketObject.setContent(expectedContent);
         assertEquals(new String(bucketObject.getContent()), expectedContent);
     }
 
     @Test
-    public void testSetContent() throws Exception {
+    public void testSetContent() {
         String expectedContent = "SAMPLE_CONTENT";
         bucketObject.setContent(expectedContent);
         assertEquals(new String(bucketObject.getContent()), expectedContent);
     }
 
     @Test
-    public void testSetContent1() throws Exception {
+    public void testSetContent1() {
         String expectedContent = "SAMPLE_CONTENT";
         bucketObject.setContent(expectedContent.getBytes());
         assertEquals(new String(bucketObject.getContent()), expectedContent);

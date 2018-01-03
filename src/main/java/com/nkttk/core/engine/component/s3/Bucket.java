@@ -51,7 +51,7 @@ public class Bucket {
 
     public Optional<BucketObject> getObject(String key) {
         LOGGER.debug("Get object {}", key);
-        return files.stream().filter(o->o.getKey().equals(key)).findFirst();
+        return files.stream().filter(o -> o.getKey().equals(key)).findFirst();
     }
 
     @Override
@@ -61,9 +61,9 @@ public class Bucket {
 
     @Override
     public boolean equals(Object obj) {
-        if(obj instanceof Bucket){
-            return name.equals(((Bucket)obj).getName());
-        }else{
+        if (obj instanceof Bucket) {
+            return name.equals(((Bucket) obj).getName());
+        } else {
             return super.equals(obj);
         }
     }
