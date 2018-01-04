@@ -13,7 +13,7 @@ public class S3Component {
     private Set<Bucket> buckets;
     private Function<String, Bucket> bucketFactory;
 
-    public S3Component(Function<String, Bucket> bucketFactory) {
+    public S3Component(Function<String, Bucket> bucketFactory, S3EventListener eventListener) {
         this.bucketFactory = bucketFactory;
         this.buckets = new HashSet<>();
     }

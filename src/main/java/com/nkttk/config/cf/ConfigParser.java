@@ -7,10 +7,10 @@ import java.io.InputStream;
 
 /**
  */
-public class ConfigLoader {
+public class ConfigParser {
     private static ObjectMapper objectMapper = new ObjectMapper();
 
-    public static CloudFormationConfig loadConfig(InputStream source) throws IOException {
+    public CloudFormationConfig loadConfig(InputStream source) throws IOException {
         CloudFormationConfig cf = objectMapper.readValue(source, CloudFormationConfig.class);
         return cf;
     }

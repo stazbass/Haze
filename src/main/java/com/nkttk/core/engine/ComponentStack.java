@@ -5,7 +5,7 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.sqs.model.Message;
 import com.nkttk.config.cf.CloudFormationConfig;
-import com.nkttk.config.cf.ConfigLoader;
+import com.nkttk.config.cf.ConfigParser;
 import com.nkttk.config.cf.resources.BucketResource;
 import com.nkttk.config.cf.resources.SNSResource;
 import com.nkttk.config.cf.resources.SQSResource;
@@ -75,7 +75,7 @@ public class ComponentStack {
     }
 
     public void loadConfig(InputStream is) throws IOException {
-        CloudFormationConfig cf = ConfigLoader.loadConfig(is);
+        CloudFormationConfig cf = new ConfigParser().loadConfig(is);
         createComponents(cf);
     }
 
@@ -180,11 +180,6 @@ public class ComponentStack {
                     break;
             }
         });
-    }
-
-    public void loadCloudFormationConfig(InputStream configContentStream) throws IOException {
-        CloudFormationConfig config = ConfigLoader.loadConfig(configContentStream);
-
     }
 
     @Deprecated // should be moved

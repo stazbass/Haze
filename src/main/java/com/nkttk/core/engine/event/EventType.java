@@ -1,4 +1,5 @@
 package com.nkttk.core.engine.event;
 
-public class EventType {
+public enum EventType {
+    S3_NOTIFICATION;
 }
