@@ -88,7 +88,7 @@ resources:
                  - "cloudformation:DescribeStackResource"
                  - "cloudformation:DescribeStackResources"
                  - "cloudwatch:*"
-                 - "events:*"
+                 - "event:*"
                  - "lambda:*"
                  - "s3:*"
                  - "sns:*"
